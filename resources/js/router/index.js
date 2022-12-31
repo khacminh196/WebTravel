@@ -1,0 +1,74 @@
+import Vue from "vue";
+import Router from "vue-router";
+import routes from "./routers";
+import middlewareAuth from "./middleware/auth";
+
+Vue.use(Router);
+
+const router = createRouter();
+
+/**
+ * Create a new router instance.
+ *
+ * @return {Router}
+ */
+function createRouter() {
+  const router = new Router({
+    mode: "history",
+    base: "admin",
+    routes,
+  });
+
+  return router;
+}
+
+/**
+ * Global middlware
+ *
+ * @return {Array}
+ */
+function globalMiddleware() {
+  return [middlewareAuth];
+}
+
+/**
+ * Each a middleware
+ *
+ * @return {void}
+ */
+function nextFactory(context, middleware, index) {
+  const subsequentMiddleware = middleware[index];
+  if (!subsequentMiddleware) return context.next;
+
+  return (...parameters) => {
+    context.next(...parameters);
+    const nextMiddleware = nextFactory(context, middleware, index + 1);
+    subsequentMiddleware({ ...context, next: nextMiddleware });
+  };
+}
+
+router.beforeEach((to, from, next) => {
+  var middleware = null;
+  var routeMiddleware = null;
+  document.title = to.meta?.title ?? "one-study";
+
+  if (to.meta.middleware) {
+    routeMiddleware = Array.isArray(to.meta.middleware)
+      ? to.meta.middleware
+      : [to.meta.middleware];
+  }
+  middleware = routeMiddleware
+    ? globalMiddleware().concat(routeMiddleware)
+    : globalMiddleware();
+
+  if (middleware.length > 0) {
+    const context = { to, from, next, router };
+    const nextMiddleware = nextFactory(context, middleware, 1);
+
+    return middleware[0]({ ...context, next: nextMiddleware });
+  }
+
+  return next();
+});
+
+export default router;

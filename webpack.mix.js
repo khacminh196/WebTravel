@@ -10,7 +10,12 @@ const mix = require('laravel-mix');
  | file for the application as well as bundling up all the JS files.
  |
  */
+mix.webpackConfig({     
+    output: {         
+        chunkFilename: 'js/[name].js',     
+    }, 
+});
 
-mix.copyDirectory('resources/css', 'public/css');
-mix.copyDirectory('resources/js', 'public/js');
-// mix.sass('resources/sass/style.scss', 'public/assets/css');
+mix.copyDirectory('resources/assets', 'public/assets');
+mix.js('resources/js/app.js', 'public/js')
+    .sass('resources/sass/app.scss', 'public/css');
