@@ -38,3 +38,9 @@ Route::get('/about', function () {
 Route::get('/hotel', function () {
     return view('hotel.index');
 })->name('hotel.index');
+
+Route::group(['prefix' => 'admin'], function () {
+    Route::get('/{any}', function () {
+        return view('admin.index');
+    })->where('any', '.*');;
+});

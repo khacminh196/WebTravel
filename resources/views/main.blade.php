@@ -11,17 +11,17 @@
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
-    <link rel="stylesheet" href="{{ url('css/animate.css') }}">
-    <link rel="stylesheet" href="{{ url('css/owl.carousel.min.css') }}">
-    <link rel="stylesheet" href="{{ url('css/owl.theme.default.min.css') }}">
-    <link rel="stylesheet" href="{{ url('css/magnific-popup.css') }}">
+    <link rel="stylesheet" href="{{ url('assets/css/animate.css') }}">
+    <link rel="stylesheet" href="{{ url('assets/css/owl.carousel.min.css') }}">
+    <link rel="stylesheet" href="{{ url('assets/css/owl.theme.default.min.css') }}">
+    <link rel="stylesheet" href="{{ url('assets/css/magnific-popup.css') }}">
 
-    <link rel="stylesheet" href="{{ url('css/bootstrap-datepicker.css') }}">
-    <link rel="stylesheet" href="{{ url('css/jquery.timepicker.css') }}">
+    <link rel="stylesheet" href="{{ url('assets/css/bootstrap-datepicker.css') }}">
+    <link rel="stylesheet" href="{{ url('assets/css/jquery.timepicker.css') }}">
 
 
-    <link rel="stylesheet" href="{{ url('css/flaticon.css') }}">
-    <link rel="stylesheet" href="{{ url('css/style.css') }}">
+    <link rel="stylesheet" href="{{ url('assets/css/flaticon.css') }}">
+    <link rel="stylesheet" href="{{ url('assets/css/style.css') }}">
 </head>
 
 <body>
@@ -48,21 +48,21 @@
         </div>
     </div>
 
-    <script src="{{ url('js/jquery.min.js') }}"></script>
-    <script src="{{ url('js/jquery-migrate-3.0.1.min.js') }}"></script>
-    <script src="{{ url('js/popper.min.js') }}"></script>
-    <script src="{{ url('js/bootstrap.min.js') }}"></script>
-    <script src="{{ url('js/jquery.easing.1.3.js') }}"></script>
-    <script src="{{ url('js/jquery.waypoints.min.js') }}"></script>
-    <script src="{{ url('js/jquery.stellar.min.js') }}"></script>
-    <script src="{{ url('js/owl.carousel.min.js') }}"></script>
-    <script src="{{ url('js/jquery.magnific-popup.min.js') }}"></script>
-    <script src="{{ url('js/jquery.animateNumber.min.js') }}"></script>
-    <script src="{{ url('js/bootstrap-datepicker.js') }}"></script>
-    <script src="{{ url('js/scrollax.min.js') }}"></script>
+    <script src="{{ url('assets/js/jquery.min.js') }}"></script>
+    <script src="{{ url('assets/js/jquery-migrate-3.0.1.min.js') }}"></script>
+    <script src="{{ url('assets/js/popper.min.js') }}"></script>
+    <script src="{{ url('assets/js/bootstrap.min.js') }}"></script>
+    <script src="{{ url('assets/js/jquery.easing.1.3.js') }}"></script>
+    <script src="{{ url('assets/js/jquery.waypoints.min.js') }}"></script>
+    <script src="{{ url('assets/js/jquery.stellar.min.js') }}"></script>
+    <script src="{{ url('assets/js/owl.carousel.min.js') }}"></script>
+    <script src="{{ url('assets/js/jquery.magnific-popup.min.js') }}"></script>
+    <script src="{{ url('assets/js/jquery.animateNumber.min.js') }}"></script>
+    <script src="{{ url('assets/js/bootstrap-datepicker.js') }}"></script>
+    <script src="{{ url('assets/js/scrollax.min.js') }}"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
-    <script src="{{ url('js/google-map.js') }}"></script>
-    <script src="{{ url('js/main.js') }}"></script>
+    <script src="{{ url('assets/js/google-map.js') }}"></script>
+    <script src="{{ url('assets/js/main.js') }}"></script>
 </body>
 
 </html>
