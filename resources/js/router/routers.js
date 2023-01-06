@@ -20,6 +20,11 @@ export default [
         name: "blog"
       },
       {
+        path: "blog-create",
+        component: () => import("../components/CreateBlogComponent.vue"),
+        name: "blog-create"
+      },
+      {
         path: "tour",
         component: () => import("../components/TourComponent.vue"),
         name: "tour",
