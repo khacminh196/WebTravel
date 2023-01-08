@@ -7,10 +7,19 @@
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet" type="text/css">
         <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" type="text/css" rel="stylesheet" />
         <meta name="csrf-token" value="{{ csrf_token() }}" />
+        <link rel="stylesheet" href="{{ url('assets/admin/admin.css') }}">
     </head>
     <body>
-        <div id="app">
+        <div>
+            <div class="wrapper-container">
+                @include('admin.layouts.sidebar')
+                <div class="wrapper-layout">
+                    @include('admin.layouts.header')
+                    <transition name="fade">
+                        @yield('content')
+                    </transition>
+                </div>
+            </div>
         </div>
-        <script src="{{ mix('js/app.js') }}" type="text/javascript"></script>
     </body>
 </html>

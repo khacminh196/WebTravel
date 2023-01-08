@@ -13,143 +13,34 @@
 </section>
 <section class="ftco-section">
     <div class="container">
+        @if ($data->isEmpty())
+            <h1>No data</h1>
+        @endif
         <div class="row d-flex">
-            <div class="col-md-4 d-flex ftco-animate">
-                <div class="blog-entry justify-content-end">
-                    <a href="blog-single.html" class="block-20" style="background-image: url('images/image_1.jpg');">
-                    </a>
-                    <div class="text">
-                        <div class="d-flex align-items-center mb-4 topp">
-                            <div class="one">
-                                <span class="day">11</span>
+            @foreach ($data as $item)
+                <div class="col-md-4 d-flex ftco-animate">
+                    <div class="blog-entry justify-content-end">
+                        <a href="{{ route('blog.detail', ['id' => $item->id]) }}" class="block-20" style="background-image: url(<?php echo $item->image_link ?>);">
+                        </a>
+                        <div class="text">
+                            <div class="d-flex align-items-center mb-4 topp">
+                                <div class="one mr-1">
+                                    <span class="day">{{ \Carbon\Carbon::parse($item->created_at)->format('d') }}</span>
+                                </div>
+                                <div class="two">
+                                    <span class="yr">{{ \Carbon\Carbon::parse($item->created_at)->format('Y') }}</span>
+                                    <span class="mos">{{ \Carbon\Carbon::parse($item->created_at)->format('M') }}</span>
+                                </div>
                             </div>
-                            <div class="two">
-                                <span class="yr">2020</span>
-                                <span class="mos">September</span>
-                            </div>
+                            <h3 class="heading"><a href="{{ route('blog.detail', ['id' => $item->id]) }}">{{ $item->title }}</a></h3>
+                            <p>{{ $item->description }}</p>
+                            <p><a href="{{ route('blog.detail', ['id' => $item->id]) }}" class="btn btn-primary">Read more</a></p>
                         </div>
-                        <h3 class="heading"><a href="{{ route('blog.detail', ['id' => 3]) }}">Most Popular Place In This World</a></h3>
-                        <p>A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
-                        <p><a href="#" class="btn btn-primary">Read more</a></p>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-4 d-flex ftco-animate">
-                <div class="blog-entry justify-content-end">
-                    <a href="blog-single.html" class="block-20" style="background-image: url('images/image_2.jpg');">
-                    </a>
-                    <div class="text">
-                        <div class="d-flex align-items-center mb-4 topp">
-                            <div class="one">
-                                <span class="day">11</span>
-                            </div>
-                            <div class="two">
-                                <span class="yr">2020</span>
-                                <span class="mos">September</span>
-                            </div>
-                        </div>
-                        <h3 class="heading"><a href="{{ route('blog.detail', ['id' => 3]) }}">Most Popular Place In This World</a></h3>
-                        <p>A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
-                        <p><a href="#" class="btn btn-primary">Read more</a></p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 d-flex ftco-animate">
-                <div class="blog-entry">
-                    <a href="blog-single.html" class="block-20" style="background-image: url('images/image_3.jpg');">
-                    </a>
-                    <div class="text">
-                        <div class="d-flex align-items-center mb-4 topp">
-                            <div class="one">
-                                <span class="day">11</span>
-                            </div>
-                            <div class="two">
-                                <span class="yr">2020</span>
-                                <span class="mos">September</span>
-                            </div>
-                        </div>
-                        <h3 class="heading"><a href="{{ route('blog.detail', ['id' => 3]) }}">Most Popular Place In This World</a></h3>
-                        <p>A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
-                        <p><a href="#" class="btn btn-primary">Read more</a></p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 d-flex ftco-animate">
-                <div class="blog-entry">
-                    <a href="blog-single.html" class="block-20" style="background-image: url('images/image_4.jpg');">
-                    </a>
-                    <div class="text">
-                        <div class="d-flex align-items-center mb-4 topp">
-                            <div class="one">
-                                <span class="day">11</span>
-                            </div>
-                            <div class="two">
-                                <span class="yr">2020</span>
-                                <span class="mos">September</span>
-                            </div>
-                        </div>
-                        <h3 class="heading"><a href="{{ route('blog.detail', ['id' => 3]) }}">Most Popular Place In This World</a></h3>
-                        <p>A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
-                        <p><a href="#" class="btn btn-primary">Read more</a></p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 d-flex ftco-animate">
-                <div class="blog-entry">
-                    <a href="blog-single.html" class="block-20" style="background-image: url('images/image_5.jpg');">
-                    </a>
-                    <div class="text">
-                        <div class="d-flex align-items-center mb-4 topp">
-                            <div class="one">
-                                <span class="day">11</span>
-                            </div>
-                            <div class="two">
-                                <span class="yr">2020</span>
-                                <span class="mos">September</span>
-                            </div>
-                        </div>
-                        <h3 class="heading"><a href="{{ route('blog.detail', ['id' => 3]) }}">Most Popular Place In This World</a></h3>
-                        <p>A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
-                        <p><a href="#" class="btn btn-primary">Read more</a></p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 d-flex ftco-animate">
-                <div class="blog-entry">
-                    <a href="blog-single.html" class="block-20" style="background-image: url('images/image_6.jpg');">
-                    </a>
-                    <div class="text">
-                        <div class="d-flex align-items-center mb-4 topp">
-                            <div class="one">
-                                <span class="day">11</span>
-                            </div>
-                            <div class="two">
-                                <span class="yr">2020</span>
-                                <span class="mos">September</span>
-                            </div>
-                        </div>
-                        <h3 class="heading"><a href="{{ route('blog.detail', ['id' => 3]) }}">Most Popular Place In This World</a></h3>
-                        <p>A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
-                        <p><a href="#" class="btn btn-primary">Read more</a></p>
-                    </div>
-                </div>
-            </div>
+            @endforeach
         </div>
-        <div class="row mt-5">
-            <div class="col text-center">
-                <div class="block-27">
-                    <ul>
-                        <li><a href="#">&lt;</a></li>
-                        <li class="active"><span>1</span></li>
-                        <li><a href="#">2</a></li>
-                        <li><a href="#">3</a></li>
-                        <li><a href="#">4</a></li>
-                        <li><a href="#">5</a></li>
-                        <li><a href="#">&gt;</a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
+        {{ $data->links() }}
     </div>
 </section>
 @endsection

@@ -19,13 +19,9 @@ Route::get('/destination', function () {
     return view('destination.index');
 })->name('destination.index');
 
-Route::get('/blog', function () {
-    return view('blog.index');
-})->name('blog.index');
+Route::get('/blog', 'BlogController@index')->name('blog.index');
 
-Route::get('/blog/{id}', function () {
-    return view('blog.detail');
-})->name('blog.detail');
+Route::get('/blog/{id}', 'BlogController@show')->name('blog.detail');
 
 Route::get('/contact', function () {
     return view('contact.index');
@@ -39,8 +35,23 @@ Route::get('/hotel', function () {
     return view('hotel.index');
 })->name('hotel.index');
 
-Route::group(['prefix' => 'admin'], function () {
-    Route::get('/{any}', function () {
+// Route::group(['prefix' => 'admin'], function () {
+//     Route::get('/{any}', function () {
+//         return view('admin.index');
+//     })->where('any', '.*');;
+// });
+
+Route::post('image-upload', 'ImageController@upload')->name('upload');
+
+Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function () {
+    Route::get('/', function () {
         return view('admin.index');
-    })->where('any', '.*');;
+    });
+    Route::group(['prefix' => 'blogs'], function () {
+        Route::get('/', 'BlogController@index')->name('blog.index');
+        Route::get('create', 'BlogController@create');
+        Route::post('create', 'BlogController@store')->name('blog.store');
+        Route::get('/{id}', 'BlogController@edit')->name('blog.edit');
+        Route::post('/{id}', 'BlogController@update')->name('blog.update');
+    });
 });
