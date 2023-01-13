@@ -2,7 +2,7 @@
 @section('content')
 <div class="comment-form-wrap pt-5">
 	<h3 class="mb-5" style="font-size: 20px; font-weight: bold;">Create blog</h3>
-	<form action="{{ route('admin.blog.store') }}" method="post" enctype="multipart/form-data" class="p-5 bg-light">
+	<form action="" method="post" enctype="multipart/form-data" class="p-5 bg-light">
 		@csrf
 		<div class="form-group">
 			<label for="name">Image *</label>

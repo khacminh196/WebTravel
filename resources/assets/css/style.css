@@ -8541,8 +8541,11 @@ h1, h2, h3, h4, h5,
       padding-top: 1rem !important;
       padding-bottom: 1rem !important;
       color: #000000 !important; }
-      .ftco-navbar-light.scrolled .nav-link.active {
-        color: #f15d30 !important; }
+    .ftco-navbar-light.scrolled .nav-wrapper {
+      padding-top: 1rem !important;
+    }
+    .ftco-navbar-light.scrolled .nav-link.active {
+      color: #f15d30 !important; }
     .ftco-navbar-light.scrolled.awake {
       margin-top: 0px;
       -webkit-transition: .3s all ease-out;

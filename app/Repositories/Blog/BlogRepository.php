@@ -36,6 +36,6 @@ class BlogRepository extends BaseRepository implements IBlogRepository
             });
         });
         
-        return $data->orderBy('id', 'DESC')->paginate(Constant::DEFAULT_PAGINATION);
+        return $data->with('category')->orderBy('id', 'DESC')->paginate(Constant::DEFAULT_PAGINATION);
     }
 }
