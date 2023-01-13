@@ -15,11 +15,10 @@ class CreateTourDetailsTable extends Migration
     {
         Schema::create('tour_details', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->bigInteger('tour_id');
-            $table->bigInteger('day');
-            $table->bigInteger('title');
-            $table->bigInteger('schedule');
-            $table->bigInteger('image_link');
+            $table->integer('tour_id');
+            $table->tinyInteger('day');
+            $table->string('title');
+            $table->text('schedule');
             $table->timestamps();
         });
     }
