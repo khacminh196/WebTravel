@@ -14,4 +14,9 @@ class Blog extends Model
         'image_link',
         'tour_id',
     ];
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
 }

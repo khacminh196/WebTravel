@@ -1,6 +1,6 @@
 @extends('admin.index')
 @section('content')
-<form action="{{ route('admin.blog.update', ['id' => $data->id]) }}" method="post" enctype="multipart/form-data">
+<form action="" method="post" enctype="multipart/form-data">
 	@csrf
     <img src="{{ asset($data->image_link) }}" id="image" alt="">
 	<input type="file" name="image" id="image_input" onchange="changeImage()"><br>

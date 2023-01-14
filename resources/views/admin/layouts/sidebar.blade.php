@@ -11,16 +11,16 @@
             <span class="tooltip">Search</span>
         </li>
         <li>
-            <a href="#">
+            <a href="{{ route('admin.blog.index') }}" class="{{ str_contains(Request::path(), 'admin/blogs') ? 'sidebar-active' : '' }}">
                 <i class="bx bx-grid-alt"></i>
-                <span class="links_name">Blog</span>
+                <span class="links_name">{{ __('common.sidebar.blog') }}</span>
             </a>
             <span class="tooltip">Blog</span>
         </li>
         <li>
-            <a href="#">
+            <a href="#" class="{{ str_contains(Request::path(), 'admin/tours') ? 'sidebar-active' : '' }}">
                 <i class="bx bx-chat"></i>
-                <span class="links_name">Tour</span>
+                <span class="links_name">{{ __('common.sidebar.tour') }}</span>
             </a>
             <span class="tooltip">Tour</span>
         </li>
@@ -67,7 +67,10 @@
                     <div class="job">Web designer</div>
                 </div>
             </div>
-            <i class="bx bx-log-out" id="log_out"></i>
+            <form method="post" action="{{ route('admin.logout') }}">
+                @csrf
+                <button type="submit"><i class="bx bx-log-out" id="log_out"></i></button>
+            </form>
         </li>
     </ul>
 </div>

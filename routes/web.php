@@ -35,6 +35,10 @@ Route::get('/hotel', function () {
     return view('hotel.index');
 })->name('hotel.index');
 
+Route::get('/greeting/{locale}', function ($locale) {
+    \Session::put('website_language', $locale);
+    return redirect()->back();
+})->name('change-language');
 // Route::group(['prefix' => 'admin'], function () {
 //     Route::get('/{any}', function () {
 //         return view('admin.index');
@@ -44,14 +48,21 @@ Route::get('/hotel', function () {
 Route::post('image-upload', 'ImageController@upload')->name('upload');
 
 Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function () {
-    Route::get('/', function () {
-        return view('admin.index');
-    });
-    Route::group(['prefix' => 'blogs'], function () {
-        Route::get('/', 'BlogController@index')->name('blog.index');
-        Route::get('create', 'BlogController@create');
-        Route::post('create', 'BlogController@store')->name('blog.store');
-        Route::get('/{id}', 'BlogController@edit')->name('blog.edit');
-        Route::post('/{id}', 'BlogController@update')->name('blog.update');
+    Route::get('/login', 'AuthController@loginForm')->name('login');
+    Route::post('/login', 'AuthController@login');
+
+    Route::middleware(['auth.admin'])->group(function () {
+        Route::post('/logout', 'AuthController@logout')->name('logout');
+        Route::get('/', function () {
+            return view('admin.index');
+        })->name('home');
+
+        Route::group(['prefix' => 'blogs'], function () {
+            Route::get('/', 'BlogController@index')->name('blog.index');
+            Route::get('create', 'BlogController@create')->name('blog.create');
+            Route::post('create', 'BlogController@store');
+            Route::get('/{id}', 'BlogController@edit')->name('blog.edit');
+            Route::post('/{id}', 'BlogController@update');
+        });
     });
 });
