@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateToursTable extends Migration
+class CreateTourPrefectures extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,10 @@ class CreateToursTable extends Migration
      */
     public function up()
     {
-        Schema::create('tours', function (Blueprint $table) {
+        Schema::create('tour_prefectures', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('country_id');
-            $table->string('name');
-            $table->float('cost')->nullable();
-            $table->text('image_link');
-            $table->text('description');
+            $table->integer('tour_id');
+            $table->integer('prefecture_id');
             $table->timestamps();
         });
     }
@@ -31,6 +28,6 @@ class CreateToursTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tours');
+        Schema::dropIfExists('tour_prefectures');
     }
 }

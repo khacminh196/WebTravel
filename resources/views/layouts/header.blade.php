@@ -7,25 +7,25 @@
 
         <div class="collapse navbar-collapse" id="ftco-nav">
             <ul class="navbar-nav ml-auto">
-                <li class="nav-item active"><a href="{{ route('home.index') }}" class="nav-link">{{ __('common.sidebar.home') }}</a></li>
-                <li class="nav-item"><a href="{{ route('about.index') }}" class="nav-link">About</a></li>
-                <li class="nav-item"><a href="{{ route('destination.index') }}" class="nav-link">Destination</a></li>
-                <li class="nav-item"><a href="{{ route('hotel.index') }}" class="nav-link">Hotel</a></li>
-                <li class="nav-item"><a href="{{ route('blog.index') }}" class="nav-link">Blog</a></li>
-                <li class="nav-item"><a href="{{ route('contact.index') }}" class="nav-link">Contact</a></li>
+                <li class="nav-item {{ \Request::is('/') ? 'active' : '' }}"><a href="{{ route('home.index') }}" class="nav-link">{{ __('common.sidebar.home') }}</a></li>
+                <li class="nav-item {{ \Request::is('about') || \Request::is('about/*') ? 'active' : '' }}"><a href="{{ route('about.index') }}" class="nav-link">About</a></li>
+                <li class="nav-item {{ \Request::is('destination') || \Request::is('destination/*') ? 'active' : '' }}"><a href="{{ route('destination.index') }}" class="nav-link">Destination</a></li>
+                <li class="nav-item {{ \Request::is('hotel') || \Request::is('hotel/*') ? 'active' : '' }}"><a href="{{ route('hotel.index') }}" class="nav-link">Hotel</a></li>
+                <li class="nav-item {{ \Request::is('blog') || \Request::is('blog/*') ? 'active' : '' }}"><a href="{{ route('blog.index') }}" class="nav-link">Blog</a></li>
+                <li class="nav-item {{ \Request::is('contact') || \Request::is('contact/*') ? 'active' : '' }}"><a href="{{ route('contact.index') }}" class="nav-link">Contact</a></li>
                 <li class="nav-item nav-wrapper">
-                        <div class="sl-nav">
-                            Language:
-                            <ul>
-                                <li><b>{{ config('app.locale') }}</b> <i class="fa fa-angle-down" aria-hidden="true"></i>
-                                    <div class="triangle"></div>
-                                    <ul>
-                                      <li><i class="sl-flag flag-en"><div id="germany"></div></i> <a href="{{ route('change-language', ['locale' => 'en']) }}"><span class="active">en</span></a></li>
-                                      <li><i class="sl-flag flag-es"><div id="germany"></div></i> <a href="{{ route('change-language', ['locale' => 'es']) }}"><span>es</span></a></li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </div>
+                  <div class="sl-nav">
+                      Language:
+                      <ul>
+                          <li><b>{{ config('app.locale') }}</b> <i class="fa fa-angle-down" aria-hidden="true"></i>
+                              <div class="triangle"></div>
+                              <ul>
+                                <li><i class="sl-flag flag-en"><div id="germany"></div></i> <a href="{{ route('change-language', ['locale' => 'en']) }}"><span class="active">en</span></a></li>
+                                <li><i class="sl-flag flag-es"><div id="germany"></div></i> <a href="{{ route('change-language', ['locale' => 'es']) }}"><span>es</span></a></li>
+                              </ul>
+                          </li>
+                      </ul>
+                  </div>
                 </li>
             </ul>
         </div>
