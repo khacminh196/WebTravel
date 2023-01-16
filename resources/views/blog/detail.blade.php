@@ -18,7 +18,63 @@
                 <div class="ck-content">
                     {!! $data->body !!}
                 </div>
-                <div class="tag-widget post-tag-container mb-5 mt-5">
+            </div> <!-- .col-md-8 -->
+            <div class="col-lg-4 sidebar ftco-animate bg-light py-md-5">
+                <div class="sidebar-box pt-md-5">
+                    <form action="{{ route('blog.index') }}" class="search-form">
+                        <div class="form-group">
+                            <span class="icon fa fa-search"></span>
+                            <input type="text" name="title" class="form-control" placeholder="Search...">
+                        </div>
+                    </form>
+                </div>
+                <div class="sidebar-box ftco-animate">
+                    <div class="categories">
+                        <h3>Categories</h3>
+                        @foreach ($categories as $category)
+                            <li><a href="{{ route('blog.index', ['category_id' => $category->id]) }}">{{ $category->name }} <span>({{ $category->num_of_blogs }})</span></a></li>
+                        @endforeach
+                    </div>
+                </div>
+
+                <div class="sidebar-box ftco-animate">
+                    <h3>Recent Blog</h3>
+                    @foreach ($recentBlog as $item)
+                        <div class="block-21 mb-4 d-flex">
+                            <a class="blog-img mr-4" style="background-image: url(<?php echo $item->image_link ?>);"></a>
+                            <div class="text">
+                                <h3 class="heading"><a href="{{ route('blog.detail', ['id' => $item->id]) }}">{{ $item->title }}</a></h3>
+                                <div class="meta">
+                                    <div><span class="fa fa-calendar"></span>{{ \Carbon\Carbon::parse($item->created_at)->format('M d, Y') }}</div>
+                                    <div><span class="fa fa-user"></span> Admin</div>
+                                    <div><span class="fa fa-comment"></span> 0</div>
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+
+                <div class="sidebar-box ftco-animate">
+                    <h3>Tag Cloud</h3>
+                    <div class="tagcloud">
+                        <a href="#" class="tag-cloud-link">dish</a>
+                        <a href="#" class="tag-cloud-link">menu</a>
+                        <a href="#" class="tag-cloud-link">food</a>
+                        <a href="#" class="tag-cloud-link">sweet</a>
+                        <a href="#" class="tag-cloud-link">tasty</a>
+                        <a href="#" class="tag-cloud-link">delicious</a>
+                        <a href="#" class="tag-cloud-link">desserts</a>
+                        <a href="#" class="tag-cloud-link">drinks</a>
+                    </div>
+                </div>
+
+                <div class="sidebar-box ftco-animate">
+                    <h3>Paragraph</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus itaque, autem necessitatibus voluptate quod mollitia delectus aut, sunt placeat nam vero culpa sapiente consectetur similique, inventore eos fugit cupiditate numquam!</p>
+                </div>
+            </div>
+            <div class="col-lg-12">
+            <div class="tag-widget post-tag-container mb-5 mt-5">
                     <div class="tagcloud">
                         <a href="#" class="tag-cloud-link">Life</a>
                         <a href="#" class="tag-cloud-link">Sport</a>
@@ -135,63 +191,7 @@
                         </form>
                     </div>
                 </div>
-
-            </div> <!-- .col-md-8 -->
-            <div class="col-lg-4 sidebar ftco-animate bg-light py-md-5">
-                <div class="sidebar-box pt-md-5">
-                    <form action="{{ route('blog.index') }}" class="search-form">
-                        <div class="form-group">
-                            <span class="icon fa fa-search"></span>
-                            <input type="text" name="title" class="form-control" placeholder="Search...">
-                        </div>
-                    </form>
-                </div>
-                <div class="sidebar-box ftco-animate">
-                    <div class="categories">
-                        <h3>Categories</h3>
-                        @foreach ($categories as $category)
-                            <li><a href="{{ route('blog.index', ['category_id' => $category->id]) }}">{{ $category->name }} <span>({{ $category->num_of_blogs }})</span></a></li>
-                        @endforeach
-                    </div>
-                </div>
-
-                <div class="sidebar-box ftco-animate">
-                    <h3>Recent Blog</h3>
-                    @foreach ($recentBlog as $item)
-                        <div class="block-21 mb-4 d-flex">
-                            <a class="blog-img mr-4" style="background-image: url(<?php echo $item->image_link ?>);"></a>
-                            <div class="text">
-                                <h3 class="heading"><a href="{{ route('blog.detail', ['id' => $item->id]) }}">{{ $item->title }}</a></h3>
-                                <div class="meta">
-                                    <div><span class="fa fa-calendar"></span>{{ \Carbon\Carbon::parse($item->created_at)->format('M d, Y') }}</div>
-                                    <div><span class="fa fa-user"></span> Admin</div>
-                                    <div><span class="fa fa-comment"></span> 0</div>
-                                </div>
-                            </div>
-                        </div>
-                    @endforeach
-                </div>
-
-                <div class="sidebar-box ftco-animate">
-                    <h3>Tag Cloud</h3>
-                    <div class="tagcloud">
-                        <a href="#" class="tag-cloud-link">dish</a>
-                        <a href="#" class="tag-cloud-link">menu</a>
-                        <a href="#" class="tag-cloud-link">food</a>
-                        <a href="#" class="tag-cloud-link">sweet</a>
-                        <a href="#" class="tag-cloud-link">tasty</a>
-                        <a href="#" class="tag-cloud-link">delicious</a>
-                        <a href="#" class="tag-cloud-link">desserts</a>
-                        <a href="#" class="tag-cloud-link">drinks</a>
-                    </div>
-                </div>
-
-                <div class="sidebar-box ftco-animate">
-                    <h3>Paragraph</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus itaque, autem necessitatibus voluptate quod mollitia delectus aut, sunt placeat nam vero culpa sapiente consectetur similique, inventore eos fugit cupiditate numquam!</p>
-                </div>
             </div>
-
         </div>
     </div>
 </section>

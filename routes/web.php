@@ -15,9 +15,7 @@ Route::get('/', function () {
     return view('home.index');
 })->name('home.index');
 
-Route::get('/destination', function () {
-    return view('destination.index');
-})->name('destination.index');
+Route::get('/destination', 'TourController')->name('destination.index');
 
 Route::get('/blog', 'BlogController@index')->name('blog.index');
 
@@ -51,6 +49,8 @@ Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function () {
     Route::get('/login', 'AuthController@loginForm')->name('login');
     Route::post('/login', 'AuthController@login');
 
+    Route::post('prefectures', 'PrefectureController@index');
+
     Route::middleware(['auth.admin'])->group(function () {
         Route::post('/logout', 'AuthController@logout')->name('logout');
         Route::get('/', function () {
@@ -63,6 +63,15 @@ Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function () {
             Route::post('create', 'BlogController@store');
             Route::get('/{id}', 'BlogController@edit')->name('blog.edit');
             Route::post('/{id}', 'BlogController@update');
+        });
+
+        Route::group(['prefix' => 'tours'], function () {
+            Route::get('/', 'TourController@index')->name('tour.index');
+            Route::get('create', 'TourController@create')->name('tour.create');
+            Route::post('create', 'TourController@store');
+            Route::get('/{id}/detail', 'TourController@detail')->name('tour.detail');
+            Route::get('/{id}', 'TourController@edit')->name('tour.edit');
+            Route::post('/{id}', 'TourController@update');
         });
     });
 });

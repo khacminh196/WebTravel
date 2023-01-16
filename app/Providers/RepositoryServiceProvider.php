@@ -19,6 +19,26 @@ class RepositoryServiceProvider extends ServiceProvider
             \App\Repositories\Category\ICategoryRepository::class,
             \App\Repositories\Category\CategoryRepository::class
         );
+
+        $this->app->bind(
+            \App\Repositories\Tour\ITourRepository::class,
+            \App\Repositories\Tour\TourRepository::class
+        );
+
+        $this->app->bind(
+            \App\Repositories\TourImage\ITourImageRepository::class,
+            \App\Repositories\TourImage\TourImageRepository::class
+        );
+
+        $this->app->bind(
+            \App\Repositories\TourPrefecture\ITourPrefectureRepository::class,
+            \App\Repositories\TourPrefecture\TourPrefectureRepository::class
+        );
+
+        $this->app->bind(
+            \App\Repositories\Country\ICountryRepository::class,
+            \App\Repositories\Country\CountryRepository::class
+        );
     }
 
     /**
