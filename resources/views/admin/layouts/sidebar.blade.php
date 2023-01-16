@@ -18,7 +18,7 @@
             <span class="tooltip">Blog</span>
         </li>
         <li>
-            <a href="#" class="{{ str_contains(Request::path(), 'admin/tours') ? 'sidebar-active' : '' }}">
+            <a href="{{ route('admin.tour.index') }}" class="{{ str_contains(Request::path(), 'admin/tours') ? 'sidebar-active' : '' }}">
                 <i class="bx bx-chat"></i>
                 <span class="links_name">{{ __('common.sidebar.tour') }}</span>
             </a>

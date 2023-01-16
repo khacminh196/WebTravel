@@ -17,9 +17,12 @@ class CreateToursTable extends Migration
             $table->bigIncrements('id');
             $table->integer('country_id');
             $table->string('name');
+            $table->tinyInteger('num_of_day');
             $table->float('cost')->nullable();
             $table->text('image_link');
+            $table->string('tag')->nullable();
             $table->text('description');
+            $table->text('content');
             $table->timestamps();
         });
     }

@@ -7,6 +7,7 @@ use App\Repositories\Blog\IBlogRepository;
 use App\Repositories\Category\ICategoryRepository;
 use App\Services\ImageService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class BlogController extends Controller
 {
@@ -53,12 +54,16 @@ class BlogController extends Controller
     public function store(Request $request)
     {
         $params = $request->all();
+        DB::beginTransaction();
         try {
             $link = $this->imageService->upload($request->file('image'));
             $params['image_link'] = $link;
             $this->blogRepo->create($params);
+            DB::commit();
+            
             return redirect()->route('admin.blog.index');
         } catch (\Exception $e) {
+            DB::rollBack();
             return $this->sendError();
         }
     }
