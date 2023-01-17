@@ -15,7 +15,7 @@ Route::get('/', function () {
     return view('home.index');
 })->name('home.index');
 
-Route::get('/destination', 'TourController')->name('destination.index');
+Route::get('/destination', 'TourController@index')->name('destination.index');
 
 Route::get('/blog', 'BlogController@index')->name('blog.index');
 

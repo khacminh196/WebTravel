@@ -23,4 +23,9 @@ class Tour extends Model
     {
         return $this->belongsTo(Country::class);
     }
+
+    public function prefectures()
+    {
+        return $this->belongsToMany(Prefecture::class, TourPrefecture::class, 'tour_id', 'prefecture_id');
+    }
 }

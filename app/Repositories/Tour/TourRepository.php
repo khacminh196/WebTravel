@@ -18,4 +18,9 @@ class TourRepository extends BaseRepository implements ITourRepository
     {
         return Tour::class;
     }
+
+    public function getListTour($params)
+    {
+        return $this->model->with('country', 'prefectures')->paginate(Constant::DEFAULT_PAGINATION_TOUR);
+    }
 }

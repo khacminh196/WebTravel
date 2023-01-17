@@ -10,7 +10,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Arizonia&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    
     <link rel="stylesheet" href="{{ url('assets/css/animate.css') }}">
     <link rel="stylesheet" href="{{ url('assets/css/owl.carousel.min.css') }}">
     <link rel="stylesheet" href="{{ url('assets/css/owl.theme.default.min.css') }}">
@@ -19,9 +20,9 @@
     <link rel="stylesheet" href="{{ url('assets/css/bootstrap-datepicker.css') }}">
     <link rel="stylesheet" href="{{ url('assets/css/jquery.timepicker.css') }}">
 
-
     <link rel="stylesheet" href="{{ url('assets/css/flaticon.css') }}">
     <link rel="stylesheet" href="{{ url('assets/css/style.css') }}">
+    <script src="{{ url('assets/js/jquery.min.js') }}"></script>
 </head>
 
 <body>
@@ -48,7 +49,6 @@
         </div>
     </div>
 
-    <script src="{{ url('assets/js/jquery.min.js') }}"></script>
     <script src="{{ url('assets/js/jquery-migrate-3.0.1.min.js') }}"></script>
     <script src="{{ url('assets/js/popper.min.js') }}"></script>
     <script src="{{ url('assets/js/bootstrap.min.js') }}"></script>
@@ -63,6 +63,7 @@
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
     <script src="{{ url('assets/js/google-map.js') }}"></script>
     <script src="{{ url('assets/js/main.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 </body>
 
 </html>

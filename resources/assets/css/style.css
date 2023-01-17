@@ -9005,7 +9005,7 @@ h1, h2, h3, h4, h5,
     -moz-box-shadow: 0px 10px 23px -8px rgba(0, 0, 0, 0.11);
     box-shadow: 0px 10px 23px -8px rgba(0, 0, 0, 0.11); }
     .project-wrap .text span {
-      font-size: 13px; }
+      font-size: 15px; }
     .project-wrap .text .days {
       font-size: 12px;
       color: #f15d30;
@@ -10552,4 +10552,9 @@ textarea.form-control {
   .ck-content .page-break::after {
       display: none;
   }
+}
+
+.location {
+  font-size: 16px;
+  color: red;
 }
