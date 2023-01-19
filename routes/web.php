@@ -16,10 +16,12 @@ Route::get('/', function () {
 })->name('home.index');
 
 Route::get('/destination', 'TourController@index')->name('destination.index');
+Route::get('/destination/{id}', 'TourController@show')->name('destination.detail');
 
 Route::get('/blog', 'BlogController@index')->name('blog.index');
-
 Route::get('/blog/{id}', 'BlogController@show')->name('blog.detail');
+
+Route::post('/booking-tour', 'BookingController@bookingTour')->name('booking-tour.store');
 
 Route::get('/contact', function () {
     return view('contact.index');

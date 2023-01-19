@@ -20,6 +20,9 @@ mix.copyDirectory('resources/assets', 'public/assets');
 mix.js('resources/js/app.js', 'public/js')
     .sass('resources/sass/app.scss', 'public/css');
 
-mix.combine([
-    'node_modules/jquery/dist/jquery.min.js'
-],'public/js/jquery.js');
+// plugin
+mix.scripts([
+    'node_modules/toastr/build/toastr.min.js',
+    'resources/js/toastr.js',
+], 'public/js/toastr.min.js');
+mix.postCss('node_modules/toastr/build/toastr.min.css', 'public/css/toastr.min.css');

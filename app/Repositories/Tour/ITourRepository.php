@@ -9,4 +9,5 @@ use App\Repositories\IBaseRepository;
 interface ITourRepository extends IBaseRepository
 {
     public function getListTour($params);
+    public function getTourDetail($id);
 }

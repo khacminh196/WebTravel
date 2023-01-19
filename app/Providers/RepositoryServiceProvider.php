@@ -39,6 +39,16 @@ class RepositoryServiceProvider extends ServiceProvider
             \App\Repositories\Country\ICountryRepository::class,
             \App\Repositories\Country\CountryRepository::class
         );
+
+        $this->app->bind(
+            \App\Repositories\BookingTour\IBookingTourRepository::class,
+            \App\Repositories\BookingTour\BookingTourRepository::class
+        );
+
+        $this->app->bind(
+            \App\Repositories\User\IUserRepository::class,
+            \App\Repositories\User\UserRepository::class
+        );
     }
 
     /**

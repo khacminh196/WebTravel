@@ -21,6 +21,27 @@ class TourRepository extends BaseRepository implements ITourRepository
 
     public function getListTour($params)
     {
-        return $this->model->with('country', 'prefectures')->paginate(Constant::DEFAULT_PAGINATION_TOUR);
+        $query = $this->model->with('country', 'prefectures')
+            ->when(isset($params['country']) && $params['country'], function ($query) use ($params) {
+                return $query->where('country_id', $params['country']);
+            })
+            ->when(isset($params['prefecture']) && $params['prefecture'], function ($query) use ($params) {
+                return $query->whereHas('prefectures', function ($q) use ($params) {
+                    $q->where('prefectures.id', $params["prefecture"]);
+                });
+            })
+            ->when(isset($params['keyword']) && $params['keyword'], function ($query) use ($params) {
+                return $query->where('name', 'LIKE', '%' . $params['keyword'] . '%');
+            })
+            ->when(isset($params['sort-day']) && $params['sort-day'], function ($query) use ($params) {
+                return $query->orderBy('num_of_day', $params['sort-day']);
+            });
+
+        return $query->paginate(Constant::DEFAULT_PAGINATION_TOUR);
+    }
+
+    public function getTourDetail($id)
+    {
+        return $this->model->with('images')->find($id);
     }
 }

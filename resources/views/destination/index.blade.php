@@ -16,56 +16,54 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="search-wrap-1 ftco-animate">
-                    <form action="#" class="search-property-1">
+                    <form action="" class="search-property-1">
                         <div class="row no-gutters">
                             <div class="col-lg d-flex">
                                 <div class="form-group p-4 border-0">
-                                    <label for="#">Destination</label>
+                                    <label for="#">Key word</label>
                                     <div class="form-field">
                                         <div class="icon"><span class="fa fa-search"></span></div>
-                                        <input type="text" class="form-control" placeholder="Search place">
+                                        <input name="keyword" value="{{ old('keyword', \Request::get('keyword')) ? old('keyword', \Request::get('keyword')) : '' }}" type="text" class="form-control" placeholder="Search place">
                                     </div>
                                 </div>
                             </div>
                             <div class="col-lg d-flex">
                                 <div class="form-group p-4">
-                                    <label for="#">Check-in date</label>
-                                    <div class="form-field">
-                                        <div class="icon"><span class="fa fa-calendar"></span></div>
-                                        <input type="text" class="form-control checkin_date" placeholder="Check In Date">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg d-flex">
-                                <div class="form-group p-4">
-                                    <label for="#">Check-out date</label>
-                                    <div class="form-field">
-                                        <div class="icon"><span class="fa fa-calendar"></span></div>
-                                        <input type="text" class="form-control checkout_date" placeholder="Check Out Date">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg d-flex">
-                                <div class="form-group p-4">
-                                    <label for="#">Price Limit</label>
+                                    <label for="#">Country</label>
                                     <div class="form-field">
                                         <div class="select-wrap">
                                             <div class="icon"><span class="fa fa-chevron-down"></span></div>
-                                            <select class="basic-multiple form-control" name="prefectures">
-                                                <option value="">$5,000</option>
-                                                <option value="">$10,000</option>
-                                                <option value="">$50,000</option>
-                                                <option value="">$100,000</option>
-                                                <option value="">$200,000</option>
-                                                <option value="">$300,000</option>
-                                                <option value="">$400,000</option>
-                                                <option value="">$500,000</option>
-                                                <option value="">$600,000</option>
-                                                <option value="">$700,000</option>
-                                                <option value="">$800,000</option>
-                                                <option value="">$900,000</option>
-                                                <option value="">$1,000,000</option>
-                                                <option value="">$2,000,000</option>
+                                            <select id="country-input" class="basic-multiple form-control" name="country" onchange="changeCountry()">
+                                                <option value="">-- All --</option>
+                                                @foreach ($countries as $country)
+                                                <option {{ old('country', \Request::get('country')) == $country->id ? "selected" : "" }} value="{{ $country->id }}">{{ $country->name }}</option>
+                                                @endforeach
+                                            </select><br>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg d-flex">
+                                <div class="form-group p-4">
+                                    <label for="#">Prefecture</label>
+                                    <div class="form-field">
+                                        <div class="select-wrap">
+                                            <div class="icon"><span class="fa fa-chevron-down"></span></div>
+                                            <select class="basic-multiple form-control prefectures" name="prefecture">
+                                            </select><br>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg d-flex">
+                                <div class="form-group p-4">
+                                    <label for="#">Sort day tour</label>
+                                    <div class="form-field">
+                                        <div class="select-wrap">
+                                            <div class="icon"><span class="fa fa-chevron-down"></span></div>
+                                            <select class="basic-multiple form-control" name="sort-day">
+                                                <option value="asc">Tăng dần</option>
+                                                <option value="desc">Giảm dần</option>
                                             </select><br>
                                         </div>
                                     </div>
@@ -92,12 +90,12 @@
             @foreach ($data as $item)
                 <div class="col-md-4 ftco-animate">
                     <div class="project-wrap">
-                        <a href="#" class="img" style="background-image: url(<?php echo $item->image_link ?>);">
+                        <a href="{{ route('destination.detail', ['id' => $item->id]) }}" class="img" style="background-image: url(<?php echo $item->image_link ?>);">
                             <span class="price">${{ $item->cost }}/person</span>
                         </a>
                         <div class="text p-4">
                             <span class="days">{{ $item->num_of_day }} Days Tour</span>
-                            <h3><a href="#">{{ $item->name }} </a></h3>
+                            <h3><a href="{{ route('destination.detail', ['id' => $item->id]) }}">{{ $item->name }} </a></h3>
                             <p class="location"><span class="fa fa-map-marker"></span> {{ $item->country->name }}</p>
                             @foreach ($item->prefectures as $prefecture)
                                 <span class="flaticon-shower"></span>{{ $prefecture->name }}
@@ -114,6 +112,24 @@
 <script>
     $(document).ready(function() {
         $('.basic-multiple').select2();
+        changeCountry();
     });
+    function changeCountry() {
+        const $input = $('#country-input');
+        let country_id = $input.val() ?? 1;
+        $('.prefectures').html("");
+        $.ajax({
+            url: '/admin/prefectures?select=' + <?php echo old('prefecture', \Request::get('prefecture')) ?? "''" ?>,
+            type: 'POST',
+            data: {
+                country_id,
+            },
+            success: function(response) {
+                if (response.success && response.html !== "") {
+                    $('.prefectures').html('<option value="">-- All --</option>' + response.html)
+                }
+            }
+        });
+    }
 </script>
 @endsection
