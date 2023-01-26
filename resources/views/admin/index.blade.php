@@ -12,6 +12,7 @@
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="stylesheet" href="{{ url('assets/admin/admin.css') }}">
+    <link rel="stylesheet" href="{{ url('css/admin.css') }}">
 </head>
 
 <body>
@@ -20,7 +21,7 @@
             @include('admin.layouts.sidebar')
             <div class="wrapper-layout">
                 @include('admin.layouts.header')
-                <transition name="fade">
+                <transition name="fade" style="padding: 3rem;">
                     @yield('content')
                 </transition>
             </div>

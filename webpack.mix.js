@@ -18,7 +18,7 @@ mix.webpackConfig({
 
 mix.copyDirectory('resources/assets', 'public/assets');
 mix.js('resources/js/app.js', 'public/js')
-    .sass('resources/sass/app.scss', 'public/css');
+    .sass('resources/sass/admin.scss', 'public/css');
 
 // plugin
 mix.scripts([

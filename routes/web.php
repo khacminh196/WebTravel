@@ -73,5 +73,10 @@ Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function () {
             Route::get('/{id}', 'TourController@edit')->name('tour.edit');
             Route::post('/{id}', 'TourController@update');
         });
+
+        Route::group(['prefix' => 'booking-tours'], function () {
+            Route::get('/', 'BookingController@index')->name('booking.index');
+            Route::get('/{id}/detail', 'BookingController@detail')->name('booking.detail');
+        });
     });
 });

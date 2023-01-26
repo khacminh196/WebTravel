@@ -64,6 +64,7 @@ class BlogController extends Controller
             return redirect()->route('admin.blog.index');
         } catch (\Exception $e) {
             DB::rollBack();
+            dd($e);
             return $this->sendError();
         }
     }

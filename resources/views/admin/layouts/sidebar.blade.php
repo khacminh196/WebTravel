@@ -25,11 +25,11 @@
             <span class="tooltip">Tour</span>
         </li>
         <li>
-            <a href="#">
-                <i class="bx bx-pie-chart-alt-2"></i>
-                <span class="links_name">Analytics</span>
+            <a href="{{ route('admin.booking.index') }}" class="{{ str_contains(Request::path(), 'admin/booking-tours') ? 'sidebar-active' : '' }}">
+                <i class="bx bx-chat"></i>
+                <span class="links_name">{{ __('common.sidebar.booking_tour') }}</span>
             </a>
-            <span class="tooltip">Analytics</span>
+            <span class="tooltip">Booking tour</span>
         </li>
         <li>
             <a href="#">

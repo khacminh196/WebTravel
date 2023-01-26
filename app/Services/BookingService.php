@@ -65,4 +65,9 @@ class BookingService
 
         return $data;
     }
+
+    public function getListBookingAdmin()
+    {
+        return $this->bookingRepo->all();
+    }
 }

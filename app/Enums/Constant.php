@@ -26,4 +26,14 @@ class Constant
         'EXISTS' => 1,
         'CUSTOM' => 2,
     ];
+    const TYPE_BOOKING_TOUR_TEXT = [
+        1 => 'Tour san co',
+        2 => 'Tour custom',
+    ];
+    const TOUR_STATUS = [
+        0 => 'Chua xac nhan',
+        1 => 'Da xac nhan',
+        2 => 'Dang thuc hien',
+        3 => 'Hoan thanh',
+    ];
 }

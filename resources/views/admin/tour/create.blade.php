@@ -1,54 +1,59 @@
 @extends('admin.index')
 @section('content')
-    <h1>Create tour</h1>
-    <form action="" method="post" enctype="multipart/form-data" class="p-5 bg-light">
-        @csrf
-        Country : <select name="country_id" id="country-input" onchange="changeCountry()">
-            @foreach ($countries as $country)
-                <option value="{{ $country->id }}">{{ $country->name }}</option>
-            @endforeach
-        </select><br>
-        @if ($errors->has('country_id'))
-            <span class="error">{{ $errors->first('country_id') }}</span><br>
-        @endif
-        Name : <input name="name" type="text"><br>
-        @if ($errors->has('name'))
-            <span class="error">{{ $errors->first('name') }}</span><br>
-        @endif
-        Num of day : <input name="num_of_day" type="number"><br>
-        @if ($errors->has('num_of_day'))
-            <span class="error">{{ $errors->first('num_of_day') }}</span><br>
-        @endif
-        Image : <input name="image" type="file"><br>
-        @if ($errors->has('image'))
-            <span class="error">{{ $errors->first('image') }}</span><br>
-        @endif
-        Tag: <input name="tag" type="text"><br>
-        @if ($errors->has('tag'))
-            <span class="error">{{ $errors->first('tag') }}</span><br>
-        @endif
-        Description <textarea name="description" id="" cols="30" rows="10"></textarea><br>
-        @if ($errors->has('description'))
-            <span class="error">{{ $errors->first('description') }}</span><br>
-        @endif
-        Content: <textarea name="content" id="editor"></textarea>
-        @if ($errors->has('content'))
-            <span class="error">{{ $errors->first('content') }}</span><br>
-        @endif
-        
-        <h2>Detail tour image</h2>
-        Images: <input name="image_prefectures[]" type="file" multiple><br>
-        @if ($errors->has('image_prefectures'))
-            <span class="error">{{ $errors->first('image_prefectures') }}</span><br>
-        @endif
-        <h2>Detail tour prefecture</h2>
-        <select class="basic-multiple" name="prefectures[]" multiple="multiple"></select><br>
-        @if ($errors->has('prefectures'))
-            <span class="error">{{ $errors->first('prefectures') }}</span><br>
-        @endif
-        <button type="submit">Submit</button>
-    </form>
-
+    <div class="wrapper-form">
+		<h1>Create tour</h1>
+		<div class="wrapper-create-form">
+			<form action="" method="post" enctype="multipart/form-data" class="p-5 bg-light">
+				@csrf
+				<div class="wrapper-input">
+					<span>Country *</span>
+					<select name="country_id" id="country-input" onchange="changeCountry()">
+                        @foreach ($countries as $country)
+                            <option value="{{ $country->id }}">{{ $country->name }}</option>
+                        @endforeach
+                    </select>
+				</div>
+				<div class="wrapper-input">
+					<span>Name *</span>
+					<input type="text" name="name">
+				</div>
+				<div class="wrapper-input">
+					<span>Num of day *</span>
+					<input type="text" name="num_of_day">
+				</div>
+				<div class="wrapper-input">
+					<span>Image *</span>
+					<input type="file" name="image">
+				</div>
+				<div class="wrapper-input">
+					<span>Tag *</span>
+					<input type="text" name="tag">
+				</div>
+                <div class="wrapper-input">
+					<span>Description *</span>
+					<textarea name="description" id="message" cols="10" rows="4" class="form-control"></textarea>
+				</div>
+                <div class="wrapper-input">
+					<span>Content</span>
+					<textarea name="content" id="editor"></textarea>
+				</div>
+                <h1>Detail tour image</h1>
+                <div class="wrapper-input">
+					<span>Images *</span>
+					<input name="image_prefectures[]" type="file" multiple>
+				</div>
+                <h1>Detail tour prefecture</h1>
+                <div class="wrapper-input">
+                    <select class="basic-multiple" name="prefectures[]" multiple="multiple"></select><br>
+                </div>
+				<div class="btn-submit">
+					<button class="contact100-form-btn">
+						<span>Submit</span>
+					</button>
+				</div>
+			</form>
+		</div>
+	</div>
 
     <script>
         $(document).ready(function() {

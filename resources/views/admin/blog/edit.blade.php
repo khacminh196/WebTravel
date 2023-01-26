@@ -1,16 +1,36 @@
 @extends('admin.index')
 @section('content')
-<form action="" method="post" enctype="multipart/form-data">
-	@csrf
-    <img src="{{ asset($data->image_link) }}" id="image" alt="">
-	<input type="file" name="image" id="image_input" onchange="changeImage()"><br>
-	Title: <input type="text" name="title" value="{{ $data->title }}"><br>
-	Description: <textarea name="description" cols="30" rows="10">{{ $data->description }}</textarea><br>
-	Body: <textarea name="body" id="editor">
-        {{ $data->body }}
-    </textarea>
-	<button>Submit</button>
-</form>
+<div class="wrapper-form">
+		<h1>Edit blog</h1>
+		<div class="wrapper-create-form">
+			<form action="" method="post" enctype="multipart/form-data" class="p-5 bg-light">
+				@csrf
+                <div class="wrapper-input">
+                    <img src="{{ asset($data->image_link) }}" id="image" alt="" style="max-width: 200px">
+                    <input type="file" name="image" id="image_input" onchange="changeImage()">
+                </div>
+				<div class="wrapper-input">
+					<span>Title *</span>
+					<input type="text" name="title" value="{{ $data->title }}">
+				</div>
+				<div class="wrapper-input">
+					<span>Description</span>
+					<textarea name="description" cols="30" rows="10">{{ $data->description }}</textarea>
+				</div>
+				<div class="wrapper-input">
+					<span>Body</span>
+					<textarea name="body" id="editor">
+                        {{ $data->body }}
+                    </textarea>
+				</div>
+				<div class="btn-submit">
+					<button class="contact100-form-btn">
+						<span>Submit</span>
+					</button>
+				</div>
+			</form>
+		</div>
+	</div>
 
 <script>
     function changeImage() {
