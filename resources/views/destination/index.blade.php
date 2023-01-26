@@ -87,11 +87,18 @@
 <section class="ftco-section">
     <div class="container">
         <div class="row">
+            @if ($data->isEmpty())
+                <h1>No data</h1>
+            @endif
             @foreach ($data as $item)
                 <div class="col-md-4 ftco-animate">
                     <div class="project-wrap">
                         <a href="{{ route('destination.detail', ['id' => $item->id]) }}" class="img" style="background-image: url(<?php echo $item->image_link ?>);">
-                            <span class="price">${{ $item->cost }}/person</span>
+                            @if ($item->cost)
+                                <span class="price">${{ $item->cost }}/person</span>
+                            @else
+                                <span class="price">Lien he</span>                    
+                            @endif
                         </a>
                         <div class="text p-4">
                             <span class="days">{{ $item->num_of_day }} Days Tour</span>

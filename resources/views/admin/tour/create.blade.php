@@ -19,10 +19,6 @@
         @if ($errors->has('num_of_day'))
             <span class="error">{{ $errors->first('num_of_day') }}</span><br>
         @endif
-        Cost : <input name="cost" type="number"><br>
-        @if ($errors->has('cost'))
-            <span class="error">{{ $errors->first('cost') }}</span><br>
-        @endif
         Image : <input name="image" type="file"><br>
         @if ($errors->has('image'))
             <span class="error">{{ $errors->first('image') }}</span><br>

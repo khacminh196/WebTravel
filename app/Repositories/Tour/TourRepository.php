@@ -19,7 +19,7 @@ class TourRepository extends BaseRepository implements ITourRepository
         return Tour::class;
     }
 
-    public function getListTour($params)
+    public function getListTour($params, $homeScreen = false)
     {
         $query = $this->model->with('country', 'prefectures')
             ->when(isset($params['country']) && $params['country'], function ($query) use ($params) {
@@ -36,6 +36,10 @@ class TourRepository extends BaseRepository implements ITourRepository
             ->when(isset($params['sort-day']) && $params['sort-day'], function ($query) use ($params) {
                 return $query->orderBy('num_of_day', $params['sort-day']);
             });
+        
+        if ($homeScreen) {
+            return $query->orderBy('id', 'DESC')->limit(6)->get();
+        }
 
         return $query->paginate(Constant::DEFAULT_PAGINATION_TOUR);
     }

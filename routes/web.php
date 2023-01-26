@@ -11,9 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    return view('home.index');
-})->name('home.index');
+Route::get('/', 'HomeController@index')->name('home.index');
 
 Route::get('/destination', 'TourController@index')->name('destination.index');
 Route::get('/destination/{id}', 'TourController@show')->name('destination.detail');
@@ -31,9 +29,9 @@ Route::get('/about', function () {
     return view('about.index');
 })->name('about.index');
 
-Route::get('/hotel', function () {
-    return view('hotel.index');
-})->name('hotel.index');
+// Route::get('/hotel', function () {
+//     return view('hotel.index');
+// })->name('hotel.index');
 
 Route::get('/greeting/{locale}', function ($locale) {
     \Session::put('website_language', $locale);

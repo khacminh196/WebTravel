@@ -30,7 +30,9 @@ class TourController extends Controller
     public function show($id)
     {
         $data = $this->tourRepo->getTourDetail($id);
-
+        if (!$data) {
+            return redirect()->route('destination.index');
+        }
         return view('destination.detail', compact('data'));
     }
 }

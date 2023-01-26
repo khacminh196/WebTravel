@@ -7,7 +7,9 @@ use App\Enums\Constant;
 use App\Mail\BookingTourMail;
 use App\Repositories\BookingTour\IBookingTourRepository;
 use App\Repositories\User\IUserRepository;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Str;
 
 class BookingService
 {
@@ -25,12 +27,42 @@ class BookingService
 
     public function createBookingTour($credentials)
     {
+        $hasAccount = true;
         $user = $this->userRepo->where([['email', $credentials['name']], ['is_deleted', Constant::IS_NOT_DELETED]])->first();
         if (!$user) {
-            $user = $this->userRepo->create($credentials);
+            $hasAccount = false;
+            $passwordRandom = Str::random(8);
+            $user = $this->userRepo->create([
+                'name' => $credentials['name'],
+                'email' => $credentials['email'],
+                'password' => bcrypt($passwordRandom),
+            ]);
         }
-        dd($user);
-        $this->bookingRepo->create($credentials);
-        dd($user);
+        $dataInsert = [
+            'type_booking' => isset($credentials['tour_id']) && $credentials['tour_id'] ? Constant::TYPE_BOOKING_TOUR['EXISTS'] : Constant::TYPE_BOOKING_TOUR['CUSTOM'],
+            'tour_id' => $credentials['tour_id'] ?? null,
+            'user_id' => $user->id,
+            'name' => $credentials['name'],
+            'phone' => $credentials['phone'],
+            'email' => $credentials['email'],
+            'number_of_people' => $credentials['number_of_people'],
+            'expected_travel_time' => $credentials['expected_travel_time'],
+            'expected_travel_hotel' => $credentials['expected_travel_hotel'] ?? null,
+            'note' => $credentials['note'],
+        ];
+        $this->bookingRepo->create($dataInsert);
+
+        $data = [
+            'email' => $credentials['email'],
+            'phone' => $credentials['phone'],
+            'number_of_people' => $credentials['number_of_people'],
+            'expected_travel_time' => Carbon::parse($credentials['expected_travel_time'])->format('d-m-Y'),
+            'expected_travel_hotel' => $credentials['expected_travel_hotel'] ?? null,
+        ];
+        if (!$hasAccount) {
+            $data['password'] = $passwordRandom;
+        }
+
+        return $data;
     }
 }

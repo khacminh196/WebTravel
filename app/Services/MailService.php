@@ -13,11 +13,9 @@ class MailService
     {
     }
 
-    public function sendMailBookingTour($email, $params)
+    public function sendMailBookingTour($params)
     {
         $loginUrl = config('auth.domain') . config('auth.login_url');
-        $tokenExpireTime = config('auth.email_auth_timeout');
-
-        return Mail::to($email)->queue(new BookingTourMail($loginUrl, $tokenExpireTime));
+        return Mail::to($params['email'])->queue(new BookingTourMail($loginUrl, $params));
     }
 }

@@ -22,4 +22,8 @@ class Constant
     ];
     const IS_NOT_DELETED = 0;
     const IS_DELETED = 1;
+    const TYPE_BOOKING_TOUR = [
+        'EXISTS' => 1,
+        'CUSTOM' => 2,
+    ];
 }

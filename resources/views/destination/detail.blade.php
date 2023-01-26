@@ -52,7 +52,7 @@
             <div class="col-lg-4 sidebar ftco-animate bg-light py-md-5">
                 <div class="sidebar-box ftco-animate">
                     <div class="categories">
-                        <h2>Booking tour</h2>
+                        <h2>Booking this tour</h2>
                     </div>
                 </div>
                 <div class="sidebar-box">
@@ -60,31 +60,68 @@
                         @csrf
                         <input type="hidden" name="tour_id" value="{{ $data->id }}">
                         <div class="form-group">
-                            <label for="">Name</label>
-                            <input name="name" type="text" name="title" class="form-control">
+                            <label for="">Name <span class="required">*</span></label>
+                            <input name="name" type="text" name="title" class="form-control" value="{{ old('name') }}">
+                            @if ($errors->has('name'))
+                                <span class="error">{{ $errors->first('name') }}</span>
+                            @endif
                         </div>
                         <div class="form-group">
-                            <label for="">Phone</label>
-                            <input name="phone" type="text" name="title" class="form-control" maxlength="12">
+                            <label for="">Phone <span class="required">*</span></label>
+                            <input name="phone" type="text" name="title" class="form-control" maxlength="12" placeholder="Phone (+country code and number)" value="{{ old('phone') }}">
+                            @if ($errors->has('phone'))
+                                <span class="error">{{ $errors->first('phone') }}</span>
+                            @endif
                         </div>
                         <div class="form-group">
-                            <label for="">Email</label>
-                            <input name="email" type="text" name="title" class="form-control">
+                            <label for="">Email <span class="required">*</span></label>
+                            <input name="email" type="text" name="title" class="form-control" value="{{ old('email') }}">
+                            @if ($errors->has('email'))
+                                <span class="error">{{ $errors->first('email') }}</span>
+                            @endif
                         </div>
                         <div class="form-group">
-                            <label for="">Number of people</label>
-                            <input name="number_of_people" type="number" name="title" class="form-control">
+                            <label for="">Number of people <span class="required">*</span></label>
+                            <input name="number_of_people" type="number" name="title" class="form-control" value="{{ old('number_of_people') }}">
+                            @if ($errors->has('number_of_people'))
+                                <span class="error">{{ $errors->first('number_of_people') }}</span>
+                            @endif
                         </div>
                         <div class="form-group">
-                            <label for="">Expected travel time</label>
-                            <input name="expected_travel_time" type="text" class="form-control checkin_date" placeholder="Check In Date">
+                            <label for="">Expected travel time <span class="required">*</span></label>
+                            <input name="expected_travel_time" type="text" class="form-control checkin_date" placeholder="Check In Date" value="{{ old('expected_travel_time') }}">
+                            @if ($errors->has('expected_travel_time'))
+                                <span class="error">{{ $errors->first('expected_travel_time') }}</span>
+                            @endif
                         </div>
+                        <div class="form-group">
+                            <label for="">Expected hotel <span class="required">*</span></label>
+                            <select name="expected_travel_hotel" id="" class="form-control" style="border: none;font-size: 14px;">
+                                <option value="3" {{ old('expected_travel_hotel') == 3 ? 'selected' : '' }}>3*</option>
+                                <option value="4" {{ old('expected_travel_hotel') == 4 ? 'selected' : '' }}>4*</option>
+                                <option value="5" {{ old('expected_travel_hotel') == 5 ? 'selected' : '' }}>5*</option>
+                            </select>
+                            @if ($errors->has('expected_travel_hotel'))
+                                <span class="error">{{ $errors->first('expected_travel_hotel') }}</span>
+                            @endif
+                        </div>
+                        <div class="form-group">
+                            <label for="">Note</label>
+                            <textarea class="form-control" name="note" id="" cols="30" rows="10" style="border: none;font-size: 14px;" value="{{ old('note') }}"></textarea>
+                            @if ($errors->has('note'))
+                                <span class="error">{{ $errors->first('note') }}</span>
+                            @endif
+                        </div>
+                        <p style="font-size: 20px;"><span class="required">*</span> input required</p>
                         <button class="align-self-stretch form-control btn btn-primary">Submit</button>
                     </form>
                 </div>
                 <div class="sidebar-box ftco-animate">
-                    <h3>Paragraph</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus itaque, autem necessitatibus voluptate quod mollitia delectus aut, sunt placeat nam vero culpa sapiente consectetur similique, inventore eos fugit cupiditate numquam!</p>
+                    <h3>Don’t like filling our the form?</h3>
+                    <p>Contact us: +84 123 456 789 (Mr. A)</p>
+                    <p>test@gmail.com</p>
+                    <p>(From Monday to Saturday between 9am and 6pm Indochina Time)</p>
+                </div></p>
                 </div>
             </div>
         </div>

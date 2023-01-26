@@ -40,7 +40,7 @@
                 @endif
 
                 @if (!is_null(session('dataError')))
-                    <div id="show-toast-error" data-msg="{{ session('dataError')['error']['msg'] }}"></div>
+                    <div id="show-toast-error" data-msg="{{ session('dataError')['msg'] }}"></div>
                 @endif
                 @yield('content')
             </div>

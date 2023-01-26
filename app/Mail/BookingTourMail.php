@@ -11,14 +11,17 @@ class BookingTourMail extends Mailable
 {
     use Queueable, SerializesModels;
 
+    private $loginUrl;
+    private $params;
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($loginUrl, $params)
     {
-        //
+        $this->loginUrl = $loginUrl;
+        $this->params = $params;
     }
 
     /**
@@ -28,6 +31,11 @@ class BookingTourMail extends Mailable
      */
     public function build()
     {
-        return $this->view('mail-template.test');
+        return $this->subject('test cai nay')
+            ->view('mail-template.test')
+            ->with([
+                'url' => $this->loginUrl,
+                'params' => $this->params
+            ]);
     }
 }

@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\BookingTourRequest;
 use App\Services\BookingService;
 use App\Services\MailService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 
 class BookingController extends Controller
@@ -20,17 +22,22 @@ class BookingController extends Controller
         $this->mailService = $mailService;
     }
 
-    public function bookingTour(Request $request)
+    public function bookingTour(BookingTourRequest $request)
     {
-        $credentials = $request->all();
+        $credentials = $request->validated();
+        DB::beginTransaction();
         try {
-            $this->bookingService->createBookingTour($credentials);
-            $this->mailService->sendMailBookingTour();
+            $bookingInfo = $this->bookingService->createBookingTour($credentials);
+            $this->mailService->sendMailBookingTour($bookingInfo);
+            DB::commit();
             Session::flash("dataSuccess", [
                 "msg" => trans('messages.BOOKING_SUCCESS')
             ]);
         } catch (\Exception $e) {
-            dd($e);
+            DB::rollBack();
+            Session::flash("dataError", [
+                "msg" => trans('messages.SERVER_ERROR')
+            ]);
         }
         
         return redirect()->back();

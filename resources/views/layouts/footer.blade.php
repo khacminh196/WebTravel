@@ -6,7 +6,7 @@
                     <div class="overlay"></div>
                     <h2>We Are Pacific A Travel Agency</h2>
                     <p>We can manage your dream building A small river named Duden flows by their place</p>
-                    <p class="mb-0"><a href="#" class="btn btn-primary px-4 py-3">Ask For A Quote</a></p>
+                    <p class="mb-0"><a href="{{ route('contact.index') }}" class="btn btn-primary px-4 py-3">Booking tour custom</a></p>
                 </div>
             </div>
         </div>
