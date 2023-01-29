@@ -15,17 +15,21 @@ class CountrySeeder extends Seeder
         $data = [
             [
                 'name' => 'Vietnam',
+                'image_link' => 'images/place-1.jpg',
                 'display' => 1
             ],
             [
                 'name' => 'Singapore',
+                'image_link' => 'images/place-1.jpg',
                 'display' => 1
             ],
             [
                 'name' => 'Lao',
+                'image_link' => 'images/place-1.jpg',
                 'display' => 1
             ],[
                 'name' => 'Campuchia',
+                'image_link' => 'images/place-1.jpg',
                 'display' => 1
             ]
         ];

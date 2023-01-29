@@ -15,9 +15,10 @@ class BookingController extends Controller
         $this->bookingService = $bookingService;
     }
     
-    public function index()
+    public function index(Request $request)
     {
-        $data = $this->bookingService->getListBookingAdmin();
+        $params = $request->all();
+        $data = $this->bookingService->getListBookingAdmin($params);
    
         return view('admin.booking.index', compact('data'));
     }

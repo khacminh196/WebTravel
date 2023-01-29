@@ -8,6 +8,6 @@ use App\Repositories\IBaseRepository;
 
 interface ITourRepository extends IBaseRepository
 {
-    public function getListTour($params, $homeScreen = false);
+    public function getListTour($params, $homeScreen = false, $isAdmin = false);
     public function getTourDetail($id);
 }

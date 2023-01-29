@@ -19,11 +19,12 @@ class BlogRepository extends BaseRepository implements IBlogRepository
         return Blog::class;
     }
 
-    public function getListBlog($params)
+    public function getListBlog($params, $isAdmin = false)
     {
         $data = $this->model->select(
             'id',
             'title',
+            'category_id',
             'description',
             'image_link',
             'created_at'
@@ -36,6 +37,6 @@ class BlogRepository extends BaseRepository implements IBlogRepository
             });
         });
         
-        return $data->with('category')->orderBy('id', 'DESC')->paginate(Constant::DEFAULT_PAGINATION_BLOG);
+        return $data->with('category')->orderBy('id', 'DESC')->paginate($isAdmin ? Constant::DEFAULT_PAGINATION_ADMIN : Constant::DEFAULT_PAGINATION_BLOG);
     }
 }

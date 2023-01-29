@@ -28,9 +28,9 @@ class TourService
         $this->imageService = $imageService;
     }
 
-    public function getAllTour()
+    public function getAllTourAdmin($params)
     {
-        $data = $this->tourRepo->all();
+        $data = $this->tourRepo->getListTour($params, false, true);
 
         return $data;
     }
@@ -60,5 +60,10 @@ class TourService
         }
         $this->tourPrefectureRepo->insert($paramsTourPrefectures);
         $this->tourImageRepo->insert($paramsTourImages);
+    }
+
+    public function getTourDetail($id)
+    {
+        return $this->tourRepo->getTourDetail($id);
     }
 }

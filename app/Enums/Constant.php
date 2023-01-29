@@ -9,6 +9,7 @@ namespace App\Enums;
  */
 class Constant
 {
+    const DEFAULT_PAGINATION_ADMIN = 10;
     const DEFAULT_PAGINATION_BLOG = 6;
     const DEFAULT_PAGINATION_TOUR = 9;
     const RECENT_BLOG_PAGINATION = 3;

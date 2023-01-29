@@ -8,4 +8,5 @@ use App\Repositories\IBaseRepository;
 
 interface IBookingTourRepository extends IBaseRepository
 {
+    public function getListBookingAdmin($params);
 }

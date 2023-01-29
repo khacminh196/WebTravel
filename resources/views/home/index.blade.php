@@ -243,7 +243,7 @@
                     @foreach ($countries as $country)
                         <div class="item">
                             <div class="project-destination">
-                                <a href="{{ route('destination.index', ['country' => $country->id]) }}" class="img" style="background-image: url(images/place-1.jpg);">
+                                <a href="{{ route('destination.index', ['country' => $country->id]) }}" class="img" style="background-image: url(<?php echo $country->image_link ?>);">
                                     <div class="text">
                                         <h3>{{ $country->name }}</h3>
                                         <span>{{ $country->number_of_tour }} Tours</span>

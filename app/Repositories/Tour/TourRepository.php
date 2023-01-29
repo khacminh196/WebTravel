@@ -19,7 +19,7 @@ class TourRepository extends BaseRepository implements ITourRepository
         return Tour::class;
     }
 
-    public function getListTour($params, $homeScreen = false)
+    public function getListTour($params, $homeScreen = false, $isAdmin = false)
     {
         $query = $this->model->with('country', 'prefectures')
             ->when(isset($params['country']) && $params['country'], function ($query) use ($params) {
@@ -41,11 +41,11 @@ class TourRepository extends BaseRepository implements ITourRepository
             return $query->orderBy('id', 'DESC')->limit(6)->get();
         }
 
-        return $query->paginate(Constant::DEFAULT_PAGINATION_TOUR);
+        return $query->paginate($isAdmin ? Constant::DEFAULT_PAGINATION_ADMIN :Constant::DEFAULT_PAGINATION_TOUR);
     }
 
     public function getTourDetail($id)
     {
-        return $this->model->with('images')->find($id);
+        return $this->model->with('prefectures', 'images')->find($id);
     }
 }

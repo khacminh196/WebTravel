@@ -37,6 +37,11 @@
             border-radius: 10px;
             background: #fff;
         }
+        .wrapper-images {
+            display: flex;
+            height: 200px;
+            overflow-x: scroll;
+        }
         .btn-submit {
             text-align: center;
             button {
@@ -46,4 +51,32 @@
             }
         }
     }
+}
+
+.paginate {
+    margin-top: 2rem;
+    display: flex;
+    justify-content: center;
+}
+
+.wrapper-table {
+    padding: 3rem;
+    .title {
+        text-align: center;
+    }
+    p {
+        font-size: 20px;
+    }
+    table {
+        td, th {
+            border: 2px solid #dee2e6;
+        }
+    }
+    .form-search {
+        width: 50%;
+    }
+}
+
+.text-align-center {
+    text-align: center;
 }

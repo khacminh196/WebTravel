@@ -21,10 +21,12 @@ class BlogController extends Controller
         $this->categoryRepo = $categoryRepo;
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        $data = $this->blogRepo->all();
-        return view('admin.blog.index', compact('data'));
+        $data = $this->blogRepo->getListBlog($request->all(), true);
+        $categories = $categories = $this->categoryRepo->all();
+
+        return view('admin.blog.index', compact('data', 'categories'));
     }
 
     public function create()

@@ -23,10 +23,12 @@ class TourController extends Controller
         $this->countryRepo = $countryRepo;
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        $data = $this->tourService->getAllTour();
-        return view('admin.tour.index', compact('data'));
+        $params = $request->all();
+        $data = $this->tourService->getAllTourAdmin($params);
+        $countries = $this->countryRepo->where([['display', 1]])->get();
+        return view('admin.tour.index', compact('data', 'countries'));
     }
 
     public function create()
@@ -50,9 +52,12 @@ class TourController extends Controller
         }
     }
 
-    public function edit()
+    public function edit($id)
     {
-        dd("edit");
+        $data = $this->tourService->getTourDetail($id);
+        $countries = $this->countryRepo->all();
+
+        return view('admin.tour.edit', compact('data', 'countries'));
     }
 
     public function update()
