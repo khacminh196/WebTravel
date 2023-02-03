@@ -49,6 +49,8 @@ class BookingService
             'expected_travel_time' => $credentials['expected_travel_time'],
             'expected_travel_hotel' => $credentials['expected_travel_hotel'] ?? null,
             'note' => $credentials['note'],
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now(),
         ];
         $this->bookingRepo->create($dataInsert);
 
@@ -69,5 +71,10 @@ class BookingService
     public function getListBookingAdmin($params)
     {
         return $this->bookingRepo->getListBookingAdmin($params);
+    }
+
+    public function updateStatus($id, $status)
+    {
+        return $this->bookingRepo->where([['id', $id]])->update(['status' => $status]);
     }
 }

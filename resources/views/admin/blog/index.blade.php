@@ -24,24 +24,26 @@
     <p>
         <a href="{{ route('admin.blog.create') }}">Create blog</a>
     </p>
-    <table class="table table-striped">
-        <tr>
-            <th>STT</th>
-            <th>Category</th>
-            <th>Title</th>
-            <th>Created at</th>
-            <th>Action</th>
-        </tr>
-        @foreach($data as $index => $item)
+    <div class="list-data-admin">
+        <table class="table table-striped">
             <tr>
-                <td>{{ ++$index }}</td>
-                <td>{{ $item->category->name }}</td>
-                <td>{{ $item->title }}</td>
-                <td>{{ $item->created_at }}</td>
-                <td><a href="{{ route('admin.blog.edit', ['id' => $item->id]) }}">EDIT</a></td>
+                <th class="mw-50">STT</th>
+                <th class="mw-180">Category</th>
+                <th class="mw-180">Title</th>
+                <th class="mw-180">Created at</th>
+                <th class="mw-180">Action</th>
             </tr>
-        @endforeach
-    </table>
+            @foreach($data as $index => $item)
+                <tr>
+                    <td>{{ ++$index }}</td>
+                    <td>{{ $item->category->name }}</td>
+                    <td>{{ $item->title }}</td>
+                    <td>{{ $item->created_at }}</td>
+                    <td><a href="{{ route('admin.blog.edit', ['id' => $item->id]) }}">EDIT</a></td>
+                </tr>
+            @endforeach
+        </table>
+    </div>
     <div class="paginate">
         {{ $data->links() }}
     </div>

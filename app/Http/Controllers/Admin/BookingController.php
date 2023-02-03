@@ -22,4 +22,12 @@ class BookingController extends Controller
    
         return view('admin.booking.index', compact('data'));
     }
+
+    public function updateStatusTravel($id, Request $request)
+    {
+        $status = $request->status;
+        $this->bookingService->updateStatus($id, $status);
+
+        return redirect()->back();
+    }
 }

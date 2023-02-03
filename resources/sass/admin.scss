@@ -75,8 +75,50 @@
     .form-search {
         width: 50%;
     }
+    .option-status-0 {
+        color: red;
+    }
+    .option-status-1 {
+        color: green;
+    }
+    .option-status-2 {
+        color: blue;
+    }
+    .option-status-3 {
+        color: chocolate;
+    }
+    .select-form-list {
+        height: 35px;
+        border-radius: 5px;
+        option {
+            color: #555;
+        }
+    }
+    .list-data-admin {
+        width: 100%;
+        overflow-x: scroll;
+        th {
+            text-align: center;
+        }
+    }
 }
 
 .text-align-center {
     text-align: center;
+}
+
+.mw-50 {
+    min-width: 50px;
+}
+
+.mw-80 {
+    min-width: 80px;
+}
+
+.mw-100 {
+    min-width: 100px;
+}
+
+.mw-180 {
+    min-width: 180px;
 }

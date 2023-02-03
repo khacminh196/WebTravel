@@ -31,6 +31,6 @@ class BookingTourRepository extends BaseRepository implements IBookingTourReposi
                 return $query->where('name', 'LIKE', '%' . $params['name'] . '%');
             });
 
-        return $query->paginate(Constant::DEFAULT_PAGINATION_ADMIN);
+        return $query->orderBy('created_at', 'DESC')->paginate(Constant::DEFAULT_PAGINATION_ADMIN);
     }
 }
