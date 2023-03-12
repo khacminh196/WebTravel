@@ -13,11 +13,12 @@ class PrefectureController extends Controller
     {
         $countryId = $request->country_id;
         $select = $request->select ?? null;
+        $multipleSelects = $request->multiple_selects ? explode(",", $request->multiple_selects) : [];
         $prefectures = Prefecture::where([
             ['country_id', $countryId],
             ['display', Constant::DISPLAY['SHOW']],
         ])->get();
-        $viewHtml = view('admin.template.options', compact('select', 'prefectures'))->render();
+        $viewHtml = view('admin.template.options', compact('select', 'prefectures', 'multipleSelects'))->render();
         return response()->json(array('success' => true, 'html' => $viewHtml));
     }
 }

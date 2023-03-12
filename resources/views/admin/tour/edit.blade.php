@@ -6,14 +6,6 @@
 			<form action="" method="post" enctype="multipart/form-data" class="p-5 bg-light">
 				@csrf
 				<div class="wrapper-input">
-					<span>Country *</span>
-					<select name="country_id" id="country-input" onchange="changeCountry()">
-                        @foreach ($countries as $country)
-                            <option value="{{ $country->id }}" {{ $data->country_id == $country->id ? 'selected' : '' }}>{{ $country->name }}</option>
-                        @endforeach
-                    </select>
-				</div>
-				<div class="wrapper-input">
 					<span>Name *</span>
 					<input type="text" name="name" value="{{ $data->name }}">
 				</div>
@@ -43,11 +35,11 @@
                 <h1>Detail tour image</h1>
                 <div class="wrapper-images">
                     @foreach ($data->images as $image)
-                        <div class="mr-3" style="width: 200px; min-width: 200px; background: url(<?php echo $image->link ?>) no-repeat center; background-size: cover;">
-                            <button type="button">REMOVE</button>
+                        <div id="remove-{{$image->id}}" class="mr-3" style="width: 200px; min-width: 200px; background: url(<?php echo $image->link ?>) no-repeat center; background-size: cover;">
+                            <button type="button" onclick="addImageRemove(<?php echo $image->id ?>)"><span>DELETE</span></button>
                         </div>
                     @endforeach
-                    <input type="hidden" name="image_remove">
+                    <input type="hidden" name="image_remove" id="image_remove">
                 </div>
                 <div class="wrapper-input">
 					<span>Images *</span>
@@ -76,7 +68,7 @@
         function changeCountry() {
             let country_id = $input.val() ?? <?php echo $data->country_id ?>;
             $.ajax({
-                url: '/admin/prefectures',
+                url: '/admin/prefectures?multiple_selects=<?php echo implode(",", $prefectures->toArray()) ?>',
                 type: 'POST',
                 data: {
                     country_id,
@@ -95,6 +87,23 @@
         function changeImage() {
             let image = document.getElementById('image_input').files;
             document.getElementById('image').src = URL.createObjectURL(image[0]);
+        }
+
+        function addImageRemove(id) {
+            let imageRemove = $('#image_remove');
+            let arrData = imageRemove.val() ? imageRemove.val().split(',') : [];
+            const index = arrData.indexOf(id.toString());
+            if (index > -1) {
+                arrData.splice(index, 1);
+                $(`#remove-${id} button span`).text('DELETE');
+                $(`#remove-${id} button`).css('background-color', '#EFEFEF');
+                
+            } else {
+                arrData.push(id);
+                $(`#remove-${id} button span`).text('UNDELETE');
+                $(`#remove-${id} button`).css('background-color', 'grey');
+            }
+            imageRemove.val(arrData.join(','));
         }
     </script>
 

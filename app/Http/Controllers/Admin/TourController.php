@@ -56,12 +56,26 @@ class TourController extends Controller
     {
         $data = $this->tourService->getTourDetail($id);
         $countries = $this->countryRepo->all();
+        $prefectures = $data->prefectures->pluck('id');
 
-        return view('admin.tour.edit', compact('data', 'countries'));
+        return view('admin.tour.edit', compact('data', 'countries', 'prefectures'));
     }
 
-    public function update()
+    public function update($id, Request $request)
     {
-        dd("update");
+        $params = $request->all();
+        if ($request->image_remove) {
+            $params['image_remove'] = explode(',', $request->image_remove);
+        }
+        DB::beginTransaction();
+        try {
+            $this->tourService->update($id, $params);
+            DB::commit();
+        } catch (\Exception $e) {
+            DB::rollBack();
+            dd($e);
+        }
+
+        return redirect()->back();
     }
 }
