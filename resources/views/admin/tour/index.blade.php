@@ -33,7 +33,7 @@
                 <th class="mw-100">Cost</th>
                 <th class="mw-180">Tag</th>
                 <th class="mw-180">Created at</th>
-                <th colspan="2" class="text-align-center">Action</th>
+                <th class="text-align-center">Action</th>
             </tr>
             @foreach($data as $index => $item)
                 <tr>
@@ -44,8 +44,7 @@
                     <td>{{ $item->cost }}</td>
                     <td>{{ $item->tag }}</td>
                     <td>{{ $item->created_at }}</td>
-                    <td><a href="{{ route('admin.tour.detail', ['id' => $item->id]) }}">Detail</a></td>
-                    <td><a href="{{ route('admin.tour.edit', ['id' => $item->id]) }}">EDIT</a></td>
+                    <td class="text-align-center"><a href="{{ route('admin.tour.edit', ['id' => $item->id]) }}">EDIT</a></td>
                 </tr>
             @endforeach
         </table>

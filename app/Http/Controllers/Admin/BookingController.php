@@ -30,4 +30,11 @@ class BookingController extends Controller
 
         return redirect()->back();
     }
+
+    public function detail($id)
+    {
+        $detail = $this->bookingService->bookingTourDetail($id);
+
+        return view('admin.booking.detail', compact('detail'));
+    }
 }

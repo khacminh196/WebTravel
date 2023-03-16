@@ -69,7 +69,6 @@ Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function () {
             Route::get('/', 'TourController@index')->name('tour.index');
             Route::get('create', 'TourController@create')->name('tour.create');
             Route::post('create', 'TourController@store');
-            Route::get('/{id}/detail', 'TourController@detail')->name('tour.detail');
             Route::get('/{id}', 'TourController@edit')->name('tour.edit');
             Route::post('/{id}', 'TourController@update');
         });

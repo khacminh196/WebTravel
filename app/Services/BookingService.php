@@ -77,4 +77,9 @@ class BookingService
     {
         return $this->bookingRepo->where([['id', $id]])->update(['status' => $status]);
     }
+
+    public function bookingTourDetail($id)
+    {
+        return $this->bookingRepo->where([['id', $id]])->first();
+    }
 }

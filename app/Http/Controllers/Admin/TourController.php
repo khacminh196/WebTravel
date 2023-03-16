@@ -45,7 +45,7 @@ class TourController extends Controller
             $this->tourService->store($params);
             DB::commit();
 
-            return redirect()->back();
+            return redirect()->route('admin.tour.index');
         } catch (\Exception $e) {
             DB::rollBack();
             return "Error";

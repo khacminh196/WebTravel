@@ -3,11 +3,14 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\CreateBlogRequest;
+use App\Http\Requests\Admin\UpdateBlogRequest;
 use App\Repositories\Blog\IBlogRepository;
 use App\Repositories\Category\ICategoryRepository;
 use App\Services\ImageService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
 
 class BlogController extends Controller
 {
@@ -42,18 +45,27 @@ class BlogController extends Controller
         return view('admin.blog.edit', compact('data'));
     }
 
-    public function update($id, Request $request)
+    public function update($id, UpdateBlogRequest $request)
     {
         $params = $request->all();
-        if (isset($params['image']) && $params['image']) {
-            $link = $this->imageService->upload($params['image']);
-            $params['image_link'] = $link;
+        try {
+            if (isset($params['image']) && $params['image']) {
+                $link = $this->imageService->upload($params['image']);
+                $params['image_link'] = $link;
+            }
+            $this->blogRepo->update($id, $params);
+            Session::flash("dataSuccess", [
+                "msg" => trans('messages.UPDATE_SUCCESS')
+            ]);
+        } catch (\Exception $e) {
+            Session::flash("dataError", [
+                "msg" => trans('messages.SERVER_ERROR')
+            ]);
         }
-        $this->blogRepo->update($id, $params);
         return redirect()->route('admin.blog.index');
     }
 
-    public function store(Request $request)
+    public function store(CreateBlogRequest $request)
     {
         $params = $request->all();
         DB::beginTransaction();
@@ -66,7 +78,6 @@ class BlogController extends Controller
             return redirect()->route('admin.blog.index');
         } catch (\Exception $e) {
             DB::rollBack();
-            dd($e);
             return $this->sendError();
         }
     }

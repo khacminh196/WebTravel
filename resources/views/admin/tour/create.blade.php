@@ -13,39 +13,48 @@
                         @endforeach
                     </select>
 				</div>
+                <span class="error">{{ $errors->first('country_id') }}</span>
 				<div class="wrapper-input">
 					<span>Name *</span>
 					<input type="text" name="name">
 				</div>
+                <span class="error">{{ $errors->first('name') }}</span>
 				<div class="wrapper-input">
 					<span>Num of day *</span>
 					<input type="text" name="num_of_day">
 				</div>
+                <span class="error">{{ $errors->first('num_of_day') }}</span>
 				<div class="wrapper-input">
 					<span>Image *</span>
 					<input type="file" name="image">
 				</div>
+                <span class="error">{{ $errors->first('image') }}</span>
 				<div class="wrapper-input">
 					<span>Tag *</span>
 					<input type="text" name="tag">
 				</div>
+                <span class="error">{{ $errors->first('tag') }}</span>
                 <div class="wrapper-input">
 					<span>Description *</span>
 					<textarea name="description" id="message" cols="10" rows="4" class="form-control"></textarea>
 				</div>
+                <span class="error">{{ $errors->first('description') }}</span>
                 <div class="wrapper-input">
 					<span>Content</span>
 					<textarea name="content" id="editor"></textarea>
 				</div>
+                <span class="error">{{ $errors->first('content') }}</span>
                 <h1>Detail tour image</h1>
                 <div class="wrapper-input">
 					<span>Images *</span>
 					<input name="image_prefectures[]" type="file" multiple>
 				</div>
+                <span class="error">{{ $errors->first('image_prefectures') }}</span>
                 <h1>Detail tour prefecture</h1>
                 <div class="wrapper-input">
                     <select class="basic-multiple" name="prefectures[]" multiple="multiple"></select><br>
                 </div>
+                <span class="error">{{ $errors->first('prefectures') }}</span>
 				<div class="btn-submit">
 					<button class="contact100-form-btn">
 						<span>Submit</span>

@@ -9,20 +9,24 @@
                     <img src="{{ asset($data->image_link) }}" id="image" alt="" style="max-width: 200px">
                     <input type="file" name="image" id="image_input" onchange="changeImage()">
                 </div>
+				<span class="error">{{ $errors->first('image') }}</span>
 				<div class="wrapper-input">
 					<span>Title *</span>
 					<input type="text" name="title" value="{{ $data->title }}">
 				</div>
+				<span class="error">{{ $errors->first('title') }}</span>
 				<div class="wrapper-input">
 					<span>Description</span>
 					<textarea name="description" cols="30" rows="10">{{ $data->description }}</textarea>
 				</div>
+				<span class="error">{{ $errors->first('description') }}</span>
 				<div class="wrapper-input">
 					<span>Body</span>
 					<textarea name="body" id="editor">
                         {{ $data->body }}
                     </textarea>
 				</div>
+				<span class="error">{{ $errors->first('body') }}</span>
 				<div class="btn-submit">
 					<button class="contact100-form-btn">
 						<span>Submit</span>

@@ -13,6 +13,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="stylesheet" href="{{ url('assets/admin/admin.css') }}">
     <link rel="stylesheet" href="{{ url('css/admin.css') }}">
+    <link rel="stylesheet" href="{{ url('css/toastr.min.css') }}">
 </head>
 
 <body>
@@ -22,6 +23,13 @@
             <div class="wrapper-layout">
                 @include('admin.layouts.header')
                 <transition name="fade" style="padding: 3rem;">
+                    @if (!is_null(session('dataSuccess')))
+                        <div id="show-toast-success" data-msg="{{ session('dataSuccess')['msg'] }}"></div>
+                    @endif
+
+                    @if (!is_null(session('dataError')))
+                        <div id="show-toast-error" data-msg="{{ session('dataError')['msg'] }}"></div>
+                    @endif
                     @yield('content')
                 </transition>
             </div>
@@ -38,5 +46,6 @@
 </script>
 <script src="{{ asset('ckeditor/ckeditor.js')}}"></script>
 <script src="{{ asset('assets/js/common.js') }}"></script>
+<script src="{{ asset('js/toastr.min.js') }}"></script>
 
 </html>
