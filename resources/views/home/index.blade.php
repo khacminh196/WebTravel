@@ -25,9 +25,6 @@
                         <div class="col-md-12 nav-link-wrap">
                             <div class="nav nav-pills text-center" id="v-pills-tab" role="tablist" aria-orientation="vertical">
                                 <a class="nav-link active mr-md-1" id="v-pills-1-tab" data-toggle="pill" href="#v-pills-1" role="tab" aria-controls="v-pills-1" aria-selected="true">Search Tour</a>
-
-                                <a class="nav-link" id="v-pills-2-tab" data-toggle="pill" href="#v-pills-2" role="tab" aria-controls="v-pills-2" aria-selected="false">Hotel</a>
-
                             </div>
                         </div>
                         <div class="col-md-12 tab-wrap">
@@ -35,62 +32,60 @@
                             <div class="tab-content" id="v-pills-tabContent">
 
                                 <div class="tab-pane fade show active" id="v-pills-1" role="tabpanel" aria-labelledby="v-pills-nextgen-tab">
-                                    <form action="#" class="search-property-1">
+                                    <form action="{{ route('destination.index') }}" class="search-property-1">
                                         <div class="row no-gutters">
-                                            <div class="col-md d-flex">
+                                            <div class="col-lg d-flex">
                                                 <div class="form-group p-4 border-0">
-                                                    <label for="#">Destination</label>
+                                                    <label for="#">Key word</label>
                                                     <div class="form-field">
                                                         <div class="icon"><span class="fa fa-search"></span></div>
-                                                        <input type="text" class="form-control" placeholder="Search place">
+                                                        <input name="keyword" value="{{ old('keyword', \Request::get('keyword')) ? old('keyword', \Request::get('keyword')) : '' }}" type="text" class="form-control" placeholder="Search place">
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-md d-flex">
+                                            <div class="col-lg d-flex">
                                                 <div class="form-group p-4">
-                                                    <label for="#">Check-in date</label>
-                                                    <div class="form-field">
-                                                        <div class="icon"><span class="fa fa-calendar"></span></div>
-                                                        <input type="text" class="form-control checkin_date" placeholder="Check In Date">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md d-flex">
-                                                <div class="form-group p-4">
-                                                    <label for="#">Check-out date</label>
-                                                    <div class="form-field">
-                                                        <div class="icon"><span class="fa fa-calendar"></span></div>
-                                                        <input type="text" class="form-control checkout_date" placeholder="Check Out Date">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md d-flex">
-                                                <div class="form-group p-4">
-                                                    <label for="#">Price Limit</label>
+                                                    <label for="#">Country</label>
                                                     <div class="form-field">
                                                         <div class="select-wrap">
                                                             <div class="icon"><span class="fa fa-chevron-down"></span></div>
-                                                            <select name="" id="" class="form-control">
-                                                                <option value="">$100</option>
-                                                                <option value="">$10,000</option>
-                                                                <option value="">$50,000</option>
-                                                                <option value="">$100,000</option>
-                                                                <option value="">$200,000</option>
-                                                                <option value="">$300,000</option>
-                                                                <option value="">$400,000</option>
-                                                                <option value="">$500,000</option>
-                                                                <option value="">$600,000</option>
-                                                                <option value="">$700,000</option>
-                                                                <option value="">$800,000</option>
-                                                                <option value="">$900,000</option>
-                                                                <option value="">$1,000,000</option>
-                                                                <option value="">$2,000,000</option>
-                                                            </select>
+                                                            <select id="country-input" class="basic-multiple form-control" name="country" onchange="changeCountry()">
+                                                                <option value="">-- All --</option>
+                                                                @foreach ($countries as $country)
+                                                                <option {{ old('country', \Request::get('country')) == $country->id ? "selected" : "" }} value="{{ $country->id }}">{{ $country->name }}</option>
+                                                                @endforeach
+                                                            </select><br>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-md d-flex">
+                                            <div class="col-lg d-flex">
+                                                <div class="form-group p-4">
+                                                    <label for="#">Prefecture</label>
+                                                    <div class="form-field">
+                                                        <div class="select-wrap">
+                                                            <div class="icon"><span class="fa fa-chevron-down"></span></div>
+                                                            <select class="basic-multiple form-control prefectures" name="prefecture">
+                                                            </select><br>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg d-flex">
+                                                <div class="form-group p-4">
+                                                    <label for="#">Sort day tour</label>
+                                                    <div class="form-field">
+                                                        <div class="select-wrap">
+                                                            <div class="icon"><span class="fa fa-chevron-down"></span></div>
+                                                            <select class="basic-multiple form-control" name="sort-day">
+                                                                <option value="asc">Tăng dần</option>
+                                                                <option value="desc">Giảm dần</option>
+                                                            </select><br>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg d-flex">
                                                 <div class="form-group d-flex w-100 border-0">
                                                     <div class="form-field w-100 align-items-center d-flex">
                                                         <input type="submit" value="Search" class="align-self-stretch form-control btn btn-primary">
@@ -245,56 +240,18 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="carousel-destination owl-carousel ftco-animate">
-                    <div class="item">
-                        <div class="project-destination">
-                            <a href="#" class="img" style="background-image: url(images/place-1.jpg);">
-                                <div class="text">
-                                    <h3>Philippines</h3>
-                                    <span>8 Tours</span>
-                                </div>
-                            </a>
+                    @foreach ($countries as $country)
+                        <div class="item">
+                            <div class="project-destination">
+                                <a href="{{ route('destination.index', ['country' => $country->id]) }}" class="img" style="background-image: url(<?php echo $country->image_link ?>);">
+                                    <div class="text">
+                                        <h3>{{ $country->name }}</h3>
+                                        <span>{{ $country->number_of_tour }} Tours</span>
+                                    </div>
+                                </a>
+                            </div>
                         </div>
-                    </div>
-                    <div class="item">
-                        <div class="project-destination">
-                            <a href="#" class="img" style="background-image: url(images/place-2.jpg);">
-                                <div class="text">
-                                    <h3>Canada</h3>
-                                    <span>2 Tours</span>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="project-destination">
-                            <a href="#" class="img" style="background-image: url(images/place-3.jpg);">
-                                <div class="text">
-                                    <h3>Thailand</h3>
-                                    <span>5 Tours</span>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="project-destination">
-                            <a href="#" class="img" style="background-image: url(images/place-4.jpg);">
-                                <div class="text">
-                                    <h3>Autralia</h3>
-                                    <span>5 Tours</span>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="project-destination">
-                            <a href="#" class="img" style="background-image: url(images/place-5.jpg);">
-                                <div class="text">
-                                    <h3>Greece</h3>
-                                    <span>7 Tours</span>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
             </div>
         </div>
@@ -310,109 +267,27 @@
             </div>
         </div>
         <div class="row">
+        @foreach ($data as $item)
             <div class="col-md-4 ftco-animate">
                 <div class="project-wrap">
-                    <a href="#" class="img" style="background-image: url(images/destination-1.jpg);">
-                        <span class="price">$550/person</span>
+                    <a href="{{ route('destination.detail', ['id' => $item->id]) }}" class="img" style="background-image: url(<?php echo $item->image_link ?>);">
+                        @if ($item->cost)
+                            <span class="price">${{ $item->cost }}/person</span>
+                        @else
+                            <span class="price">Lien he</span>                    
+                        @endif
                     </a>
                     <div class="text p-4">
-                        <span class="days">8 Days Tour</span>
-                        <h3><a href="#">Banaue Rice Terraces</a></h3>
-                        <p class="location"><span class="fa fa-map-marker"></span> Banaue, Ifugao, Philippines</p>
-                        <ul>
-                            <li><span class="flaticon-shower"></span>2</li>
-                            <li><span class="flaticon-king-size"></span>3</li>
-                            <li><span class="flaticon-mountains"></span>Near Mountain</li>
-                        </ul>
+                        <span class="days">{{ $item->num_of_day }} Days Tour</span>
+                        <h3><a href="{{ route('destination.detail', ['id' => $item->id]) }}">{{ $item->name }} </a></h3>
+                        <p class="location"><span class="fa fa-map-marker"></span> {{ $item->country->name }}</p>
+                        @foreach ($item->prefectures as $prefecture)
+                            <span class="flaticon-shower"></span>{{ $prefecture->name }}
+                        @endforeach
                     </div>
                 </div>
             </div>
-            <div class="col-md-4 ftco-animate">
-                <div class="project-wrap">
-                    <a href="#" class="img" style="background-image: url(images/destination-2.jpg);">
-                        <span class="price">$550/person</span>
-                    </a>
-                    <div class="text p-4">
-                        <span class="days">10 Days Tour</span>
-                        <h3><a href="#">Banaue Rice Terraces</a></h3>
-                        <p class="location"><span class="fa fa-map-marker"></span> Banaue, Ifugao, Philippines</p>
-                        <ul>
-                            <li><span class="flaticon-shower"></span>2</li>
-                            <li><span class="flaticon-king-size"></span>3</li>
-                            <li><span class="flaticon-sun-umbrella"></span>Near Beach</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 ftco-animate">
-                <div class="project-wrap">
-                    <a href="#" class="img" style="background-image: url(images/destination-3.jpg);">
-                        <span class="price">$550/person</span>
-                    </a>
-                    <div class="text p-4">
-                        <span class="days">7 Days Tour</span>
-                        <h3><a href="#">Banaue Rice Terraces</a></h3>
-                        <p class="location"><span class="fa fa-map-marker"></span> Banaue, Ifugao, Philippines</p>
-                        <ul>
-                            <li><span class="flaticon-shower"></span>2</li>
-                            <li><span class="flaticon-king-size"></span>3</li>
-                            <li><span class="flaticon-sun-umbrella"></span>Near Beach</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-4 ftco-animate">
-                <div class="project-wrap">
-                    <a href="#" class="img" style="background-image: url(images/destination-4.jpg);">
-                        <span class="price">$550/person</span>
-                    </a>
-                    <div class="text p-4">
-                        <span class="days">8 Days Tour</span>
-                        <h3><a href="#">Banaue Rice Terraces</a></h3>
-                        <p class="location"><span class="fa fa-map-marker"></span> Banaue, Ifugao, Philippines</p>
-                        <ul>
-                            <li><span class="flaticon-shower"></span>2</li>
-                            <li><span class="flaticon-king-size"></span>3</li>
-                            <li><span class="flaticon-sun-umbrella"></span>Near Beach</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 ftco-animate">
-                <div class="project-wrap">
-                    <a href="#" class="img" style="background-image: url(images/destination-5.jpg);">
-                        <span class="price">$550/person</span>
-                    </a>
-                    <div class="text p-4">
-                        <span class="days">10 Days Tour</span>
-                        <h3><a href="#">Banaue Rice Terraces</a></h3>
-                        <p class="location"><span class="fa fa-map-marker"></span> Banaue, Ifugao, Philippines</p>
-                        <ul>
-                            <li><span class="flaticon-shower"></span>2</li>
-                            <li><span class="flaticon-king-size"></span>3</li>
-                            <li><span class="flaticon-sun-umbrella"></span>Near Beach</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 ftco-animate">
-                <div class="project-wrap">
-                    <a href="#" class="img" style="background-image: url(images/destination-6.jpg);">
-                        <span class="price">$550/person</span>
-                    </a>
-                    <div class="text p-4">
-                        <span class="days">7 Days Tour</span>
-                        <h3><a href="#">Banaue Rice Terraces</a></h3>
-                        <p class="location"><span class="fa fa-map-marker"></span> Banaue, Ifugao, Philippines</p>
-                        <ul>
-                            <li><span class="flaticon-shower"></span>2</li>
-                            <li><span class="flaticon-king-size"></span>3</li>
-                            <li><span class="flaticon-sun-umbrella"></span>Near Beach</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
+        @endforeach
         </div>
     </div>
 </section>
@@ -455,7 +330,8 @@
     </div>
 </section>
 
-<section class="ftco-section testimony-section bg-bottom" style="background-image: url(images/bg_1.jpg);">
+<!-- FEEDBACK -->
+<!-- <section class="ftco-section testimony-section bg-bottom" style="background-image: url(images/bg_1.jpg);">
     <div class="overlay"></div>
     <div class="container">
         <div class="row justify-content-center pb-4">
@@ -576,7 +452,7 @@
             </div>
         </div>
     </div>
-</section>
+</section> -->
 
 
 <section class="ftco-section">
@@ -588,67 +464,52 @@
             </div>
         </div>
         <div class="row d-flex">
+            @foreach ($blogs as $blog)
             <div class="col-md-4 d-flex ftco-animate">
                 <div class="blog-entry justify-content-end">
-                    <a href="blog-single.html" class="block-20" style="background-image: url('images/image_1.jpg');">
+                    <a href="{{ route('blog.detail', ['id' => $blog->id]) }}" class="block-20" style="background-image: url(<?php echo $item->image_link ?>);">
                     </a>
                     <div class="text">
                         <div class="d-flex align-items-center mb-4 topp">
-                            <div class="one">
-                                <span class="day">11</span>
+                            <div class="one mr-1">
+                                <span class="day">{{ \Carbon\Carbon::parse($blog->created_at)->format('d') }}</span>
                             </div>
                             <div class="two">
-                                <span class="yr">2020</span>
-                                <span class="mos">September</span>
+                                <span class="yr">{{ \Carbon\Carbon::parse($blog->created_at)->format('Y') }}</span>
+                                <span class="mos">{{ \Carbon\Carbon::parse($blog->created_at)->format('M') }}</span>
                             </div>
                         </div>
-                        <h3 class="heading"><a href="#">Most Popular Place In This World</a></h3>
-                        <!-- <p>A small river named Duden flows by their place and supplies it with the necessary regelialia.</p> -->
-                        <p><a href="#" class="btn btn-primary">Read more</a></p>
+                        <h3 class="heading"><a href="{{ route('blog.detail', ['id' => $blog->id]) }}">{{ $blog->title }}</a></h3>
+                        <p><a href="{{ route('blog.detail', ['id' => $blog->id]) }}" class="btn btn-primary">Read more</a></p>
                     </div>
                 </div>
             </div>
-            <div class="col-md-4 d-flex ftco-animate">
-                <div class="blog-entry justify-content-end">
-                    <a href="blog-single.html" class="block-20" style="background-image: url('images/image_2.jpg');">
-                    </a>
-                    <div class="text">
-                        <div class="d-flex align-items-center mb-4 topp">
-                            <div class="one">
-                                <span class="day">11</span>
-                            </div>
-                            <div class="two">
-                                <span class="yr">2020</span>
-                                <span class="mos">September</span>
-                            </div>
-                        </div>
-                        <h3 class="heading"><a href="#">Most Popular Place In This World</a></h3>
-                        <!-- <p>A small river named Duden flows by their place and supplies it with the necessary regelialia.</p> -->
-                        <p><a href="#" class="btn btn-primary">Read more</a></p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 d-flex ftco-animate">
-                <div class="blog-entry">
-                    <a href="blog-single.html" class="block-20" style="background-image: url('images/image_3.jpg');">
-                    </a>
-                    <div class="text">
-                        <div class="d-flex align-items-center mb-4 topp">
-                            <div class="one">
-                                <span class="day">11</span>
-                            </div>
-                            <div class="two">
-                                <span class="yr">2020</span>
-                                <span class="mos">September</span>
-                            </div>
-                        </div>
-                        <h3 class="heading"><a href="#">Most Popular Place In This World</a></h3>
-                        <!-- <p>A small river named Duden flows by their place and supplies it with the necessary regelialia.</p> -->
-                        <p><a href="#" class="btn btn-primary">Read more</a></p>
-                    </div>
-                </div>
-            </div>
+            @endforeach
         </div>
     </div>
 </section>
+
+<script>
+    $(document).ready(function() {
+        $('.basic-multiple').select2();
+        changeCountry();
+    });
+    function changeCountry() {
+        const $input = $('#country-input');
+        let country_id = $input.val() ?? 1;
+        $('.prefectures').html("");
+        $.ajax({
+            url: '/admin/prefectures?select=' + <?php echo old('prefecture', \Request::get('prefecture')) ?? "''" ?>,
+            type: 'POST',
+            data: {
+                country_id,
+            },
+            success: function(response) {
+                if (response.success && response.html !== "") {
+                    $('.prefectures').html('<option value="">-- All --</option>' + response.html)
+                }
+            }
+        });
+    }
+</script>
 @endsection

@@ -8,5 +8,5 @@ use App\Repositories\IBaseRepository;
 
 interface IBlogRepository extends IBaseRepository
 {
-    public function getListBlog($params);
+    public function getListBlog($params, $isAdmin = false);
 }

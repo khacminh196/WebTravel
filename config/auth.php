@@ -113,5 +113,6 @@ return [
     */
 
     'password_timeout' => 10800,
-
+    'login_url' => 'login',
+    'domain' => env('APP_URL', 'https://localhost/'),
 ];

@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\Constant;
 use Illuminate\Database\Eloquent\Model;
 
 class Tour extends Model
@@ -22,5 +23,15 @@ class Tour extends Model
     public function country()
     {
         return $this->belongsTo(Country::class);
+    }
+
+    public function prefectures()
+    {
+        return $this->belongsToMany(Prefecture::class, TourPrefecture::class, 'tour_id', 'prefecture_id');
+    }
+
+    public function images()
+    {
+        return $this->hasMany(TourImage::class)->where('display', Constant::DISPLAY['SHOW']);
     }
 }

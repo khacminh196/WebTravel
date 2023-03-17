@@ -1,0 +1,127 @@
+.wrapper-form {
+    margin: auto;
+    width: 60%;
+    border: 1px solid;
+    padding: 3rem;
+    background: #e6e6e6;
+    h1 {
+        text-align: center;
+        margin-bottom: 2rem;
+        font-weight: bold;
+    }
+    .wrapper-create-form {
+        font-size: 20px;
+        margin: 0 auto;
+        span {
+            display: block;
+            margin-bottom: 5px;
+        }
+        input, textarea, select {
+            width: 100%;
+            overflow: visible;
+            outline: none;
+            border: none;
+            display: block;
+            width: 100%;
+            background: 0 0;
+            font-family: Montserrat-SemiBold;
+            font-size: 20px;
+            color: #555;
+            line-height: 1.2;
+            padding-right: 15px;
+        }
+        .wrapper-input {
+            border: 1px solid pink;
+            margin: 15px 0px;
+            padding: 10px;
+            border-radius: 10px;
+            background: #fff;
+            span {
+                color: darkred
+            }
+        }
+        .wrapper-images {
+            display: flex;
+            height: 200px;
+            overflow-x: scroll;
+        }
+        .btn-submit {
+            text-align: center;
+            button {
+                width: 120px;
+                border: 2px solid green;
+                border-radius: 5px;
+            }
+        }
+    }
+}
+
+.paginate {
+    margin-top: 2rem;
+    display: flex;
+    justify-content: center;
+}
+
+.wrapper-table {
+    padding: 3rem;
+    .title {
+        text-align: center;
+    }
+    p {
+        font-size: 20px;
+    }
+    table {
+        td, th {
+            border: 2px solid #dee2e6;
+        }
+    }
+    .form-search {
+        width: 50%;
+    }
+    .option-status-0 {
+        color: red;
+    }
+    .option-status-1 {
+        color: green;
+    }
+    .option-status-2 {
+        color: blue;
+    }
+    .option-status-3 {
+        color: chocolate;
+    }
+    .select-form-list {
+        height: 35px;
+        border-radius: 5px;
+        option {
+            color: #555;
+        }
+    }
+    .list-data-admin {
+        width: 100%;
+        overflow-x: scroll;
+        th {
+            text-align: center;
+        }
+    }
+}
+
+.text-align-center {
+    text-align: center;
+}
+
+.mw-50 {
+    min-width: 50px;
+}
+
+.mw-80 {
+    min-width: 80px;
+}
+
+.mw-100 {
+    min-width: 100px;
+}
+
+.mw-180 {
+    min-width: 180px;
+}

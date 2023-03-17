@@ -58,21 +58,47 @@
     <div class="container">
         <div class="row block-9">
             <div class="col-md-6 order-md-last d-flex">
-                <form action="#" class="bg-light p-5 contact-form">
-                    <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Your Name">
+                <form method="POST" action="{{ route('booking-tour.store') }}" class="bg-light p-5 contact-form" autocomplete="off">
+                    @csrf
+                    <h3 class="form-title">Booking custom tour</h3>
+                    <div class="form-group mt-3">
+                        <input type="text" name="name" class="form-control" placeholder="Your Name" value="{{ old('name') }}">
+                        @if ($errors->has('name'))
+                            <span class="error">{{ $errors->first('name') }}</span>
+                        @endif
                     </div>
                     <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Your Email">
+                        <input type="text" name="phone" class="form-control" placeholder="Your phone (+country code and number)" value="{{ old('phone') }}">
+                        @if ($errors->has('phone'))
+                            <span class="error">{{ $errors->first('phone') }}</span>
+                        @endif
                     </div>
                     <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Subject">
+                        <input type="email" name="email" class="form-control" placeholder="Your Email" value="{{ old('email') }}">
+                        @if ($errors->has('email'))
+                            <span class="error">{{ $errors->first('email') }}</span>
+                        @endif
                     </div>
                     <div class="form-group">
-                        <textarea name="" id="" cols="30" rows="7" class="form-control" placeholder="Message"></textarea>
+                        <input name="number_of_people" type="number" name="title" class="form-control" placeholder="Number of people" value="{{ old('number_of_people') }}">
+                        @if ($errors->has('number_of_people'))
+                            <span class="error">{{ $errors->first('number_of_people') }}</span>
+                        @endif
                     </div>
                     <div class="form-group">
-                        <input type="submit" value="Send Message" class="btn btn-primary py-3 px-5">
+                        <input name="expected_travel_time" type="text" class="form-control checkin_date" placeholder="Check In Date" value="{{ old('expected_travel_time') }}">
+                        @if ($errors->has('expected_travel_time'))
+                            <span class="error">{{ $errors->first('expected_travel_time') }}</span>
+                        @endif
+                    </div>
+                    <div class="form-group">
+                        <textarea name="note" id="" cols="30" rows="7" class="form-control" placeholder="Note" value="{{ old('note') }}"></textarea>
+                        @if ($errors->has('note'))
+                            <span class="error">{{ $errors->first('note') }}</span>
+                        @endif
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="Submit" class="btn btn-primary py-3 px-5">
                     </div>
                 </form>
 

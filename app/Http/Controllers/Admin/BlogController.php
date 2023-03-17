@@ -3,11 +3,14 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\CreateBlogRequest;
+use App\Http\Requests\Admin\UpdateBlogRequest;
 use App\Repositories\Blog\IBlogRepository;
 use App\Repositories\Category\ICategoryRepository;
 use App\Services\ImageService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
 
 class BlogController extends Controller
 {
@@ -21,10 +24,12 @@ class BlogController extends Controller
         $this->categoryRepo = $categoryRepo;
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        $data = $this->blogRepo->all();
-        return view('admin.blog.index', compact('data'));
+        $data = $this->blogRepo->getListBlog($request->all(), true);
+        $categories = $categories = $this->categoryRepo->all();
+
+        return view('admin.blog.index', compact('data', 'categories'));
     }
 
     public function create()
@@ -40,18 +45,27 @@ class BlogController extends Controller
         return view('admin.blog.edit', compact('data'));
     }
 
-    public function update($id, Request $request)
+    public function update($id, UpdateBlogRequest $request)
     {
         $params = $request->all();
-        if (isset($params['image']) && $params['image']) {
-            $link = $this->imageService->upload($params['image']);
-            $params['image_link'] = $link;
+        try {
+            if (isset($params['image']) && $params['image']) {
+                $link = $this->imageService->upload($params['image']);
+                $params['image_link'] = $link;
+            }
+            $this->blogRepo->update($id, $params);
+            Session::flash("dataSuccess", [
+                "msg" => trans('messages.UPDATE_SUCCESS')
+            ]);
+        } catch (\Exception $e) {
+            Session::flash("dataError", [
+                "msg" => trans('messages.SERVER_ERROR')
+            ]);
         }
-        $this->blogRepo->update($id, $params);
         return redirect()->route('admin.blog.index');
     }
 
-    public function store(Request $request)
+    public function store(CreateBlogRequest $request)
     {
         $params = $request->all();
         DB::beginTransaction();

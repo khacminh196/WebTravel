@@ -132,12 +132,22 @@ abstract class BaseRepository implements IBaseRepository
 
     /**
      * where
-     * @param  $id , array
+     * @param  array
      * @return  mixed
      */
     public function where($conditions)
     {
         return $this->model::where($conditions);
+    }
+
+    /**
+     * where in
+     * @param  $id , array
+     * @return  mixed
+     */
+    public function whereIn($field, $conditions)
+    {
+        return $this->model::whereIn($field, $conditions);
     }
 
         /**

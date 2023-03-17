@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
     <div class="container">
-        <a class="navbar-brand" href="{{ route('home.index') }}">Pacific<span>Travel Agency</span></a>
+        <a class="navbar-brand" href="{{ route('home.index') }}">Pacific<span>Specialist in tailor made tours</span></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="oi oi-menu"></span> Menu
         </button>
@@ -10,7 +10,6 @@
                 <li class="nav-item {{ \Request::is('/') ? 'active' : '' }}"><a href="{{ route('home.index') }}" class="nav-link">{{ __('common.sidebar.home') }}</a></li>
                 <li class="nav-item {{ \Request::is('about') || \Request::is('about/*') ? 'active' : '' }}"><a href="{{ route('about.index') }}" class="nav-link">About</a></li>
                 <li class="nav-item {{ \Request::is('destination') || \Request::is('destination/*') ? 'active' : '' }}"><a href="{{ route('destination.index') }}" class="nav-link">Destination</a></li>
-                <li class="nav-item {{ \Request::is('hotel') || \Request::is('hotel/*') ? 'active' : '' }}"><a href="{{ route('hotel.index') }}" class="nav-link">Hotel</a></li>
                 <li class="nav-item {{ \Request::is('blog') || \Request::is('blog/*') ? 'active' : '' }}"><a href="{{ route('blog.index') }}" class="nav-link">Blog</a></li>
                 <li class="nav-item {{ \Request::is('contact') || \Request::is('contact/*') ? 'active' : '' }}"><a href="{{ route('contact.index') }}" class="nav-link">Contact</a></li>
                 <li class="nav-item nav-wrapper">
@@ -20,8 +19,8 @@
                           <li><b>{{ config('app.locale') }}</b> <i class="fa fa-angle-down" aria-hidden="true"></i>
                               <div class="triangle"></div>
                               <ul>
-                                <li><i class="sl-flag flag-en"><div id="germany"></div></i> <a href="{{ route('change-language', ['locale' => 'en']) }}"><span class="active">en</span></a></li>
-                                <li><i class="sl-flag flag-es"><div id="germany"></div></i> <a href="{{ route('change-language', ['locale' => 'es']) }}"><span>es</span></a></li>
+                                <li><i class="sl-flag flag-en"><div id="germany"></div></i> <a href="{{ route('change-language', ['locale' => 'en']) }}"><span class="{{ config('app.locale') == 'en' ? 'active' : '' }}">en</span></a></li>
+                                <li><i class="sl-flag flag-es"><div id="germany"></div></i> <a href="{{ route('change-language', ['locale' => 'es']) }}"><span class="{{ config('app.locale') == 'es' ? 'active' : '' }}">es</span></a></li>
                               </ul>
                           </li>
                       </ul>
@@ -43,6 +42,7 @@ body {
   margin: 100px auto; */
   text-align: center;
   padding-top: 1.5rem;
+  color: gold;
 }
   .sl-nav {
   display: inline;
@@ -102,7 +102,7 @@ body {
   padding-bottom:0;
   z-index: 2;
   font-size: 15px;
-  color: #3c3c3c;
+  color: #146c78;
 }
 .sl-nav li ul li:last-of-type {
   padding-bottom: 15px;
@@ -111,7 +111,7 @@ body {
   padding-left: 5px;
 }
 .sl-nav li ul li span:hover, .sl-nav li ul li span.active {
-  color: #146c78;
+  color: #3c3c3c;
 }
 .sl-flag {
   display: inline-block;

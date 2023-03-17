@@ -11,15 +11,15 @@
 |
 */
 
-Route::get('/', function () {
-    return view('home.index');
-})->name('home.index');
+Route::get('/', 'HomeController@index')->name('home.index');
 
-Route::get('/destination', 'TourController')->name('destination.index');
+Route::get('/destination', 'TourController@index')->name('destination.index');
+Route::get('/destination/{id}', 'TourController@show')->name('destination.detail');
 
 Route::get('/blog', 'BlogController@index')->name('blog.index');
-
 Route::get('/blog/{id}', 'BlogController@show')->name('blog.detail');
+
+Route::post('/booking-tour', 'BookingController@bookingTour')->name('booking-tour.store');
 
 Route::get('/contact', function () {
     return view('contact.index');
@@ -29,9 +29,9 @@ Route::get('/about', function () {
     return view('about.index');
 })->name('about.index');
 
-Route::get('/hotel', function () {
-    return view('hotel.index');
-})->name('hotel.index');
+// Route::get('/hotel', function () {
+//     return view('hotel.index');
+// })->name('hotel.index');
 
 Route::get('/greeting/{locale}', function ($locale) {
     \Session::put('website_language', $locale);
@@ -69,9 +69,14 @@ Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function () {
             Route::get('/', 'TourController@index')->name('tour.index');
             Route::get('create', 'TourController@create')->name('tour.create');
             Route::post('create', 'TourController@store');
-            Route::get('/{id}/detail', 'TourController@detail')->name('tour.detail');
             Route::get('/{id}', 'TourController@edit')->name('tour.edit');
             Route::post('/{id}', 'TourController@update');
+        });
+
+        Route::group(['prefix' => 'booking-tours'], function () {
+            Route::get('/', 'BookingController@index')->name('booking.index');
+            Route::get('/{id}/detail', 'BookingController@detail')->name('booking.detail');
+            Route::post('/{id}/update-status-travel', 'BookingController@updateStatusTravel')->name('booking.update-status');
         });
     });
 });

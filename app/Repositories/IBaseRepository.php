@@ -65,6 +65,13 @@ interface IBaseRepository
     public function where($conditions);
 
     /**
+     * where in
+     * @param  $id , array
+     * @return  mixed
+     */
+    public function whereIn($field, $conditions);
+    
+    /**
      * Mass Upsert
      *
      * Check item id value to decide item is create or update

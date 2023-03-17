@@ -23,10 +23,12 @@ class TourController extends Controller
         $this->countryRepo = $countryRepo;
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        $data = $this->tourService->getAllTour();
-        return view('admin.tour.index', compact('data'));
+        $params = $request->all();
+        $data = $this->tourService->getAllTourAdmin($params);
+        $countries = $this->countryRepo->where([['display', 1]])->get();
+        return view('admin.tour.index', compact('data', 'countries'));
     }
 
     public function create()
@@ -43,20 +45,37 @@ class TourController extends Controller
             $this->tourService->store($params);
             DB::commit();
 
-            return redirect()->back();
+            return redirect()->route('admin.tour.index');
         } catch (\Exception $e) {
             DB::rollBack();
             return "Error";
         }
     }
 
-    public function edit()
+    public function edit($id)
     {
-        dd("edit");
+        $data = $this->tourService->getTourDetail($id);
+        $countries = $this->countryRepo->all();
+        $prefectures = $data->prefectures->pluck('id');
+
+        return view('admin.tour.edit', compact('data', 'countries', 'prefectures'));
     }
 
-    public function update()
+    public function update($id, Request $request)
     {
-        dd("update");
+        $params = $request->all();
+        if ($request->image_remove) {
+            $params['image_remove'] = explode(',', $request->image_remove);
+        }
+        DB::beginTransaction();
+        try {
+            $this->tourService->update($id, $params);
+            DB::commit();
+        } catch (\Exception $e) {
+            DB::rollBack();
+            dd($e);
+        }
+
+        return redirect()->back();
     }
 }

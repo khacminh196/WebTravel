@@ -17,5 +17,12 @@ mix.webpackConfig({
 });
 
 mix.copyDirectory('resources/assets', 'public/assets');
-mix.js('resources/js/app.js', 'public/js')
-    .sass('resources/sass/app.scss', 'public/css');
+// mix.js('resources/js/app.js', 'public/js')
+mix.sass('resources/sass/admin.scss', 'public/css');
+
+// plugin
+mix.scripts([
+    'node_modules/toastr/build/toastr.min.js',
+    'resources/js/toastr.js',
+], 'public/js/toastr.min.js');
+mix.postCss('node_modules/toastr/build/toastr.min.css', 'public/css/toastr.min.css');
