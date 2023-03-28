@@ -60,6 +60,7 @@
             <div class="col-md-6 order-md-last d-flex">
                 <form method="POST" action="{{ route('booking-tour.store') }}" class="bg-light p-5 contact-form" autocomplete="off">
                     @csrf
+                    <input type="hidden" id="fullNumber" name="phone" value="{{ old('phone') }}">
                     <h3 class="form-title">Booking custom tour</h3>
                     <div class="form-group mt-3">
                         <input type="text" name="name" class="form-control" placeholder="Your Name" value="{{ old('name') }}">
@@ -68,7 +69,8 @@
                         @endif
                     </div>
                     <div class="form-group">
-                        <input type="text" name="phone" class="form-control" placeholder="Your phone (+country code and number)" value="{{ old('phone') }}">
+                        <input id="phone" type="text" class="form-control" value="{{ old('phone') }}" />
+                        <span id="span_error_phone" class="error"></span><br>
                         @if ($errors->has('phone'))
                             <span class="error">{{ $errors->first('phone') }}</span>
                         @endif
@@ -89,6 +91,17 @@
                         <input name="expected_travel_time" type="text" class="form-control checkin_date" placeholder="Check In Date" value="{{ old('expected_travel_time') }}">
                         @if ($errors->has('expected_travel_time'))
                             <span class="error">{{ $errors->first('expected_travel_time') }}</span>
+                        @endif
+                    </div>
+                    <div class="form-group">
+                        <label for="">Expected hotel <span class="required">*</span></label>
+                        <select name="expected_travel_hotel" id="" class="form-control" style="border: none;font-size: 14px;">
+                            <option value="3" {{ old('expected_travel_hotel') == 3 ? 'selected' : '' }}>3*</option>
+                            <option value="4" {{ old('expected_travel_hotel') == 4 ? 'selected' : '' }}>4*</option>
+                            <option value="5" {{ old('expected_travel_hotel') == 5 ? 'selected' : '' }}>5*</option>
+                        </select>
+                        @if ($errors->has('expected_travel_hotel'))
+                            <span class="error">{{ $errors->first('expected_travel_hotel') }}</span>
                         @endif
                     </div>
                     <div class="form-group">
