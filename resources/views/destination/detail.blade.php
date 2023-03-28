@@ -59,37 +59,39 @@
                     <form method="POST" action="{{ route('booking-tour.store') }}" class="search-form">
                         @csrf
                         <input type="hidden" name="tour_id" value="{{ $data->id }}">
+                        <input type="hidden" id="fullNumber" name="phone" value="{{ old('phone') }}">
                         <div class="form-group">
                             <label for="">Name <span class="required">*</span></label>
-                            <input name="name" type="text" name="title" class="form-control" value="{{ old('name') }}">
+                            <input name="name" type="text" class="form-control" value="{{ old('name') }}">
                             @if ($errors->has('name'))
                                 <span class="error">{{ $errors->first('name') }}</span>
                             @endif
                         </div>
                         <div class="form-group">
                             <label for="">Phone <span class="required">*</span></label>
-                            <input name="phone" type="text" name="title" class="form-control" maxlength="12" placeholder="Phone (+country code and number)" value="{{ old('phone') }}">
+                            <input id="phone" type="text" class="form-control" value="{{ old('phone') }}" />
+                            <span id="span_error_phone" class="error"></span>
                             @if ($errors->has('phone'))
                                 <span class="error">{{ $errors->first('phone') }}</span>
                             @endif
                         </div>
                         <div class="form-group">
                             <label for="">Email <span class="required">*</span></label>
-                            <input name="email" type="text" name="title" class="form-control" value="{{ old('email') }}">
+                            <input name="email" type="text" class="form-control" value="{{ old('email') }}">
                             @if ($errors->has('email'))
                                 <span class="error">{{ $errors->first('email') }}</span>
                             @endif
                         </div>
                         <div class="form-group">
                             <label for="">Number of people <span class="required">*</span></label>
-                            <input name="number_of_people" type="number" name="title" class="form-control" value="{{ old('number_of_people') }}">
+                            <input name="number_of_people" type="number" class="form-control" value="{{ old('number_of_people') }}">
                             @if ($errors->has('number_of_people'))
                                 <span class="error">{{ $errors->first('number_of_people') }}</span>
                             @endif
                         </div>
                         <div class="form-group">
                             <label for="">Expected travel time <span class="required">*</span></label>
-                            <input name="expected_travel_time" type="text" class="form-control checkin_date" placeholder="Check In Date" value="{{ old('expected_travel_time') }}">
+                            <input name="expected_travel_time" autocomplete="off" type="text" class="form-control checkin_date" placeholder="Check In Date" value="{{ old('expected_travel_time') }}">
                             @if ($errors->has('expected_travel_time'))
                                 <span class="error">{{ $errors->first('expected_travel_time') }}</span>
                             @endif
@@ -127,4 +129,5 @@
         </div>
     </div>
 </section>
+
 @endsection

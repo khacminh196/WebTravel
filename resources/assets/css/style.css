@@ -10572,3 +10572,11 @@ textarea.form-control {
 .error {
   color: #c00;
 }
+
+.iti--separate-dial-code {
+  width: 100% !important;
+}
+
+.toast-close-button {
+  display: none;
+}

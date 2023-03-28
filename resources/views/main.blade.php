@@ -24,7 +24,9 @@
     <link rel="stylesheet" href="{{ url('assets/css/flaticon.css') }}">
     <link rel="stylesheet" href="{{ url('assets/css/style.css') }}">
     <link rel="stylesheet" href="{{ url('css/toastr.min.css') }}">
+    <link rel="stylesheet" href="{{ url('css/intlTelInput.css') }}"/>
     <script src="{{ url('assets/js/jquery.min.js') }}"></script>
+    <script src="{{ asset('js/intlTelInput.min.js') }}"></script>
 </head>
 
 <body>
@@ -74,6 +76,44 @@
     <script src="{{ url('assets/js/main.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script src="{{ asset('js/toastr.min.js') }}"></script>
+    <script src="{{ asset('js/utils.js') }}"></script>
+    <script>
+        const form = document.querySelector("form");
+        const phoneInputField = document.querySelector("#phone");
+        const phoneInput = window.intlTelInput(phoneInputField, {
+            initialCountry: "auto",
+            geoIpLookup: function (callback) {
+            fetch('https://ipinfo.io/json?token=12ae468aa9a145', { headers: { 'Accept': 'application/json' }})
+                .then((resp) => resp.json())
+                .catch(() => {
+                    return {
+                        country: 'us',
+                    };
+                })
+                .then((resp) => callback(resp.country));
+            },
+            separateDialCode: true,
+            utilsScript:
+            "{{ asset('js/utils.js') }}",
+        });
+        const iti = window.intlTelInputGlobals.getInstance(phoneInputField);
+
+        phoneInputField.addEventListener('input', function() {
+            var fullNumber = iti.getNumber();
+            document.getElementById('fullNumber').value = fullNumber;
+        });
+
+        form.addEventListener('submit', function(event) {
+            if (phoneInputField && phoneInputField.value.trim()) {
+                if (phoneInput.isValidNumber()) {
+                    document.getElementById('span_error_phone').innerHTML = '';
+                } else {
+                    document.getElementById('span_error_phone').innerHTML = 'Invalid phone number.';
+                    event.preventDefault();
+                }
+            }
+        });
+    </script>
 </body>
 
 </html>

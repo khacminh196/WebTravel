@@ -25,4 +25,9 @@ mix.scripts([
     'node_modules/toastr/build/toastr.min.js',
     'resources/js/toastr.js',
 ], 'public/js/toastr.min.js');
+mix.scripts('node_modules/intl-tel-input/build/js/intlTelInput.min.js', 'public/js/intlTelInput.min.js');
+mix.scripts('node_modules/intl-tel-input/build/js/utils.js', 'public/js/utils.js');
+
+// css plugin
 mix.postCss('node_modules/toastr/build/toastr.min.css', 'public/css/toastr.min.css');
+mix.postCss('node_modules/intl-tel-input/build/css/intlTelInput.css', 'public/css/intlTelInput.css');

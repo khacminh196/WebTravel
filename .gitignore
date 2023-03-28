@@ -16,4 +16,5 @@ npm-debug.log
 yarn-error.log
 resources/views/vendor/*
 public/vendor/*
+public/images/vendor/*
 public/sitemap.xml
