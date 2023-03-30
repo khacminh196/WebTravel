@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
     <div class="container">
-        <a class="navbar-brand" href="{{ route('home.index') }}">Pacific<span>Specialist in tailor made tours</span></a>
+        <a class="navbar-brand" href="{{ route('home.index') }}">{{ __('common.app-name') }}<span>{{ __('common.header.speacial-made-tour') }}</span></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="oi oi-menu"></span> Menu
         </button>
@@ -8,19 +8,19 @@
         <div class="collapse navbar-collapse" id="ftco-nav">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item {{ \Request::is('/') ? 'active' : '' }}"><a href="{{ route('home.index') }}" class="nav-link">{{ __('common.sidebar.home') }}</a></li>
-                <li class="nav-item {{ \Request::is('about') || \Request::is('about/*') ? 'active' : '' }}"><a href="{{ route('about.index') }}" class="nav-link">About</a></li>
-                <li class="nav-item {{ \Request::is('destination') || \Request::is('destination/*') ? 'active' : '' }}"><a href="{{ route('destination.index') }}" class="nav-link">Destination</a></li>
-                <li class="nav-item {{ \Request::is('blog') || \Request::is('blog/*') ? 'active' : '' }}"><a href="{{ route('blog.index') }}" class="nav-link">Blog</a></li>
-                <li class="nav-item {{ \Request::is('contact') || \Request::is('contact/*') ? 'active' : '' }}"><a href="{{ route('contact.index') }}" class="nav-link">Contact</a></li>
+                <li class="nav-item {{ \Request::is('about') || \Request::is('about/*') ? 'active' : '' }}"><a href="{{ route('about.index') }}" class="nav-link">{{ __('common.sidebar.about') }}</a></li>
+                <li class="nav-item {{ \Request::is('destination') || \Request::is('destination/*') ? 'active' : '' }}"><a href="{{ route('destination.index') }}" class="nav-link">{{ __('common.sidebar.destination') }}</a></li>
+                <li class="nav-item {{ \Request::is('blog') || \Request::is('blog/*') ? 'active' : '' }}"><a href="{{ route('blog.index') }}" class="nav-link">{{ __('common.sidebar.blog') }}</a></li>
+                <li class="nav-item {{ \Request::is('contact') || \Request::is('contact/*') ? 'active' : '' }}"><a href="{{ route('contact.index') }}" class="nav-link">{{ __('common.sidebar.contact') }}</a></li>
                 <li class="nav-item nav-wrapper">
                   <div class="sl-nav">
-                      Language:
+                  {{ __('common.sidebar.language') }}:
                       <ul>
-                          <li><b>{{ config('app.locale') }}</b> <i class="fa fa-angle-down" aria-hidden="true"></i>
+                          <li><b>{{ strtoupper(config('app.locale')) }}</b> <i class="fa fa-angle-down" aria-hidden="true"></i>
                               <div class="triangle"></div>
                               <ul>
-                                <li><i class="sl-flag flag-en"><div id="germany"></div></i> <a href="{{ route('change-language', ['locale' => 'en']) }}"><span class="{{ config('app.locale') == 'en' ? 'active' : '' }}">en</span></a></li>
-                                <li><i class="sl-flag flag-es"><div id="germany"></div></i> <a href="{{ route('change-language', ['locale' => 'es']) }}"><span class="{{ config('app.locale') == 'es' ? 'active' : '' }}">es</span></a></li>
+                                <li><i class="sl-flag flag-en"><div id="germany"></div></i> <a href="{{ route('change-language', ['locale' => 'en']) }}"><span class="{{ config('app.locale') == 'en' ? 'active' : '' }}">EN</span></a></li>
+                                <li><i class="sl-flag flag-es"><div id="germany"></div></i> <a href="{{ route('change-language', ['locale' => 'es']) }}"><span class="{{ config('app.locale') == 'es' ? 'active' : '' }}">ES</span></a></li>
                               </ul>
                           </li>
                       </ul>

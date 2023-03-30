@@ -12,6 +12,7 @@ class Blog extends Model
         'description',
         'body',
         'image_link',
+        'is_public',
         'tour_id',
     ];
 

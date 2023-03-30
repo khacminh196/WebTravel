@@ -32,9 +32,9 @@ class Constant
         2 => 'Tour custom',
     ];
     const TOUR_STATUS = [
-        0 => 'Chua xac nhan',
-        1 => 'Da xac nhan',
-        2 => 'Dang thuc hien',
-        3 => 'Hoan thanh',
+        0 => 'Unapproved',
+        1 => 'Approved',
+        2 => 'Processing',
+        3 => 'Complete',
     ];
 }

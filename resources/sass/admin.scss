@@ -73,6 +73,7 @@
     table {
         td, th {
             border: 2px solid #dee2e6;
+            vertical-align: middle;
         }
     }
     .form-search {
@@ -93,6 +94,7 @@
     .select-form-list {
         height: 35px;
         border-radius: 5px;
+        font-weight: bold;
         option {
             color: #555;
         }
