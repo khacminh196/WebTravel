@@ -20,6 +20,7 @@ class CreateBlogsTable extends Migration
             $table->text('description');
             $table->text('body');
             $table->string('image_link');
+            $table->tinyInteger('is_public')->comment('0: No, 1: Yes');
             $table->integer('tour_id')->nullable();
             $table->timestamps();
         });

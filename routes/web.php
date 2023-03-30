@@ -62,7 +62,7 @@ Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function () {
             Route::get('create', 'BlogController@create')->name('blog.create');
             Route::post('create', 'BlogController@store');
             Route::get('/{id}', 'BlogController@edit')->name('blog.edit');
-            Route::post('/{id}', 'BlogController@update');
+            Route::post('/{id}', 'BlogController@update')->name('blog.update');
         });
 
         Route::group(['prefix' => 'tours'], function () {

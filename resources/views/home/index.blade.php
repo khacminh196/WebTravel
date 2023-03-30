@@ -5,9 +5,9 @@
     <div class="container">
         <div class="row no-gutters slider-text js-fullheight align-items-center" data-scrollax-parent="true">
             <div class="col-md-7 ftco-animate">
-                <span class="subheading">Welcome to Pacific</span>
-                <h1 class="mb-4">Discover Your Favorite Place with Us</h1>
-                <p class="caps">Travel to the any corner of the world, without going around in circles</p>
+                <span class="subheading">{{ __('common.home.title.welcome') }}</span>
+                <h1 class="mb-4">{{ __('common.home.title.discover-1') }}</h1>
+                <p class="caps">{{ __('common.home.title.discover-2') }}</p>
             </div>
             <a href="https://vimeo.com/45830194" class="icon-video popup-vimeo d-flex align-items-center justify-content-center mb-4">
                 <span class="fa fa-play"></span>
@@ -175,7 +175,7 @@
         <div class="row d-flex">
             <div class="col-md-6 order-md-last heading-section pl-md-5 ftco-animate d-flex align-items-center">
                 <div class="w-100">
-                    <span class="subheading">Welcome to Pacific</span>
+                    <span class="subheading">Welcome to ASIAN DREAM</span>
                     <h2 class="mb-4">It's time to start your adventure</h2>
                     <p>A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
                     <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.
@@ -231,7 +231,7 @@
     <div class="container">
         <div class="row justify-content-center pb-4">
             <div class="col-md-12 heading-section text-center ftco-animate">
-                <span class="subheading">Pacific Provide Places</span>
+                <span class="subheading">ASIAN DREAM Provide Places</span>
                 <h2 class="mb-4">Select Your Destination</h2>
             </div>
         </div>
