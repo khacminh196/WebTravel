@@ -4,9 +4,9 @@
             <div class="col-md-12 text-center">
                 <div class="img" style="background-image: url(images/bg_2.jpg);">
                     <div class="overlay"></div>
-                    <h2>We Are ASIAN DREAM A Travel Agency</h2>
-                    <p>We can manage your dream building A small river named Duden flows by their place</p>
-                    <p class="mb-0"><a href="{{ route('contact.index') }}" class="btn btn-primary px-4 py-3">Booking tour custom</a></p>
+                    <h2>{{ __('common.footer.introduce-title') }}</h2>
+                    <p>{{ __('common.footer.introduce-content') }}</p>
+                    <p class="mb-0"><a href="{{ route('contact.index') }}" class="btn btn-primary px-4 py-3">{{ __('common.input.booking-custom') }}</a></p>
                 </div>
             </div>
         </div>

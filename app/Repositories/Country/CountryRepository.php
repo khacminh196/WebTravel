@@ -24,6 +24,7 @@ class CountryRepository extends BaseRepository implements ICountryRepository
     {
         $query = $this->model->select(
                 'id',
+                'code',
                 'name',
                 'display',
                 'image_link',
