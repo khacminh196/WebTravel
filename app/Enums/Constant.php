@@ -28,7 +28,7 @@ class Constant
         'CUSTOM' => 2,
     ];
     const TYPE_BOOKING_TOUR_TEXT = [
-        1 => 'Tour san co',
+        1 => 'Tour exists',
         2 => 'Tour custom',
     ];
     const TOUR_STATUS = [
@@ -36,6 +36,7 @@ class Constant
         1 => 'Approved',
         2 => 'Processing',
         3 => 'Complete',
+        4 => 'Cancel'
     ];
     const FILE_TYPE = [
         'VIDEO' => 1,

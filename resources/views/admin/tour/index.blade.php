@@ -32,6 +32,7 @@
                 <th class="mw-80">Day</th>
                 <th class="mw-100">Cost</th>
                 <th class="mw-180">Tag</th>
+                <th class="mw-50">Number of booking</th>
                 <th class="mw-180">Created at</th>
                 <th class="text-align-center">Action</th>
             </tr>
@@ -43,6 +44,7 @@
                     <td>{{ $item->num_of_day }}</td>
                     <td>{{ $item->cost }}</td>
                     <td>{{ $item->tag }}</td>
+                    <td>{{ $item->number_of_booking }}</td>
                     <td>{{ $item->created_at }}</td>
                     <td class="text-align-center"><a href="{{ route('admin.tour.edit', ['id' => $item->id]) }}">EDIT</a></td>
                 </tr>

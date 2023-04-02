@@ -44,6 +44,16 @@
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         }
     });
+
+    var confirmForms = document.querySelectorAll(".confirm-form");
+    confirmForms.forEach(function(form) {
+        form.addEventListener("submit", function(event) {
+            var confirmMessage = "Do you want submit this form?";
+            if (!confirm(confirmMessage)) {
+                event.preventDefault();
+            }
+        });
+    });
 </script>
 <script src="{{ asset('ckeditor/ckeditor.js')}}"></script>
 <script src="{{ asset('assets/js/common.js') }}"></script>

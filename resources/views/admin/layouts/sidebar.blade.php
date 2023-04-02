@@ -32,7 +32,7 @@
             <span class="tooltip">Booking tour</span>
         </li>
         <li>
-            <a href="#">
+            <a href="{{ route('admin.manager.index') }}" class="{{ str_contains(Request::path(), 'admin/manager') ? 'sidebar-active' : '' }}">
                 <i class="bx bx-folder"></i>
                 <span class="links_name">Manager</span>
             </a>

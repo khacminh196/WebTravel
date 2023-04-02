@@ -20,14 +20,20 @@ class CountryRepository extends BaseRepository implements ICountryRepository
         return Country::class;
     }
 
-    public function getListCountryAndNumberTour()
+    public function getListCountry($isAdmin = false)
     {
-        return $this->model->select(
+        $query = $this->model->select(
                 'id',
                 'name',
+                'display',
                 'image_link',
-                DB::raw("(SELECT COUNT(*) FROM tours t WHERE t.country_id = countries.id) number_of_tour")
-            )
+            );
+
+        if ($isAdmin) {
+            return $query->paginate(Constant::DEFAULT_PAGINATION_ADMIN);
+        }
+        
+        return $query->addSelect(DB::raw("(SELECT COUNT(*) FROM tours t WHERE t.country_id = countries.id) number_of_tour"))
             ->where(['display' => Constant::DISPLAY['SHOW']])
             ->get();
     }

@@ -78,5 +78,12 @@ Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function () {
             Route::get('/{id}/detail', 'BookingController@detail')->name('booking.detail');
             Route::post('/{id}/update-status-travel', 'BookingController@updateStatusTravel')->name('booking.update-status');
         });
+
+        Route::group(['prefix' => 'manager'], function () {
+            Route::get('/', 'ManagerController@index')->name('manager.index');
+            Route::get('country/create', 'ManagerController@createCountry')->name('manager.create-country');
+            Route::post('country/create', 'ManagerController@storeCountry');
+            // Route::get('/{id}/detail', 'BookingController@detail')->name('manager.detail');
+        });
     });
 });

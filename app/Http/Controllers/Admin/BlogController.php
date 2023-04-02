@@ -62,6 +62,7 @@ class BlogController extends Controller
                 "msg" => trans('messages.SERVER_ERROR')
             ]);
         }
+        
         return redirect()->route('admin.blog.index');
     }
 
@@ -74,11 +75,16 @@ class BlogController extends Controller
             $params['image_link'] = $link;
             $this->blogRepo->create($params);
             DB::commit();
-            
-            return redirect()->route('admin.blog.index');
+            Session::flash("dataSuccess", [
+                "msg" => trans('messages.CREATE_SUCCESS')
+            ]);
         } catch (\Exception $e) {
             DB::rollBack();
-            return $this->sendError();
+            Session::flash("dataError", [
+                "msg" => trans('messages.SERVER_ERROR')
+            ]);
         }
+
+        return redirect()->route('admin.blog.index');
     }
 }
