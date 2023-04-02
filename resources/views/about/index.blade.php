@@ -5,8 +5,8 @@
     <div class="container">
         <div class="row no-gutters slider-text js-fullheight align-items-end justify-content-center">
             <div class="col-md-9 ftco-animate pb-5 text-center">
-                <p class="breadcrumbs"><span class="mr-2"><a href="index.html">Home <i class="fa fa-chevron-right"></i></a></span> <span>About us <i class="fa fa-chevron-right"></i></span></p>
-                <h1 class="mb-0 bread">About Us</h1>
+                <p class="breadcrumbs"><span class="mr-2"><a href="index.html">Home <i class="fa fa-chevron-right"></i></a></span> <span>{{ __('page-content.about.title.about-us') }} <i class="fa fa-chevron-right"></i></span></p>
+                <h1 class="mb-0 bread">{{ __('page-content.about.title.about-us') }}</h1>
             </div>
         </div>
     </div>
@@ -16,11 +16,11 @@
         <div class="row d-flex">
             <div class="col-md-6 order-md-last heading-section pl-md-5 ftco-animate d-flex align-items-center">
                 <div class="w-100">
-                    <span class="subheading">Welcome to ASIAN DREAM</span>
+                    <span class="subheading">{{ __('common.home.title.welcome') }}</span>
                     <h2 class="mb-4">{{ __('page-content.about.welcome.title') }}</h2>
                     <p>{{ __('page-content.about.welcome.content.1') }}</p>
                     <p>{{ __('page-content.about.welcome.content.2') }}</p>
-                    <p><a href="#" class="btn btn-primary py-3 px-4">Search Destination</a></p>
+                    <p><a href="#" class="btn btn-primary py-3 px-4">{{ __('common.input.search-destination') }}</a></p>
                 </div>
             </div>
             <div class="col-md-6">
@@ -93,7 +93,7 @@
                     <div class="col-md-6 pl-md-5 py-5">
                         <div class="row justify-content-start pb-3">
                             <div class="col-md-12 heading-section ftco-animate">
-                                <span class="subheading">About Us</span>
+                                <span class="subheading">{{ __('page-content.about.title.about-us') }}</span>
                                 <h2 class="mb-4">{{ __('page-content.about.about-us.title') }}</h2>
                                 <p>{{ __('page-content.about.about-us.content.1') }}</p>
                                 <p><a href="#" class="btn btn-primary">Book Your Destination</a></p>

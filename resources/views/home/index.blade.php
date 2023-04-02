@@ -24,7 +24,7 @@
                     <div class="row">
                         <div class="col-md-12 nav-link-wrap">
                             <div class="nav nav-pills text-center" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-                                <a class="nav-link active mr-md-1" id="v-pills-1-tab" data-toggle="pill" href="#v-pills-1" role="tab" aria-controls="v-pills-1" aria-selected="true">Search Tour</a>
+                                <a class="nav-link active mr-md-1" id="v-pills-1-tab" data-toggle="pill" href="#v-pills-1" role="tab" aria-controls="v-pills-1" aria-selected="true">{{ __('page-content.destination.search-tour') }}</a>
                             </div>
                         </div>
                         <div class="col-md-12 tab-wrap">
@@ -36,16 +36,16 @@
                                         <div class="row no-gutters">
                                             <div class="col-lg d-flex">
                                                 <div class="form-group p-4 border-0">
-                                                    <label for="#">Key word</label>
+                                                    <label for="#">{{ __('page-content.destination.type-of-travel') }}</label>
                                                     <div class="form-field">
                                                         <div class="icon"><span class="fa fa-search"></span></div>
-                                                        <input name="keyword" value="{{ old('keyword', \Request::get('keyword')) ? old('keyword', \Request::get('keyword')) : '' }}" type="text" class="form-control" placeholder="Search place">
+                                                        <input name="keyword" value="{{ old('keyword', \Request::get('keyword')) ? old('keyword', \Request::get('keyword')) : '' }}" type="text" class="form-control" placeholder="{{ __('common.input.search-place') }}">
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="col-lg d-flex">
                                                 <div class="form-group p-4">
-                                                    <label for="#">Country</label>
+                                                    <label for="#">{{ __('common.input.country') }}</label>
                                                     <div class="form-field">
                                                         <div class="select-wrap">
                                                             <div class="icon"><span class="fa fa-chevron-down"></span></div>
@@ -61,7 +61,7 @@
                                             </div>
                                             <div class="col-lg d-flex">
                                                 <div class="form-group p-4">
-                                                    <label for="#">Prefecture</label>
+                                                    <label for="#">{{ __('common.input.prefecture') }}</label>
                                                     <div class="form-field">
                                                         <div class="select-wrap">
                                                             <div class="icon"><span class="fa fa-chevron-down"></span></div>
@@ -73,7 +73,7 @@
                                             </div>
                                             <div class="col-lg d-flex">
                                                 <div class="form-group p-4">
-                                                    <label for="#">Sort day tour</label>
+                                                    <label for="#">{{ __('common.input.sort-day-tour') }}</label>
                                                     <div class="form-field">
                                                         <div class="select-wrap">
                                                             <div class="icon"><span class="fa fa-chevron-down"></span></div>
@@ -88,7 +88,7 @@
                                             <div class="col-lg d-flex">
                                                 <div class="form-group d-flex w-100 border-0">
                                                     <div class="form-field w-100 align-items-center d-flex">
-                                                        <input type="submit" value="Search" class="align-self-stretch form-control btn btn-primary">
+                                                        <input type="submit" value="{{ __('common.input.search') }}" class="align-self-stretch form-control btn btn-primary">
                                                     </div>
                                                 </div>
                                             </div>
@@ -104,7 +104,7 @@
                                                     <label for="#">Destination</label>
                                                     <div class="form-field">
                                                         <div class="icon"><span class="fa fa-search"></span></div>
-                                                        <input type="text" class="form-control" placeholder="Search place">
+                                                        <input type="text" class="form-control" placeholder="{{ __('common.input.search-place') }}">
                                                     </div>
                                                 </div>
                                             </div>
@@ -155,7 +155,7 @@
                                             <div class="col-lg d-flex">
                                                 <div class="form-group d-flex w-100 border-0">
                                                     <div class="form-field w-100 align-items-center d-flex">
-                                                        <input type="submit" value="Search" class="align-self-stretch form-control btn btn-primary p-0">
+                                                        <input type="submit" value="{{ __('common.input.search') }}" class="align-self-stretch form-control btn btn-primary p-0">
                                                     </div>
                                                 </div>
                                             </div>
@@ -175,11 +175,11 @@
         <div class="row d-flex">
             <div class="col-md-6 order-md-last heading-section pl-md-5 ftco-animate d-flex align-items-center">
                 <div class="w-100">
-                    <span class="subheading">Welcome to ASIAN DREAM</span>
+                    <span class="subheading">{{ __('common.home.title.welcome') }}</span>
                     <h2 class="mb-4">{{ __('page-content.about.welcome.title') }}</h2>
                     <p>{{ __('page-content.about.welcome.content.1') }}</p>
                     <p>{{ __('page-content.about.welcome.content.2') }}</p>
-                    <p><a href="#" class="btn btn-primary py-3 px-4">Search Destination</a></p>
+                    <p><a href="#" class="btn btn-primary py-3 px-4">{{ __('common.input.search-destination') }}</a></p>
                 </div>
             </div>
             <div class="col-md-6">
@@ -230,8 +230,8 @@
     <div class="container">
         <div class="row justify-content-center pb-4">
             <div class="col-md-12 heading-section text-center ftco-animate">
-                <span class="subheading">ASIAN DREAM Provide Places</span>
-                <h2 class="mb-4">Select Your Destination</h2>
+                <span class="subheading">{{ __('page-content.destination.subheading') }}</span>
+                <h2 class="mb-4">{{ __('common.home.select-destination') }}</h2>
             </div>
         </div>
     </div>
@@ -261,8 +261,8 @@
     <div class="container">
         <div class="row justify-content-center pb-4">
             <div class="col-md-12 heading-section text-center ftco-animate">
-                <span class="subheading">Destination</span>
-                <h2 class="mb-4">Tour Destination</h2>
+                <span class="subheading">{{ __('common.sidebar.destination') }}</span>
+                <h2 class="mb-4">{{ __('common.home.tour-destination') }}</h2>
             </div>
         </div>
         <div class="row">
@@ -316,7 +316,7 @@
                     <div class="col-md-6 pl-md-5 py-5">
                         <div class="row justify-content-start pb-3">
                             <div class="col-md-12 heading-section ftco-animate">
-                                <span class="subheading">About Us</span>
+                                <span class="subheading">{{ __('page-content.about.title.about-us') }}</span>
                                 <h2 class="mb-4">{{ __('page-content.about.about-us.title') }}</h2>
                                 <p>{{ __('page-content.about.about-us.content.1') }}</p>
                                 <p><a href="#" class="btn btn-primary">Book Your Destination</a></p>
@@ -458,8 +458,8 @@
     <div class="container">
         <div class="row justify-content-center pb-4">
             <div class="col-md-12 heading-section text-center ftco-animate">
-                <span class="subheading">Our Blog</span>
-                <h2 class="mb-4">Recent Post</h2>
+                <span class="subheading">{{ __('common.home.subheading.out-blog') }}</span>
+                <h2 class="mb-4">{{ __('common.home.subheading.recent-post') }}</h2>
             </div>
         </div>
         <div class="row d-flex">

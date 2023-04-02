@@ -15,6 +15,7 @@ class CreateCountriesTable extends Migration
     {
         Schema::create('countries', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->char('code', 20);
             $table->string('name');
             $table->text('image_link');
             $table->boolean('display')->default(1);

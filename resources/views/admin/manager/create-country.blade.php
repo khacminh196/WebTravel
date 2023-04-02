@@ -6,6 +6,10 @@
 			<form action="" method="post" enctype="multipart/form-data" class="p-5 bg-light">
 				@csrf
 				<div class="wrapper-input">
+					<span>Code *</span>
+					<input type="text" maxlength="20" name="code">
+				</div>
+				<div class="wrapper-input">
 					<span>Name *</span>
 					<input type="text" name="name">
 				</div>

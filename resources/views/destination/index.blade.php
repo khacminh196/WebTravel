@@ -20,16 +20,16 @@
                         <div class="row no-gutters">
                             <div class="col-lg d-flex">
                                 <div class="form-group p-4 border-0">
-                                    <label for="#">Key word</label>
+                                    <label for="#">{{ __('page-content.destination.type-of-travel') }}</label>
                                     <div class="form-field">
                                         <div class="icon"><span class="fa fa-search"></span></div>
-                                        <input name="keyword" value="{{ old('keyword', \Request::get('keyword')) ? old('keyword', \Request::get('keyword')) : '' }}" type="text" class="form-control" placeholder="Search place">
+                                        <input name="keyword" value="{{ old('keyword', \Request::get('keyword')) ? old('keyword', \Request::get('keyword')) : '' }}" type="text" class="form-control" placeholder="{{ __('common.input.search-place') }}">
                                     </div>
                                 </div>
                             </div>
                             <div class="col-lg d-flex">
                                 <div class="form-group p-4">
-                                    <label for="#">Country</label>
+                                    <label for="#">{{ __('common.input.country') }}</label>
                                     <div class="form-field">
                                         <div class="select-wrap">
                                             <div class="icon"><span class="fa fa-chevron-down"></span></div>
@@ -45,7 +45,7 @@
                             </div>
                             <div class="col-lg d-flex">
                                 <div class="form-group p-4">
-                                    <label for="#">Prefecture</label>
+                                    <label for="#">{{ __('common.input.prefecture') }}</label>
                                     <div class="form-field">
                                         <div class="select-wrap">
                                             <div class="icon"><span class="fa fa-chevron-down"></span></div>
@@ -57,7 +57,7 @@
                             </div>
                             <div class="col-lg d-flex">
                                 <div class="form-group p-4">
-                                    <label for="#">Sort day tour</label>
+                                    <label for="#">{{ __('common.input.sort-day-tour') }}</label>
                                     <div class="form-field">
                                         <div class="select-wrap">
                                             <div class="icon"><span class="fa fa-chevron-down"></span></div>
@@ -72,7 +72,7 @@
                             <div class="col-lg d-flex">
                                 <div class="form-group d-flex w-100 border-0">
                                     <div class="form-field w-100 align-items-center d-flex">
-                                        <input type="submit" value="Search" class="align-self-stretch form-control btn btn-primary">
+                                        <input type="submit" value="{{ __('common.input.search') }}" class="align-self-stretch form-control btn btn-primary">
                                     </div>
                                 </div>
                             </div>
