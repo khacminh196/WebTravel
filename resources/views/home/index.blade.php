@@ -176,10 +176,9 @@
             <div class="col-md-6 order-md-last heading-section pl-md-5 ftco-animate d-flex align-items-center">
                 <div class="w-100">
                     <span class="subheading">Welcome to ASIAN DREAM</span>
-                    <h2 class="mb-4">It's time to start your adventure</h2>
-                    <p>A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
-                    <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.
-                        A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
+                    <h2 class="mb-4">{{ __('page-content.about.welcome.title') }}</h2>
+                    <p>{{ __('page-content.about.welcome.content.1') }}</p>
+                    <p>{{ __('page-content.about.welcome.content.2') }}</p>
                     <p><a href="#" class="btn btn-primary py-3 px-4">Search Destination</a></p>
                 </div>
             </div>
@@ -189,8 +188,8 @@
                         <div class="services services-1 color-1 d-block img" style="background-image: url(images/services-1.jpg);">
                             <div class="icon d-flex align-items-center justify-content-center"><span class="flaticon-paragliding"></span></div>
                             <div class="media-body">
-                                <h3 class="heading mb-3">Activities</h3>
-                                <p>A small river named Duden flows by their place and supplies it with the necessary</p>
+                                <h3 class="heading mb-3">{{ __('page-content.about.media-body.1.title') }}</h3>
+                                <p>{{ __('page-content.about.media-body.1.content') }}</p>
                             </div>
                         </div>
                     </div>
@@ -198,8 +197,8 @@
                         <div class="services services-1 color-2 d-block img" style="background-image: url(images/services-2.jpg);">
                             <div class="icon d-flex align-items-center justify-content-center"><span class="flaticon-route"></span></div>
                             <div class="media-body">
-                                <h3 class="heading mb-3">Travel Arrangements</h3>
-                                <p>A small river named Duden flows by their place and supplies it with the necessary</p>
+                                <h3 class="heading mb-3">{{ __('page-content.about.media-body.2.title') }}</h3>
+                                <p>{{ __('page-content.about.media-body.2.content') }}</p>
                             </div>
                         </div>
                     </div>
@@ -207,8 +206,8 @@
                         <div class="services services-1 color-3 d-block img" style="background-image: url(images/services-3.jpg);">
                             <div class="icon d-flex align-items-center justify-content-center"><span class="flaticon-tour-guide"></span></div>
                             <div class="media-body">
-                                <h3 class="heading mb-3">Private Guide</h3>
-                                <p>A small river named Duden flows by their place and supplies it with the necessary</p>
+                                <h3 class="heading mb-3">{{ __('page-content.about.media-body.3.title') }}</h3>
+                                <p>{{ __('page-content.about.media-body.3.content') }}</p>
                             </div>
                         </div>
                     </div>
@@ -216,8 +215,8 @@
                         <div class="services services-1 color-4 d-block img" style="background-image: url(images/services-4.jpg);">
                             <div class="icon d-flex align-items-center justify-content-center"><span class="flaticon-map"></span></div>
                             <div class="media-body">
-                                <h3 class="heading mb-3">Location Manager</h3>
-                                <p>A small river named Duden flows by their place and supplies it with the necessary</p>
+                                <h3 class="heading mb-3">{{ __('page-content.about.media-body.4.title') }}</h3>
+                                <p>{{ __('page-content.about.media-body.4.content') }}</p>
                             </div>
                         </div>
                     </div>
@@ -318,8 +317,8 @@
                         <div class="row justify-content-start pb-3">
                             <div class="col-md-12 heading-section ftco-animate">
                                 <span class="subheading">About Us</span>
-                                <h2 class="mb-4">Make Your Tour Memorable and Safe With Us</h2>
-                                <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
+                                <h2 class="mb-4">{{ __('page-content.about.about-us.title') }}</h2>
+                                <p>{{ __('page-content.about.about-us.content.1') }}</p>
                                 <p><a href="#" class="btn btn-primary">Book Your Destination</a></p>
                             </div>
                         </div>
@@ -467,7 +466,7 @@
             @foreach ($blogs as $blog)
             <div class="col-md-4 d-flex ftco-animate">
                 <div class="blog-entry justify-content-end">
-                    <a href="{{ route('blog.detail', ['id' => $blog->id]) }}" class="block-20" style="background-image: url(<?php echo $item->image_link ?>);">
+                    <a href="{{ route('blog.detail', ['id' => $blog->id]) }}" class="block-20" style="background-image: url(<?php echo $blog->image_link ?>);">
                     </a>
                     <div class="text">
                         <div class="d-flex align-items-center mb-4 topp">

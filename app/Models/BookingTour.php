@@ -20,4 +20,9 @@ class BookingTour extends Model
         'status',
         'reality_cost'
     ];
+
+    public function tour()
+    {
+        return $this->belongsTo(Tour::class);
+    }
 }
