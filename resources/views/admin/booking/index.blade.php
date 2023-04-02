@@ -49,7 +49,11 @@
                 <tr>
                     <td>{{ ++$index }}</td>
                     <td>{{ App\Enums\Constant::TYPE_BOOKING_TOUR_TEXT[$item->type_booking] }}</td>
-                    <td>{{ $item->tour_id }}</td>
+                    @if (!empty($item->tour))
+                        <td><a target="_blank" href="{{ route('destination.detail', ['id' => $item->tour->id]) }}">{{ $item->tour->name ?? "" }}</a></td>
+                    @else
+                        <td></td>
+                    @endif
                     <td>{{ $item->name }}</td>
                     <td>{{ $item->phone }}</td>
                     <td>{{ $item->email }}</td>

@@ -37,4 +37,8 @@ class Constant
         2 => 'Processing',
         3 => 'Complete',
     ];
+    const FILE_TYPE = [
+        'VIDEO' => 1,
+        'IMAGE' => 2
+    ];
 }

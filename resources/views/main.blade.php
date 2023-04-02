@@ -44,6 +44,16 @@
                 @if (!is_null(session('dataError')))
                     <div id="show-toast-error" data-msg="{{ session('dataError')['msg'] }}"></div>
                 @endif
+                <div class="wrapper-toast" id="wrapper-toast">
+                    <div class="toast-content">
+                        <div id="toast-image">
+                            <div class="close-btn">
+                                <img id="close-btn" style="width: 100%;" src="{{ asset('images/cancel.png') }}">
+                            </div>
+                            <img id="file-content" src="https://localhost/images/bg_5.jpg" alt="">
+                        </div>
+                    </div>
+                </div>
                 @yield('content')
             </div>
             
@@ -57,6 +67,28 @@
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
+        function viewImage(url) {
+            $("#file-content").attr("src", url);
+            $("#wrapper-toast").addClass("open");
+        }
+        
+        $('#close-btn').click(function () {
+            $("#file-content").attr("src", "");
+            $("#wrapper-toast").removeClass("open");
+        });
+
+        window.addEventListener('click', function(e){
+            let checkOpenToastFile = $("#wrapper-toast").hasClass('open');
+            if (
+                checkOpenToastFile &&
+                document.getElementById('wrapper-toast').contains(e.target) &&
+                !document.getElementById('toast-image').contains(e.target)
+            ) {
+                $("#file-content").attr("src", "");
+                $("#wrapper-toast").removeClass("open");
             }
         });
     </script>

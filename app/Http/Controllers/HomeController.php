@@ -29,7 +29,7 @@ class HomeController extends Controller
     {
         $data = $this->tourRepo->getListTour([], true);
         $countries = $this->countryRepo->getListCountryAndNumberTour();
-        $blogs = $this->blogRepo->select(['id', 'title', 'created_at'])->orderBy('id', 'DESC')->limit(3)->get();
+        $blogs = $this->blogRepo->select(['id', 'title', 'created_at', 'image_link'])->orderBy('id', 'DESC')->limit(3)->get();
         return view('home.index', compact('data', 'countries', 'blogs'));
     }
 }

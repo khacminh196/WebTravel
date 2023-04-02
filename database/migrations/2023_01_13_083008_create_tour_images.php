@@ -18,6 +18,7 @@ class CreateTourImages extends Migration
             $table->integer('tour_id');
             $table->tinyInteger('type')->default(1)->comment('1: image, 2: video');
             $table->text('link');
+            $table->text('thumbnail_url')->nullable();
             $table->boolean('display')->default(1);
             $table->timestamps();
         });

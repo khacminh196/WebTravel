@@ -3,10 +3,10 @@ declare(strict_types=1);
 
 namespace App\Services;
 
+use App\Enums\Constant;
 use App\Repositories\Tour\ITourRepository;
 use App\Repositories\TourImage\ITourImageRepository;
 use App\Repositories\TourPrefecture\ITourPrefectureRepository;
-use Illuminate\Support\Facades\Storage;
 
 class TourService
 {
@@ -54,7 +54,7 @@ class TourService
             $mime = $image->getMimeType();
             $paramsTourImages[] = [
                 'tour_id' => $newTour['id'],
-                'type' => strstr($mime, "video/") ? 1 : 2,
+                'type' => strstr($mime, "video/") ? Constant::FILE_TYPE['VIDEO'] : Constant::FILE_TYPE['IMAGE'],
                 'link' => $this->imageService->upload($image),
             ];
         }

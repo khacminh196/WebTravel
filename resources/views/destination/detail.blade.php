@@ -21,14 +21,21 @@
             <div class="carousel-destination owl-carousel ftco-animate">
                 @foreach ($data->images as $item)
                     <div class="item" title="Click to zoom">
-                        <div class="project-destination">
-                            <a href="#" class="img" style="background-image: url({{ asset($item->link) }});">
-                                <div class="text">
-                                    <!-- <h3>Vietnam</h3> -->
-                                    <span>Dia diem</span>
+                        @if ($item->type == 1) 
+                            <div class="project-destination">
+                                <div class="text" style="background-color: blanchedalmond">
+                                    <a href="{{ asset($item->link) }}" class="icon-video popup-vimeo d-flex align-items-center justify-content-center mb-4">
+                                        <i class="fa fa-play" style="font-size: 24px;"></i>
+                                    </a>
                                 </div>
-                            </a>
-                        </div>
+                            </div>
+                        @elseif ($item->type == 2)
+                            <div class="project-destination" onclick="viewImage({{ json_encode(asset($item->link)) }})">
+                                <div class="text" style="background-image: url({{ asset($item->link) }});">
+                                    <!-- <h3>Vietnam</h3> -->
+                                </div>
+                            </div>
+                        @endif
                     </div>
                 @endforeach
             </div>

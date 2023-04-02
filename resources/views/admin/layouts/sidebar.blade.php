@@ -1,7 +1,7 @@
 <div id="sidebar" class="sidebar open">
     <div class="logo-details">
         <i class="bx bxl-c-plus-plus icon"></i>
-        <div class="logo_name">CodingLab</div>
+        <div class="logo_name">{{ Auth::user()->name }}</div>
         <i class="bx bx-menu" id="btn" onclick="handleSideBar()"></i>
     </div>
     <ul class="nav-list">
@@ -12,21 +12,21 @@
         </li>
         <li>
             <a href="{{ route('admin.blog.index') }}" class="{{ str_contains(Request::path(), 'admin/blogs') ? 'sidebar-active' : '' }}">
-                <i class="bx bx-grid-alt"></i>
+                <i class="bx bx-book-open"></i>
                 <span class="links_name">{{ __('common.sidebar.blog') }}</span>
             </a>
             <span class="tooltip">Blog</span>
         </li>
         <li>
             <a href="{{ route('admin.tour.index') }}" class="{{ str_contains(Request::path(), 'admin/tours') ? 'sidebar-active' : '' }}">
-                <i class="bx bx-chat"></i>
+                <i class="bx bx-world"></i>
                 <span class="links_name">{{ __('common.sidebar.tour') }}</span>
             </a>
             <span class="tooltip">Tour</span>
         </li>
         <li>
             <a href="{{ route('admin.booking.index') }}" class="{{ str_contains(Request::path(), 'admin/booking-tours') ? 'sidebar-active' : '' }}">
-                <i class="bx bx-chat"></i>
+                <i class="bx bx-cart-alt"></i>
                 <span class="links_name">{{ __('common.sidebar.booking_tour') }}</span>
             </a>
             <span class="tooltip">Booking tour</span>
@@ -34,23 +34,9 @@
         <li>
             <a href="#">
                 <i class="bx bx-folder"></i>
-                <span class="links_name">File Manager</span>
+                <span class="links_name">Manager</span>
             </a>
-            <span class="tooltip">Files</span>
-        </li>
-        <li>
-            <a href="#">
-                <i class="bx bx-cart-alt"></i>
-                <span class="links_name">Order</span>
-            </a>
-            <span class="tooltip">Order</span>
-        </li>
-        <li>
-            <a href="#">
-                <i class="bx bx-heart"></i>
-                <span class="links_name">Saved</span>
-            </a>
-            <span class="tooltip">Saved</span>
+            <span class="tooltip">Manager</span>
         </li>
         <li>
             <a href="#">
