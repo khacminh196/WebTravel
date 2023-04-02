@@ -7,6 +7,7 @@ namespace App\Repositories\Tour;
 use App\Enums\Constant;
 use App\Models\Tour;
 use App\Repositories\BaseRepository;
+use Illuminate\Support\Facades\DB;
 
 class TourRepository extends BaseRepository implements ITourRepository
 {
@@ -39,6 +40,14 @@ class TourRepository extends BaseRepository implements ITourRepository
         
         if ($homeScreen) {
             return $query->orderBy('id', 'DESC')->limit(6)->get();
+        }
+
+        if ($isAdmin) {
+            $query = $query->select('*', DB::raw("(SELECT COUNT(*) FROM booking_tours b WHERE b.tour_id = tours.id) number_of_booking"));
+        } else {
+            $query = $query->whereHas('country', function ($q) {
+                $q->where('display', Constant::DISPLAY['SHOW']);
+            });
         }
 
         return $query->paginate($isAdmin ? Constant::DEFAULT_PAGINATION_ADMIN :Constant::DEFAULT_PAGINATION_TOUR);

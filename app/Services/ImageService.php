@@ -11,9 +11,9 @@ class ImageService
     {
     }
 
-    public function upload($file)
+    public function upload($file, $path = 'images')
     {
-        $link = Storage::disk('public')->put('images', $file);
+        $link = Storage::disk('public')->put($path, $file);
 
         return Storage::url($link);
     }

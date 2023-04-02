@@ -8,6 +8,7 @@ use App\Repositories\Country\ICountryRepository;
 use App\Services\TourService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
 
 class TourController extends Controller
 {
@@ -44,12 +45,17 @@ class TourController extends Controller
         try {
             $this->tourService->store($params);
             DB::commit();
-
-            return redirect()->route('admin.tour.index');
+            Session::flash("dataSuccess", [
+                "msg" => trans('messages.CREATE_SUCCESS')
+            ]);
         } catch (\Exception $e) {
             DB::rollBack();
-            return "Error";
+            Session::flash("dataError", [
+                "msg" => trans('messages.SERVER_ERROR')
+            ]);
         }
+
+        return redirect()->route('admin.tour.index');
     }
 
     public function edit($id)
@@ -71,9 +77,14 @@ class TourController extends Controller
         try {
             $this->tourService->update($id, $params);
             DB::commit();
+            Session::flash("dataSuccess", [
+                "msg" => trans('messages.CREATE_SUCCESS')
+            ]);
         } catch (\Exception $e) {
             DB::rollBack();
-            dd($e);
+            Session::flash("dataError", [
+                "msg" => trans('messages.SERVER_ERROR')
+            ]);
         }
 
         return redirect()->back();

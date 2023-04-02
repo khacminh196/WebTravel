@@ -273,16 +273,16 @@
                         @if ($item->cost)
                             <span class="price">${{ $item->cost }}/person</span>
                         @else
-                            <span class="price">Lien he</span>                    
+                            <span class="price">Liên hệ</span>                    
                         @endif
                     </a>
                     <div class="text p-4">
                         <span class="days">{{ $item->num_of_day }} Days Tour</span>
                         <h3><a href="{{ route('destination.detail', ['id' => $item->id]) }}">{{ $item->name }} </a></h3>
                         <p class="location"><span class="fa fa-map-marker"></span> {{ $item->country->name }}</p>
-                        @foreach ($item->prefectures as $prefecture)
+                        <!-- @foreach ($item->prefectures as $prefecture)
                             <span class="flaticon-shower"></span>{{ $prefecture->name }}
-                        @endforeach
+                        @endforeach -->
                     </div>
                 </div>
             </div>

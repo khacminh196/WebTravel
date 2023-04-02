@@ -8,5 +8,5 @@ use App\Repositories\IBaseRepository;
 
 interface ICountryRepository extends IBaseRepository
 {
-    public function getListCountryAndNumberTour();
+    public function getListCountry($isAdmin = false);
 }

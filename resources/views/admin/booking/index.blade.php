@@ -41,7 +41,7 @@
                 <th class="mw-80">So nguoi</th>
                 <th class="mw-180">Thoi gian du dinh</th>
                 <th class="mw-80">Khach san mong muon</th>
-                <th class="mw-180">Tinh trang</th>
+                <th class="mw-250">Tinh trang</th>
                 <th class="mw-180">Ngay booking tour</th>
                 <th class="mw-180">Hanh dong</th>
             </tr>
@@ -61,13 +61,16 @@
                     <td>{{ $item->expected_travel_time }}</td>
                     <td>{{ $item->expected_travel_hotel }}</td>
                     <td>
-                        <form action="{{ route('admin.booking.update-status', ['id' => $item->id]) }}" method="POST">
+                        <form class="confirm-form" action="{{ route('admin.booking.update-status', ['id' => $item->id]) }}" method="POST">
                             @csrf
-                            <select class="select-form-list option-status-{{$item->status}}" name="status" onchange="this.form.submit()">
-                                @foreach (App\Enums\Constant::TOUR_STATUS as $key => $status)
-                                    <option value="{{ $key }}" {{ $item->status === $key ? 'selected' : '' }}>{{ $status }}</option>
-                                @endforeach
-                            </select>
+                            <div class="wrapper-select">
+                                <select class="select-form-list option-status-{{$item->status}}" name="status" {{ $item->status == array_flip(App\Enums\Constant::TOUR_STATUS)['Complete'] ? 'disabled' : '' }}>
+                                    @foreach (App\Enums\Constant::TOUR_STATUS as $key => $status)
+                                        <option value="{{ $key }}" {{ $item->status === $key ? 'selected' : '' }}>{{ $status }}</option>
+                                    @endforeach
+                                </select>
+                                <button type="submit" class="btn btn-primary">Confirm</button>
+                            </div>
                         </form>
                     </td>
                     <td>{{ $item->created_at ?? null }}</td>
