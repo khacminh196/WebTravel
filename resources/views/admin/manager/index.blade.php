@@ -18,9 +18,15 @@
                     <td>{{ ++$index }}</td>
                     <td>{{ $item->name }}</td>
                     <td>{{ array_flip(App\Enums\Constant::DISPLAY)[$item->display] }}</td>
-                    <td class="text-align-center">
-                        <button class="btn btn-primary">Delete</button>
-                    </td>
+                    @if ($item->display === App\Enums\Constant::DISPLAY['HIDDEN'])
+                        <td class="text-align-center">
+                            <button class="btn btn-success"><a href="{{ route('admin.manager.change-country-status', ['id' => $item->id, 'status' => App\Enums\Constant::DISPLAY['SHOW']]) }}" style="color: white;" onclick="return confirm('Change this country to show? This will also make tours to this country visible.')">SHOW</a></button>
+                        </td>
+                    @elseif ($item->display === App\Enums\Constant::DISPLAY['SHOW'])
+                        <td class="text-align-center">
+                            <button class="btn btn-secondary"><a href="{{ route('admin.manager.change-country-status', ['id' => $item->id, 'status' => App\Enums\Constant::DISPLAY['HIDDEN']]) }}" style="color: white;" onclick="return confirm('Change this country to hidden? This will also cause tours to this country to be hidden.')">HIDDEN</a></button>
+                        </td>
+                    @endif
                 </tr>
             @endforeach
         </table>

@@ -37,10 +37,6 @@ class TourRepository extends BaseRepository implements ITourRepository
             ->when(isset($params['sort-day']) && $params['sort-day'], function ($query) use ($params) {
                 return $query->orderBy('num_of_day', $params['sort-day']);
             });
-        
-        if ($homeScreen) {
-            return $query->orderBy('id', 'DESC')->limit(6)->get();
-        }
 
         if ($isAdmin) {
             $query = $query->select('*', DB::raw("(SELECT COUNT(*) FROM booking_tours b WHERE b.tour_id = tours.id) number_of_booking"));
@@ -49,12 +45,22 @@ class TourRepository extends BaseRepository implements ITourRepository
                 $q->where('display', Constant::DISPLAY['SHOW']);
             });
         }
+        
+        if ($homeScreen) {
+            return $query->orderBy('id', 'DESC')->limit(6)->get();
+        }
 
         return $query->paginate($isAdmin ? Constant::DEFAULT_PAGINATION_ADMIN :Constant::DEFAULT_PAGINATION_TOUR);
     }
 
-    public function getTourDetail($id)
+    public function getTourDetail($id, $isAdmin = false)
     {
-        return $this->model->with('prefectures', 'images')->find($id);
+        if ($isAdmin) {
+            return $this->model->with('prefectures', 'images')->find($id);
+        } else {
+            return $this->model->with('prefectures', 'images')->whereHas('country', function ($q) {
+                $q->where('display', Constant::DISPLAY['SHOW']);
+            })->find($id);
+        }
     }
 }

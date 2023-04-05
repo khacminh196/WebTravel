@@ -52,7 +52,7 @@ Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function () {
     Route::post('prefectures', 'PrefectureController@index');
 
     Route::middleware(['auth.admin'])->group(function () {
-        Route::post('/logout', 'AuthController@logout')->name('logout');
+        Route::get('/logout', 'AuthController@logout')->name('logout');
         Route::get('/', function () {
             return view('admin.index');
         })->name('home');
@@ -83,7 +83,15 @@ Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function () {
             Route::get('/', 'ManagerController@index')->name('manager.index');
             Route::get('country/create', 'ManagerController@createCountry')->name('manager.create-country');
             Route::post('country/create', 'ManagerController@storeCountry');
-            // Route::get('/{id}/detail', 'BookingController@detail')->name('manager.detail');
+            Route::get('country/{id}/status/{status}', 'ManagerController@changeCountryStatus')->name('manager.change-country-status');
+        });
+
+        Route::group(['prefix' => 'setting'], function () {
+            Route::get('/', 'SettingController@index')->name('setting.index');
+            Route::get('/change-password', 'SettingController@changePasswordForm')->name('setting.change-password');
+            Route::post('/change-password', 'SettingController@changePassword');
+            Route::get('/change-contact', 'SettingController@changeContactForm')->name('setting.change-contact');
+            Route::post('/change-contact', 'SettingController@changeContact');
         });
     });
 });

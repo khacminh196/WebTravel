@@ -29,7 +29,7 @@ class AuthController extends Controller
             return redirect()->route('admin.home');
         }
 
-        Session::flash('dataErrorLogin', 'sai mat khau or password');
+        Session::flash('dataErrorLogin', 'Incorrect username or password');
 
         return redirect()->route('admin.login');
     }
