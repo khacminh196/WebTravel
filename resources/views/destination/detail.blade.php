@@ -5,7 +5,7 @@
     <div class="container">
         <div class="row no-gutters slider-text js-fullheight align-items-end justify-content-center">
             <div class="col-md-9 ftco-animate pb-5 text-center">
-                <p class="breadcrumbs"><span class="mr-2"><a href="index.html">Home <i class="fa fa-chevron-right"></i></a></span> <span>Tour List <i class="fa fa-chevron-right"></i></span></p>
+                <p class="breadcrumbs"><span class="mr-2"><a href="index.html">{{ __('common.sidebar.home') }} <i class="fa fa-chevron-right"></i></a></span> <span>Tour List <i class="fa fa-chevron-right"></i></span></p>
                 <h1 class="mb-0 bread">Tour Detail</h1>
             </div>
         </div>
@@ -127,8 +127,8 @@
                 </div>
                 <div class="sidebar-box ftco-animate">
                     <h3>Don’t like filling our the form?</h3>
-                    <p>Contact us: +84 123 456 789 (Mr. A)</p>
-                    <p>test@gmail.com</p>
+                    <p>{{ __('common.label.contact-us') }}: {{ $myContact->phone }} (Mr. A)</p>
+                    <p>{{ $myContact->email }}</p>
                     <p>(From Monday to Saturday between 9am and 6pm Indochina Time)</p>
                 </div></p>
                 </div>

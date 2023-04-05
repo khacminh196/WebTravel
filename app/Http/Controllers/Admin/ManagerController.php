@@ -56,4 +56,17 @@ class ManagerController extends Controller
 
         return redirect()->route('admin.manager.index');
     }
+
+    public function changeCountryStatus($id, $status)
+    {
+        $update = $this->countryRepo->where([['id', $id]])->update(['display' => $status]);
+
+        if ($update) {
+            Session::flash("dataSuccess", [
+                "msg" => trans('messages.UPDATE_SUCCESS')
+            ]);
+        }
+
+        return redirect()->back();
+    }
 }

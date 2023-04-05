@@ -21,11 +21,17 @@ return [
         'contact' => 'Contact',
         'language' => 'Language'
     ],
+    'label' => [
+        'contact-us' => 'Contact us',
+        'address' => 'Address',
+        'contact-number' => 'Contact Number',
+        'email-address' => 'Email Address'
+    ],
     'home' => [
         'title' => [
             'welcome' => 'Welcome to ASIAN DREAM',
-            'discover-1' => 'Discover Your Favorite Place with Us',
-            'discover-2' => 'Travel to the any corner of the world, without going around in circles. Travel to Asia, the New World still contains many wonders and mysteries that are waiting to discover'
+            'discover-1' => 'Discover The Magic Of Amazing Destinations with Us',
+            'discover-2' => 'Travel to Southeast Asia, the New World still contains many wonders and mysteries that are waiting to discover'
         ],
         'select-destination' => 'Select Your Favorite Destination',
         'tour-destination' => 'Tour Destination',
@@ -46,5 +52,15 @@ return [
     'footer' => [
         'introduce-title' => 'WE ARE ASIAN DREAM – A TRAVEL AGENCY & TOUR OPERATOR LOCAL',
         'introduce-content' => 'We offer a wide range of tours to Vietnam and Southeast Asia'
+    ],
+    'contact' => [
+        'booking-custom' => 'Booking Custom Tour',
+        'your-name' => 'Your name',
+        'your-email' => 'Your email',
+        'number-of-people' => 'Number of people',
+        'check-in-date' => 'Check in date',
+        'expected-hotel' => 'Expected hotel',
+        'note' => 'Note',
+        'submit' => 'Submit'
     ]
 ];

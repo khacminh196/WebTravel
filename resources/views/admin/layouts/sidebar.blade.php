@@ -39,7 +39,7 @@
             <span class="tooltip">Manager</span>
         </li>
         <li>
-            <a href="#">
+            <a href="{{ route('admin.setting.index') }}" class="{{ str_contains(Request::path(), 'admin/setting') ? 'sidebar-active' : '' }}">
                 <i class="bx bx-cog"></i>
                 <span class="links_name">Setting</span>
             </a>

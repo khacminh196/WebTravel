@@ -64,7 +64,7 @@ class TourService
 
     public function getTourDetail($id)
     {
-        return $this->tourRepo->getTourDetail($id);
+        return $this->tourRepo->getTourDetail($id, true);
     }
 
     public function update($id, $params)

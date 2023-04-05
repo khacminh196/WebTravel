@@ -10201,6 +10201,11 @@ textarea.form-control {
   margin: 0.9em auto;
   min-width: 50px;
 }
+
+.ck-content img {
+  max-width: 100%;
+}
+
 /* ckeditor5-image/theme/image.css */
 .ck-content .image img {
   display: block;

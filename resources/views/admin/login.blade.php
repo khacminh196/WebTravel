@@ -70,6 +70,9 @@
                 @if (Session::get('dataErrorLogin'))
                     <span class="error">{{ Session::get('dataErrorLogin') }}</span>
                 @endif
+                @if (Session::get('updatePWSuccess'))
+                    <span class="success">{{ Session::get('updatePWSuccess') }}</span>
+                @endif
                 <button type="submit">Log in</button>
                 <a href="#" class="discrete">Reset password</a>
             </form>
