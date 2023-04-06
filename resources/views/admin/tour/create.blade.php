@@ -50,11 +50,6 @@
 					<input name="image_prefectures[]" type="file" multiple>
 				</div>
                 <span class="error">{{ $errors->first('image_prefectures') }}</span>
-                <h1>Detail tour prefecture</h1>
-                <div class="wrapper-input">
-                    <select class="basic-multiple" name="prefectures[]" multiple="multiple"></select><br>
-                </div>
-                <span class="error">{{ $errors->first('prefectures') }}</span>
 				<div class="btn-submit">
 					<button class="contact100-form-btn">
 						<span>Submit</span>
@@ -69,7 +64,7 @@
             $('.basic-multiple').select2();
         });
     </script>
-    <script>
+    <!-- <script>
         const $input = $('#country-input');
         function changeCountry() {
             let country_id = $input.val() ?? 1;
@@ -89,7 +84,7 @@
         $( document ).ready(function() {
             changeCountry();
         });
-    </script>
+    </script> -->
 
     <style>
         .basic-multiple {

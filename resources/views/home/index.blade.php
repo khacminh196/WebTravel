@@ -59,7 +59,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-lg d-flex">
+                                            <!-- <div class="col-lg d-flex">
                                                 <div class="form-group p-4">
                                                     <label for="#">{{ __('common.input.prefecture') }}</label>
                                                     <div class="form-field">
@@ -70,7 +70,7 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
+                                            </div> -->
                                             <div class="col-lg d-flex">
                                                 <div class="form-group p-4">
                                                     <label for="#">{{ __('common.input.sort-day-tour') }}</label>
@@ -491,24 +491,24 @@
 <script>
     $(document).ready(function() {
         $('.basic-multiple').select2();
-        changeCountry();
+        // changeCountry();
     });
-    function changeCountry() {
-        const $input = $('#country-input');
-        let country_id = $input.val() ?? 1;
-        $('.prefectures').html("");
-        $.ajax({
-            url: '/admin/prefectures?select=' + <?php echo old('prefecture', \Request::get('prefecture')) ?? "''" ?>,
-            type: 'POST',
-            data: {
-                country_id,
-            },
-            success: function(response) {
-                if (response.success && response.html !== "") {
-                    $('.prefectures').html('<option value="">-- All --</option>' + response.html)
-                }
-            }
-        });
-    }
+    // function changeCountry() {
+    //     const $input = $('#country-input');
+    //     let country_id = $input.val() ?? 1;
+    //     $('.prefectures').html("");
+    //     $.ajax({
+    //         url: '/admin/prefectures?select=' + <?php echo old('prefecture', \Request::get('prefecture')) ?? "''" ?>,
+    //         type: 'POST',
+    //         data: {
+    //             country_id,
+    //         },
+    //         success: function(response) {
+    //             if (response.success && response.html !== "") {
+    //                 $('.prefectures').html('<option value="">-- All --</option>' + response.html)
+    //             }
+    //         }
+    //     });
+    // }
 </script>
 @endsection

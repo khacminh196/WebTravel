@@ -4,6 +4,7 @@ namespace App\Exceptions;
 
 use Exception;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Validation\ValidationException;
 
 class Handler extends ExceptionHandler
@@ -58,6 +59,7 @@ class Handler extends ExceptionHandler
                     $this->getExceptionHTTPStatusCode($exception)
                 );
             } else {
+                Log::info("Error", ['context' => $exception]);
                 abort(500);
             }
         }

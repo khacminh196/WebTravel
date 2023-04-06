@@ -33,7 +33,7 @@ class CreateTourRequest extends FormRequest
             'description' => 'required',
             'content' => 'required',
             'image_prefectures' => 'required|array',
-            'prefectures' => 'required|array',
+            // 'prefectures' => 'required|array',
         ];
     }
 }

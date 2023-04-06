@@ -48,6 +48,10 @@ Route::post('image-upload', 'ImageController@upload')->name('upload');
 Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function () {
     Route::get('/login', 'AuthController@loginForm')->name('login');
     Route::post('/login', 'AuthController@login');
+    Route::get('/password/send-mail', 'AuthController@formSendMailReset')->name('password.reset');
+    Route::post('/password/send-mail', 'AuthController@sendMailReset');
+    Route::get('/password/reset', 'AuthController@formResetPassword')->name('password.reset-pw');
+    Route::post('/password/reset', 'AuthController@resetPassword');
 
     Route::post('prefectures', 'PrefectureController@index');
 
