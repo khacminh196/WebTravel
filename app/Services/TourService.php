@@ -42,14 +42,14 @@ class TourService
             $params['image_link'] = $link;
         }
         $newTour = $this->tourRepo->create($params);
-        $paramsTourPrefectures = [];
+        // $paramsTourPrefectures = [];
         $paramsTourImages = [];
-        foreach ($params['prefectures'] as $prefecture) {
-            $paramsTourPrefectures[] = [
-                'tour_id' => $newTour['id'],
-                'prefecture_id' => $prefecture
-            ];
-        }
+        // foreach ($params['prefectures'] as $prefecture) {
+        //     $paramsTourPrefectures[] = [
+        //         'tour_id' => $newTour['id'],
+        //         'prefecture_id' => $prefecture
+        //     ];
+        // }
         foreach ($params['image_prefectures'] as $image) {
             $mime = $image->getMimeType();
             $paramsTourImages[] = [
@@ -58,7 +58,7 @@ class TourService
                 'link' => $this->imageService->upload($image),
             ];
         }
-        $this->tourPrefectureRepo->insert($paramsTourPrefectures);
+        // $this->tourPrefectureRepo->insert($paramsTourPrefectures);
         $this->tourImageRepo->insert($paramsTourImages);
     }
 
@@ -98,16 +98,16 @@ class TourService
             $this->tourImageRepo->insert($paramsTourImages);
         }
 
-        if (isset($params['prefectures'])) {
-            foreach ($params['prefectures'] as $prefecture) {
-                $paramsTourPrefectures[] = [
-                    'tour_id' => $id,
-                    'prefecture_id' => $prefecture
-                ];
-            }
-            $this->tourPrefectureRepo->where([['tour_id', $id]])->delete();
-            $this->tourPrefectureRepo->insert($paramsTourPrefectures);
-        }
+        // if (isset($params['prefectures'])) {
+        //     foreach ($params['prefectures'] as $prefecture) {
+        //         $paramsTourPrefectures[] = [
+        //             'tour_id' => $id,
+        //             'prefecture_id' => $prefecture
+        //         ];
+        //     }
+        //     $this->tourPrefectureRepo->where([['tour_id', $id]])->delete();
+        //     $this->tourPrefectureRepo->insert($paramsTourPrefectures);
+        // }
 
         $result = $this->tourRepo->find($id);
         $result->update($credentials);

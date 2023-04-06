@@ -28,7 +28,7 @@ class BookingController extends Controller
         DB::beginTransaction();
         try {
             $bookingInfo = $this->bookingService->createBookingTour($credentials);
-            $this->mailService->sendMailBookingTour($bookingInfo);
+            // $this->mailService->sendMailBookingTour($bookingInfo);
             DB::commit();
             Session::flash("dataSuccess", [
                 "msg" => trans('messages.BOOKING_SUCCESS')

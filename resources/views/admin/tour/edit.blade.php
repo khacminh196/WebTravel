@@ -45,10 +45,10 @@
 					<span>Images *</span>
 					<input name="image_prefectures[]" type="file" multiple>
 				</div>
-                <h1>Detail tour prefecture</h1>
+                <!-- <h1>Detail tour prefecture</h1>
                 <div class="wrapper-input">
                     <select class="basic-multiple" name="prefectures[]" multiple="multiple"></select><br>
-                </div>
+                </div> -->
 				<div class="btn-submit">
 					<button class="contact100-form-btn">
 						<span>Submit</span>
@@ -64,25 +64,25 @@
         });
     </script>
     <script>
-        const $input = $('#country-input');
-        function changeCountry() {
-            let country_id = $input.val() ?? <?php echo $data->country_id ?>;
-            $.ajax({
-                url: '/admin/prefectures?multiple_selects=<?php echo implode(",", $prefectures->toArray()) ?>',
-                type: 'POST',
-                data: {
-                    country_id,
-                },
-                success: function(response) {
-                    if (response.success) {
-                        $('.basic-multiple').html(response.html)
-                    }
-                }
-            });
-        }
-        $( document ).ready(function() {
-            changeCountry();
-        });
+        // const $input = $('#country-input');
+        // function changeCountry() {
+        //     let country_id = $input.val() ?? <?php echo $data->country_id ?>;
+        //     $.ajax({
+        //         url: '/admin/prefectures?multiple_selects=<?php echo implode(",", $prefectures->toArray()) ?>',
+        //         type: 'POST',
+        //         data: {
+        //             country_id,
+        //         },
+        //         success: function(response) {
+        //             if (response.success) {
+        //                 $('.basic-multiple').html(response.html)
+        //             }
+        //         }
+        //     });
+        // }
+        // $( document ).ready(function() {
+        //     changeCountry();
+        // });
 
         function changeImage() {
             let image = document.getElementById('image_input').files;

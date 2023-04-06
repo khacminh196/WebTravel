@@ -33,17 +33,17 @@
         <table class="table table-striped">
             <tr>
                 <th class="mw-50">STT</th>
-                <th class="mw-100">Loai booking</th>
+                <th class="mw-100">Booking type</th>
                 <th class="mw-180">Tour</th>
-                <th class="mw-180">ten khach hang</th>
-                <th class="mw-100">Dien thoai</th>
+                <th class="mw-180">Customer name</th>
+                <th class="mw-100">Customer phone</th>
                 <th class="mw-180">Email</th>
-                <th class="mw-80">So nguoi</th>
-                <th class="mw-180">Thoi gian du dinh</th>
-                <th class="mw-80">Khach san mong muon</th>
-                <th class="mw-250">Tinh trang</th>
-                <th class="mw-180">Ngay booking tour</th>
-                <th class="mw-180">Hanh dong</th>
+                <th class="mw-80">Number of people</th>
+                <th class="mw-180">Expected travel time</th>
+                <th class="mw-80">Expected hotel</th>
+                <th class="mw-250">Status</th>
+                <th class="mw-180">Created at</th>
+                <th class="mw-180">Action</th>
             </tr>
             @foreach($data as $index => $item)
                 <tr>

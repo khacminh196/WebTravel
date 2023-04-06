@@ -22,15 +22,15 @@ class TourRepository extends BaseRepository implements ITourRepository
 
     public function getListTour($params, $homeScreen = false, $isAdmin = false)
     {
-        $query = $this->model->with('country', 'prefectures')
+        $query = $this->model->with('country')
             ->when(isset($params['country']) && $params['country'], function ($query) use ($params) {
                 return $query->where('country_id', $params['country']);
             })
-            ->when(isset($params['prefecture']) && $params['prefecture'], function ($query) use ($params) {
-                return $query->whereHas('prefectures', function ($q) use ($params) {
-                    $q->where('prefectures.id', $params["prefecture"]);
-                });
-            })
+            // ->when(isset($params['prefecture']) && $params['prefecture'], function ($query) use ($params) {
+            //     return $query->whereHas('prefectures', function ($q) use ($params) {
+            //         $q->where('prefectures.id', $params["prefecture"]);
+            //     });
+            // })
             ->when(isset($params['keyword']) && $params['keyword'], function ($query) use ($params) {
                 return $query->where('name', 'LIKE', '%' . $params['keyword'] . '%');
             })
@@ -56,9 +56,9 @@ class TourRepository extends BaseRepository implements ITourRepository
     public function getTourDetail($id, $isAdmin = false)
     {
         if ($isAdmin) {
-            return $this->model->with('prefectures', 'images')->find($id);
+            return $this->model->with('images')->find($id);
         } else {
-            return $this->model->with('prefectures', 'images')->whereHas('country', function ($q) {
+            return $this->model->with('images')->whereHas('country', function ($q) {
                 $q->where('display', Constant::DISPLAY['SHOW']);
             })->find($id);
         }
