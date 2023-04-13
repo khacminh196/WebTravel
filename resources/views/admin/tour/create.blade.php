@@ -5,6 +5,15 @@
 		<div class="wrapper-create-form">
 			<form action="" method="post" enctype="multipart/form-data" class="p-5 bg-light">
 				@csrf
+                <div class="wrapper-input">
+					<span>Language *</span>
+					<select name="language" id="">
+						@foreach (App\Enums\Constant::LANGUAGE as $key => $value)
+							<option value="{{ $value }}">{{ $key }}</option>
+						@endforeach
+					</select>
+				</div>
+				<span class="error">{{ $errors->first('language') }}</span>
 				<div class="wrapper-input">
 					<span>Country *</span>
 					<select name="country_id" id="country-input" onchange="changeCountry()">

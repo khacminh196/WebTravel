@@ -15,6 +15,7 @@ class CreateToursTable extends Migration
     {
         Schema::create('tours', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->tinyInteger('language')->comment('1: en', '2: es');
             $table->integer('country_id');
             $table->string('name');
             $table->tinyInteger('num_of_day');

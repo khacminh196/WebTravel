@@ -42,4 +42,8 @@ class Constant
         'VIDEO' => 1,
         'IMAGE' => 2
     ];
+    const LANGUAGE = [
+        'en' => 1,
+        'es' => 2
+    ];
 }
