@@ -43,7 +43,7 @@ class TourRepository extends BaseRepository implements ITourRepository
         } else {
             $query = $query->whereHas('country', function ($q) {
                 $q->where('display', Constant::DISPLAY['SHOW']);
-            });
+            })->where('language', Constant::LANGUAGE[config('app.locale')]);
         }
         
         if ($homeScreen) {
@@ -60,7 +60,7 @@ class TourRepository extends BaseRepository implements ITourRepository
         } else {
             return $this->model->with('images')->whereHas('country', function ($q) {
                 $q->where('display', Constant::DISPLAY['SHOW']);
-            })->find($id);
+            })->where('language', Constant::LANGUAGE[config('app.locale')])->find($id);
         }
     }
 }

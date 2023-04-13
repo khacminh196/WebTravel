@@ -27,6 +27,7 @@
         <table class="table table-striped">
             <tr>
                 <th class="mw-50">STT</th>
+                <th class="mw-80">Language</th>
                 <th class="mw-180">Country</th>
                 <th class="mw-180">Name</th>
                 <th class="mw-80">Day</th>
@@ -39,6 +40,7 @@
             @foreach($data as $index => $item)
                 <tr>
                     <td>{{ ++$index }}</td>
+                    <td>{{ strtoupper(array_flip(App\Enums\Constant::LANGUAGE)[$item->language]) }}</td>
                     <td>{{ $item->country->name }}</td>
                     <td>{{ $item->name }}</td>
                     <td>{{ $item->num_of_day }}</td>

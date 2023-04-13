@@ -10,6 +10,7 @@ class Tour extends Model
     protected $table = 'tours';
 
     protected $fillable = [
+        'language',
         'country_id',
         'name',
         'num_of_day',

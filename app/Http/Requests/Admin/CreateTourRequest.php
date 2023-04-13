@@ -24,6 +24,7 @@ class CreateTourRequest extends FormRequest
     public function rules()
     {
         return [
+            'language' => 'required',
             'country_id' => 'required|integer',
             'name' => 'required',
             'num_of_day' => 'required|integer',

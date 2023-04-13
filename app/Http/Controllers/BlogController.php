@@ -7,7 +7,6 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\ListBlogRequest;
 use App\Repositories\Blog\IBlogRepository;
 use App\Repositories\Category\ICategoryRepository;
-use Illuminate\Http\Request;
 
 class BlogController extends Controller
 {
@@ -29,10 +28,16 @@ class BlogController extends Controller
     public function show($id)
     {
         $categories = [];
-        $recentBlog = $this->blogRepo->select(['id', 'title', 'image_link', 'created_at'])->orderBy('id', 'DESC')->limit(3)->get();
+        $recentBlog = $this->blogRepo->select(['id', 'title', 'image_link', 'created_at'])->where([
+            ['language', Constant::LANGUAGE[config('app.locale')]],
+            ['is_public', Constant::DISPLAY['SHOW']]
+        ])->orderBy('id', 'DESC')->limit(3)->get();
         $categories = $this->categoryRepo->getListCategory();
-        $data = $this->blogRepo->find($id);
-        
+        $data = $this->blogRepo->where([['language' , Constant::LANGUAGE[config('app.locale')], ['is_public', Constant::DISPLAY['SHOW']]]])->find($id);
+        if (!$data) {
+            return redirect()->route('blog.index');
+        }
+
         return view('blog.detail', compact('data', 'categories', 'recentBlog', 'categories'));
     }
 }

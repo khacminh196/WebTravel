@@ -33,8 +33,10 @@ class CountryRepository extends BaseRepository implements ICountryRepository
         if ($isAdmin) {
             return $query->paginate(Constant::DEFAULT_PAGINATION_ADMIN);
         }
-        
-        return $query->addSelect(DB::raw("(SELECT COUNT(*) FROM tours t WHERE t.country_id = countries.id) number_of_tour"))
+
+        $language = Constant::LANGUAGE[config('app.locale')];
+
+        return $query->addSelect(DB::raw("(SELECT COUNT(*) FROM tours t WHERE t.country_id = countries.id AND language = $language) number_of_tour"))
             ->where(['display' => Constant::DISPLAY['SHOW']])
             ->get();
     }

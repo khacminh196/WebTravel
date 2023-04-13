@@ -23,6 +23,7 @@ class BlogRepository extends BaseRepository implements IBlogRepository
     {
         $data = $this->model->select(
             'id',
+            'language',
             'title',
             'category_id',
             'description',
@@ -39,7 +40,8 @@ class BlogRepository extends BaseRepository implements IBlogRepository
         });
 
         if (!$isAdmin) {
-            $data = $data->where('is_public', Constant::DISPLAY['SHOW']);
+            $data = $data->where('is_public', Constant::DISPLAY['SHOW'])
+                ->where('language', Constant::LANGUAGE[config('app.locale')]);
         }
         
         return $data->with('category')->orderBy('id', 'DESC')->paginate($isAdmin ? Constant::DEFAULT_PAGINATION_ADMIN : Constant::DEFAULT_PAGINATION_BLOG);
