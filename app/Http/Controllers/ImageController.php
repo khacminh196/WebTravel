@@ -3,21 +3,21 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use App\Services\ImageService;
+use App\Services\S3Service;
 use Illuminate\Http\Request;
 
 class ImageController extends Controller
 {
-    protected $imageService;
+    protected $s3Service;
 
-    public function __construct(ImageService $imageService)
+    public function __construct(S3Service $s3Service)
     {
-        $this->imageService = $imageService;
+        $this->s3Service = $s3Service;
     }
 
     public function upload(Request $request)
     {
-        $link = $this->imageService->upload($request->file('upload'));
+        $link = $this->s3Service->uploadFileToS3($request->file('upload'), 'blogs-contents/');
         $response = [
             'url' => $link
         ];

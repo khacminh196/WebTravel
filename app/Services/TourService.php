@@ -14,18 +14,21 @@ class TourService
     protected $tourImageRepo;
     protected $tourPrefectureRepo;
     protected $imageService;
+    protected $s3Service;
 
     public function __construct(
         ITourRepository $tourRepo,
         ITourImageRepository $tourImageRepo,
         ITourPrefectureRepository $tourPrefectureRepo,
-        ImageService $imageService
+        ImageService $imageService,
+        S3Service $s3Service
     )
     {
         $this->tourRepo = $tourRepo;
         $this->tourImageRepo = $tourImageRepo;
         $this->tourPrefectureRepo = $tourPrefectureRepo;
         $this->imageService = $imageService;
+        $this->s3Service = $s3Service;
     }
 
     public function getAllTourAdmin($params)
@@ -38,8 +41,7 @@ class TourService
     public function store($params)
     {
         if (isset($params['image']) && $params['image']) {
-            $link = $this->imageService->upload($params['image']);
-            $params['image_link'] = $link;
+            $params['image_link'] = $this->s3Service->uploadFileToS3($params['image'], 'tours/');
         }
         $newTour = $this->tourRepo->create($params);
         // $paramsTourPrefectures = [];
@@ -55,7 +57,7 @@ class TourService
             $paramsTourImages[] = [
                 'tour_id' => $newTour['id'],
                 'type' => strstr($mime, "video/") ? Constant::FILE_TYPE['VIDEO'] : Constant::FILE_TYPE['IMAGE'],
-                'link' => $this->imageService->upload($image),
+                'link' => $this->s3Service->uploadFileToS3($image, 'tours/'),
             ];
         }
         // $this->tourPrefectureRepo->insert($paramsTourPrefectures);
@@ -82,7 +84,7 @@ class TourService
         }
 
         if (isset($params['image'])) {
-            $link = $this->imageService->upload($params['image']);
+            $link = $this->s3Service->uploadFileToS3($params['image'], 'tours/');
             $credentials['image_link'] = $link;
         }
 
@@ -91,8 +93,8 @@ class TourService
                 $mime = $image->getMimeType();
                 $paramsTourImages[] = [
                     'tour_id' => $id,
-                    'type' => strstr($mime, "video/") ? 1 : 2,
-                    'link' => $this->imageService->upload($image),
+                    'type' => strstr($mime, "video/") ? Constant::FILE_TYPE['VIDEO'] : Constant::FILE_TYPE['IMAGE'],
+                    'link' =>  $this->s3Service->uploadFileToS3($image, 'prefectures/'),
                 ];
             }
             $this->tourImageRepo->insert($paramsTourImages);

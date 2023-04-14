@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Repositories\Country\ICountryRepository;
 use App\Services\ImageService;
+use App\Services\S3Service;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
@@ -13,14 +14,17 @@ class ManagerController extends Controller
 {
     protected $imageService;
     protected $countryRepo;
+    protected $s3Service;
 
     public function __construct(
         ImageService $imageService,
-        ICountryRepository $countryRepo
+        ICountryRepository $countryRepo,
+        S3Service $s3Service
     )
     {
         $this->imageService = $imageService;
         $this->countryRepo = $countryRepo;
+        $this->s3Service = $s3Service;
     }
 
     public function index()
@@ -40,7 +44,7 @@ class ManagerController extends Controller
         $params = $request->all();
         DB::beginTransaction();
         try {
-            $link = $this->imageService->upload($request->file('image'), 'images/countries');
+            $link = $this->s3Service->uploadFileToS3($request->file('image'), 'countries/');
             $params['image_link'] = $link;
             $this->countryRepo->create($params);
             DB::commit();
