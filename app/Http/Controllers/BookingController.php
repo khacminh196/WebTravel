@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\Constant;
 use App\Http\Requests\BookingTourRequest;
+use App\Jobs\SendMail;
 use App\Services\BookingService;
-use App\Services\MailService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
@@ -12,14 +13,11 @@ use Illuminate\Support\Facades\Session;
 class BookingController extends Controller
 {
     protected $bookingService;
-    protected $mailService;
     public function __construct(
-        BookingService $bookingService,
-        MailService $mailService
+        BookingService $bookingService
     )
     {
         $this->bookingService = $bookingService;
-        $this->mailService = $mailService;
     }
 
     public function bookingTour(BookingTourRequest $request)
@@ -29,6 +27,7 @@ class BookingController extends Controller
         try {
             $bookingInfo = $this->bookingService->createBookingTour($credentials);
             // $this->mailService->sendMailBookingTour($bookingInfo);
+            SendMail::dispatch(Constant::SEND_MAIL_TYPE['BOOKING_TOUR'], $bookingInfo);
             DB::commit();
             Session::flash("dataSuccess", [
                 "msg" => trans('messages.BOOKING_SUCCESS')

@@ -6,6 +6,7 @@ use App\Enums\Constant;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\ChangePasswordRequest;
 use App\Http\Requests\Admin\SendMailResetPasswordRequest;
+use App\Jobs\SendMail;
 use App\Models\PasswordReset;
 use App\Repositories\User\UserRepository;
 use Illuminate\Http\Request;
@@ -66,7 +67,9 @@ class AuthController extends Controller
         DB::beginTransaction();
         if (!$checkEmailError) {
             try {
-                $this->mailService->sendMailResetPassword($email);
+                SendMail::dispatch(Constant::SEND_MAIL_TYPE['RESET_PASSWORD'], [
+                    'email-reset' => $email
+                ]);
                 Session::flash('sendMailSuccess', 'Please check mail to reset password !');
                 DB::commit();
             } catch (\Exception $e) {

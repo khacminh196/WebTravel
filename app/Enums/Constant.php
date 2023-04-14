@@ -46,4 +46,8 @@ class Constant
         'en' => 1,
         'es' => 2
     ];
+    const SEND_MAIL_TYPE = [
+        'RESET_PASSWORD' => 1,
+        'BOOKING_TOUR' => 2,
+    ];
 }
