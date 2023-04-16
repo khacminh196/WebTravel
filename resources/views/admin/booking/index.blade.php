@@ -41,6 +41,7 @@
                 <th class="mw-80">Number of people</th>
                 <th class="mw-180">Expected travel time</th>
                 <th class="mw-80">Expected hotel</th>
+                <th class="mw-80">User confirm</th>
                 <th class="mw-250">Status</th>
                 <th class="mw-180">Created at</th>
                 <th class="mw-180">Action</th>
@@ -60,6 +61,13 @@
                     <td>{{ $item->number_of_people }}</td>
                     <td>{{ $item->expected_travel_time }}</td>
                     <td>{{ $item->expected_travel_hotel }}</td>
+                    <td>
+                        @if ($item->confirm == App\Enums\Constant::BOOKING_TOUR_CONFIRM['UNCONFIRMED'])
+                            <span style="color: orange;">{{ array_flip(App\Enums\Constant::BOOKING_TOUR_CONFIRM)[$item->confirm] }}</span>
+                        @else
+                            <span style="color: green;">{{ array_flip(App\Enums\Constant::BOOKING_TOUR_CONFIRM)[$item->confirm] }}</span>
+                        @endif
+                    </td>
                     <td>
                         <form class="confirm-form" action="{{ route('admin.booking.update-status', ['id' => $item->id]) }}" method="POST">
                             @csrf

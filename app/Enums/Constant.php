@@ -50,4 +50,13 @@ class Constant
         'RESET_PASSWORD' => 1,
         'BOOKING_TOUR' => 2,
     ];
+
+    const BOOKING_TOUR_CONFIRM = [
+        'UNCONFIRMED' => 0,
+        'CONFIRMED' => 1
+    ];
+    const USER_TYPE_CONFIRM = [
+        'USER' => 0,
+        'ADMIN' => 1
+    ];
 }

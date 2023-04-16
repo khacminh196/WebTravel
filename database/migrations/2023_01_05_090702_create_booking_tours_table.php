@@ -26,6 +26,10 @@ class CreateBookingToursTable extends Migration
             $table->tinyInteger('expected_travel_hotel')->nullable();
             $table->text('note')->nullable();
             $table->tinyInteger('status')->default(0)->comment('0: waiting confirm, 1: confirmed; 2: traveling; 3: finished');
+            $table->tinyInteger('confirm')->default(0)->comment('0: unconfirmed', '1: confirmed');
+            $table->string('token_confirm', 40);
+            $table->dateTime('time_token_expired')->nullable();
+            $table->tinyInteger('user_type_confirm')->nullable()->comment('0: USER, 1: ADMIN');
             $table->string('reality_cost')->nullable()->comment('only set when status = 3');
             $table->timestamps();
         });

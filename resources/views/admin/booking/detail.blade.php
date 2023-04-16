@@ -7,10 +7,12 @@
                 <span>Booking type</span>
                 <div>{{ App\Enums\Constant::TYPE_BOOKING_TOUR_TEXT[$detail->type_booking] }}</div>
             </div>
-            <div class="wrapper-input">
-                <span>Tour name</span>
-                <div>{{ $detail->tour_id }}</div>
-            </div>
+            @if ($detail->type_booking == App\Enums\Constant::TYPE_BOOKING_TOUR['EXISTS'])
+                <div class="wrapper-input">
+                    <span>Tour name</span>
+                    <div>{{ $detail->tour->name }}</div>
+                </div>
+            @endif
             <div class="wrapper-input">
                 <span>Customer name</span>
                 <div>{{ $detail->name }}</div>
@@ -43,6 +45,16 @@
                 <span>Status</span>
                 <div>{{ App\Enums\Constant::TOUR_STATUS[$detail->status] }}</div>
             </div>
+            <div class="wrapper-input">
+                <span>Confirm</span>
+                <div>{{ array_flip(App\Enums\Constant::BOOKING_TOUR_CONFIRM)[$detail->confirm] }}</div>
+            </div>
+            @if ($detail->confirm == App\Enums\Constant::BOOKING_TOUR_CONFIRM['CONFIRMED'])
+                <div class="wrapper-input">
+                    <span>User type confirm</span>
+                    <div>{{ array_flip(App\Enums\Constant::USER_TYPE_CONFIRM)[$detail->user_type_confirm] }}</div>
+                </div>
+            @endif
             <div class="wrapper-input">
                 <span>Created date</span>
                 <div>{{ $detail->created_at }}</div>

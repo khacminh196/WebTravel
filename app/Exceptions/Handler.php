@@ -60,7 +60,6 @@ class Handler extends ExceptionHandler
                 );
             } else {
                 Log::info("Error", ['context' => $exception]);
-                abort(500);
             }
         }
         return parent::render($request, $exception);
