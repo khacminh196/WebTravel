@@ -39,6 +39,18 @@
             </div>
 
             <div class="wrapper_content">
+                @if (!is_null(session('bookingSuccess')))
+                    <div class="popup open" id="popup-confirm">
+                        <div class="popup-content">
+                            <span class="close">&times;</span>
+                            <div>
+                                <img src="{{ asset('images/checked.png') }}" alt="">
+                            </div>
+                            <h2>{{ session('bookingSuccess')['title'] }}</h2>
+                            <p>{{ session('bookingSuccess')['body'] }}</p>
+                        </div>
+                    </div>
+                @endif
                 @if (!is_null(session('dataSuccess')))
                     <div id="show-toast-success" data-msg="{{ session('dataSuccess')['msg'] }}"></div>
                 @endif
@@ -65,9 +77,11 @@
                 @yield('content')
             </div>
             
-            <div class="wrapper_footer">
-                @include('layouts.footer')
-            </div>
+            @if (Route::current()->getName() !== 'edit-booking-tour')
+                <div class="wrapper_footer">
+                    @include('layouts.footer')
+                </div>
+            @endif
         </div>
     </div>
 
@@ -86,6 +100,10 @@
         $('#close-btn').click(function () {
             $("#file-content").attr("src", "");
             $("#wrapper-toast").removeClass("open");
+        });
+
+        $('.close').click(function () {
+            $("#popup-confirm").removeClass("open");
         });
 
         window.addEventListener('click', function(e){

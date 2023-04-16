@@ -18,6 +18,10 @@ class BookingTour extends Model
         'expected_travel_hotel',
         'note',
         'status',
+        'confirm',
+        'token_confirm',
+        'time_token_expired',
+        'user_type_confirm',
         'reality_cost'
     ];
 

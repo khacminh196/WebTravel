@@ -31,7 +31,7 @@ interface IBaseRepository
      * Create
      *
      * @param $id
-     * @return bool
+     * @return object
      */
     public function create($attribute);
 

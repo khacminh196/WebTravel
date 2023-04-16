@@ -20,6 +20,9 @@ Route::get('/blog', 'BlogController@index')->name('blog.index');
 Route::get('/blog/{id}', 'BlogController@show')->name('blog.detail');
 
 Route::post('/booking-tour', 'BookingController@bookingTour')->name('booking-tour.store');
+Route::get('/booking-tour/{id}/confirm', 'BookingController@confirmBookingTour')->name('booking-tour-confirm');
+Route::get('/booking-tour/{id}/edit', 'BookingController@editInfoBooking')->name('edit-booking-tour');
+Route::post('/booking-tour/{id}/edit', 'BookingController@storeInfoBooking');
 
 Route::get('/contact', function () {
     return view('contact.index');

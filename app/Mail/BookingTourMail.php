@@ -31,7 +31,7 @@ class BookingTourMail extends Mailable
      */
     public function build()
     {
-        return $this->subject('test cai nay')
+        return $this->subject('Confirm booking tour')
             ->view('mail-template.test')
             ->with([
                 'url' => $this->loginUrl,

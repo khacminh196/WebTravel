@@ -263,7 +263,8 @@
 
   $('.checkin_date, .checkout_date').datepicker({
 	  'format': 'yyyy-mm-dd',
-	  'autoclose': true
+	  'autoclose': true,
+	  'startDate': new Date()
 	});
 
 
