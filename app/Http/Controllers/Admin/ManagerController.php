@@ -4,8 +4,10 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Repositories\Country\ICountryRepository;
+use App\Repositories\Traffic\ITrafficRepository;
 use App\Services\ImageService;
 use App\Services\S3Service;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
@@ -14,16 +16,19 @@ class ManagerController extends Controller
 {
     protected $imageService;
     protected $countryRepo;
+    protected $trafficRepo;
     protected $s3Service;
 
     public function __construct(
         ImageService $imageService,
         ICountryRepository $countryRepo,
+        ITrafficRepository $trafficRepo,
         S3Service $s3Service
     )
     {
         $this->imageService = $imageService;
         $this->countryRepo = $countryRepo;
+        $this->trafficRepo = $trafficRepo;
         $this->s3Service = $s3Service;
     }
 
@@ -31,12 +36,12 @@ class ManagerController extends Controller
     {
         $countries = $this->countryRepo->getListCountry(true);
 
-        return view('admin.manager.index', compact('countries'));
+        return view('admin.manager.country.index', compact('countries'));
     }
 
     public function createCountry()
     {
-        return view('admin.manager.create-country');
+        return view('admin.manager.country.create');
     }
 
     public function storeCountry(Request $request)
@@ -58,7 +63,7 @@ class ManagerController extends Controller
             ]);
         }
 
-        return redirect()->route('admin.manager.index');
+        return redirect()->route('admin.manager.country.index');
     }
 
     public function changeCountryStatus($id, $status)
@@ -72,5 +77,13 @@ class ManagerController extends Controller
         }
 
         return redirect()->back();
+    }
+
+    public function trafficIndex(Request $request)
+    {
+        $params = $request->only('start_date', 'end_date');
+        $data = $this->trafficRepo->getTraffic($params);
+
+        return view('admin.manager.traffic.index', compact('data'));
     }
 }

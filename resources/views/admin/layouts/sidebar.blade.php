@@ -32,10 +32,26 @@
             <span class="tooltip">Booking tour</span>
         </li>
         <li>
-            <a href="{{ route('admin.manager.index') }}" class="{{ str_contains(Request::path(), 'admin/manager') ? 'sidebar-active' : '' }}">
+            <a href="#" onclick="handleManagerSidebar()" class="{{ str_contains(Request::path(), 'admin/manager') ? 'sidebar-active' : '' }}">
                 <i class="bx bx-folder"></i>
                 <span class="links_name">Manager</span>
             </a>
+            <ul id="manager-sidebar">
+                <li>
+                    <a href="{{ route('admin.manager.country.index') }}" class="{{ str_contains(Request::path(), 'admin/manager/country') ? 'sidebar-active' : '' }}">
+                        <i class="bx bx-folder"></i>
+                        <span class="links_name">Countries</span>
+                    </a>
+                    <span class="tooltip">Countries</span>
+                </li>
+                <li>
+                    <a href="{{ route('admin.manager.traffic.index') }}" class="{{ str_contains(Request::path(), 'admin/manager/traffic') ? 'sidebar-active' : '' }}">
+                        <i class="bx bx-folder"></i>
+                        <span class="links_name">Traffic</span>
+                    </a>
+                    <span class="tooltip">Traffic</span>
+                </li>
+            </ul>
             <span class="tooltip">Manager</span>
         </li>
         <li>
@@ -64,6 +80,15 @@
 <script>
     function handleSideBar() {
         let element = document.getElementById("sidebar");
+        if (element.classList.contains("open")) {
+            element.classList.remove("open");
+        } else {
+            element.classList.add("open");
+        }
+    }
+
+    function handleManagerSidebar() {
+        let element = document.getElementById("manager-sidebar");
         if (element.classList.contains("open")) {
             element.classList.remove("open");
         } else {
