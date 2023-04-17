@@ -87,10 +87,12 @@ Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function () {
         });
 
         Route::group(['prefix' => 'manager'], function () {
-            Route::get('/', 'ManagerController@index')->name('manager.index');
-            Route::get('country/create', 'ManagerController@createCountry')->name('manager.create-country');
+            Route::get('/country', 'ManagerController@index')->name('manager.country.index');
+            Route::get('country/create', 'ManagerController@createCountry')->name('manager.country.create-country');
             Route::post('country/create', 'ManagerController@storeCountry');
-            Route::get('country/{id}/status/{status}', 'ManagerController@changeCountryStatus')->name('manager.change-country-status');
+            Route::get('country/{id}/status/{status}', 'ManagerController@changeCountryStatus')->name('manager.country.change-country-status');
+
+            Route::get('/traffic', 'ManagerController@trafficIndex')->name('manager.traffic.index');
         });
 
         Route::group(['prefix' => 'setting'], function () {

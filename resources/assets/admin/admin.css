@@ -270,6 +270,12 @@ body {
     font-weight: 500;
     margin: 18px
 }
+#manager-sidebar {
+    display: none;
+}
+#manager-sidebar.open {
+    display: block;
+}
 
 /* END SIDE BAR */
 

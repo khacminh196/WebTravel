@@ -49,6 +49,11 @@ class RepositoryServiceProvider extends ServiceProvider
             \App\Repositories\User\IUserRepository::class,
             \App\Repositories\User\UserRepository::class
         );
+
+        $this->app->bind(
+            \App\Repositories\Traffic\ITrafficRepository::class,
+            \App\Repositories\Traffic\TrafficRepository::class
+        );
     }
 
     /**

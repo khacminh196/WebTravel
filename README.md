@@ -39,7 +39,7 @@ Laravel Base is based on Laravel 6
     sudo apt-get install supervisor 
 ```
 
-path:  /etc/supervisor/conf.d
+path:  /etc/supervisor/conf.d/travel-worker.conf
 ```
     [program:travel-worker]
     process_name=%(program_name)s_%(process_num)02d
@@ -57,5 +57,5 @@ path:  /etc/supervisor/conf.d
     sudo service supervisor restart
     sudo supervisorctl reread
     sudo supervisorctl update
-    sudo supervisorctl start laravel-worker:*
+    sudo supervisorctl start travel-worker:*
 ```

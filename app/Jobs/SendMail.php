@@ -9,6 +9,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Facades\Log;
 
 class SendMail implements ShouldQueue
 {
@@ -39,10 +40,14 @@ class SendMail implements ShouldQueue
     public function handle()
     {
         $mailService = new MailService();
-        if ($this->type == Constant::SEND_MAIL_TYPE['RESET_PASSWORD']) {
-            $mailService->sendMailResetPassword($this->params['email-reset']);
-        } else if ($this->type == Constant::SEND_MAIL_TYPE['BOOKING_TOUR']) {
-            $mailService->sendMailBookingTour($this->params);
+        try {
+            if ($this->type == Constant::SEND_MAIL_TYPE['RESET_PASSWORD']) {
+                $mailService->sendMailResetPassword($this->params['email-reset']);
+            } else if ($this->type == Constant::SEND_MAIL_TYPE['BOOKING_TOUR']) {
+                $mailService->sendMailBookingTour($this->params);
+            }
+        } catch (\Exception $e) {
+            Log::channel('send_mail')->info($e->getMessage(), ["params" => $this->params]);
         }
     }
 }
